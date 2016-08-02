@@ -1,0 +1,10 @@
+_minted-IEI_zh/*
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.pdf
+*.toc
