@@ -1,0 +1,52 @@
+%
+%   地震成像理论及方法(PDF重制版)
+%   作者：Jon F. Claerbout
+%   项目主页：https://github.com/nicklinyi/IEI_zh
+%   编译环境：TeX Live 2016
+%   中文支持：xeLaTeX + ctex
+%
+\input{IEI_macros}
+\begin{document}
+
+\pdfbookmark[0]{封面}{cover}
+\input{cover}
+\pagestyle{empty}
+
+\frontmatter
+\include{frontmatterIII}
+%\input{version}
+\input{contributor}
+
+\pdfbookmark[0]{\contentsname}{contents}
+\tableofcontents
+\cleardoublepage
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures
+\cleardoublepage
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables
+
+\mainmatter
+\pagestyle{body}
+
+
+\chapter*{引论}
+\input{introduction/intro.tex}
+
+
+\chapter{成像方法概论}
+\input{basic/exploding-reflectors}
+\input{basic/wavefield-downward}
+\input{basic/four-wide-mig}
+\input{basic/physical-basic}
+\input{basic/paraxial-equation}
+\input{basic/two-fourier}
+\input{basic/program}
+
+\chapter{为何采用时空域处理}
+\label{chap:why-time-space}
+\input{timespace/intro-to-why}
+
+\appendix
+
+\end{document}
