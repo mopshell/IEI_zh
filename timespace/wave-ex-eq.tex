@@ -84,3 +84,104 @@ k_z=\frac{\omega}{v}\sqrt{1-\frac{v^2k_x^2}{\omega^2}}
 \end{equation}
 
 \end{subequations}
+将方程\ref{eq:ex2.1.6b}变换回空间域并非就是用一个有关$x$的二级导数代换$k_x^2$这么简单的
+事，问题是微分算子之平方根的意义何在。大学的微积分教程并未解释微分算子平方根的意
+义，因而没有直截了当的有限差分表达式。仅在该平方根被看成是某种类型的截断级数
+展开时，以$ik_x=\partial/\partial x$
+来代表沿$x$方向的反变换才变得有章义。\ref{sec:4.6}节将证明，选择Taylor级
+数展开并不是好办法。Francis
+Muir曾指出，原有的15°与45°偏移外推法都正好是一种连分
+式展开式的截断。为话明这点，设将式\ref{eq:ex2.1.6a}写成下列形式以定义出$X$与$R$
+\begin{equation}
+k_z=\frac{\omega}{v}\sqrt{1-X^2}=\frac{\omega}{v}R
+\label{eq:ex2.1.7}
+\end{equation}
+所希望的$n$阶多项式比值将以$R_n$表示，按照下列递推关系
+\begin{equation}
+R_{n+1}=1-\frac{X^2}{1+R_n}
+\label{eq:ex2.1.8}
+\end{equation}
+来确定该比值。为了解这种序列的收敛情形（如果它收敛的话），在式\ref{eq:ex2.1.8}内令$n=\infty$
+从而解出
+\begin{gather}
+R_{\infty}=1-\frac{X^2}{1+R_{\infty}} \notag \\
+R_{\infty}(1+R_{\infty})=1+R_{\infty}-X^2 \notag \\
+R^2=1-X^2
+\label{eq:ex2.1.9}
+\end{gather}
+式\ref{eq:ex2.1.9}的平方根给出所要求的表达式\ref{eq:ex2.1.7}。从几何意义来说，式\ref{eq:ex2.1.7}说
+明：入射角余弦之平方等于1减正弦之平方。将展开式截断要产生角度误差。事实上，经常
+采用的只是展开式中的低阶项，从$R_0=1$开始，求出其结果如表\ref{tab:2.1.1}所列
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{Y|Y}
+%\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
+%\toprule
+\hline
+$5^{\circ}$& $R_0=1$ \\ \hline
+$15^{\circ}$& $R_1=1-\frac{X^2}{2}$ \\ \hline
+$45^{\circ}$& $R_2=1-\frac{X^2}{2-\frac{X^2}{2}}$ \\ \hline
+$65^{\circ}$& $R_3=1-\frac{X^2}{2-\frac{X^2}{2-\frac{X^2}{2}}}$ \\ \hline
+
+%\bottomrule
+\end{tabularx}
+%\end{tabular}
+\caption{Muir连分式展开的头四项截断式}
+\label{tab:2.1.1}
+\end{table}
+由于各种历史的原因，表\ref{tab:2.1.1}所列各方程往往分别称为5°、15°和45°的方程，对于可
+充分掌握的角度范围而言，这些名称能给出合理的定性说明（但定量上是粗劣的）。为兼顾
+构造复杂性和计算精确度，经常是指定选择45°方程。后来搞清楚了，要是从$R_0=cos45^{\circ}$这
+类的值开始递推计算，可容纳的角度范围还可以再稍微宽一点。热衷于提高精确度的人也许
+可使及。是一个速度的、空间坐标的或者频率的函数。
+\subsection{波散关系}
+为与准确的表达式\ref{eq:ex2.1.6a}比较起见，将表\ref{tab:2.1.1}所列展开式代入式\ref{eq:ex2.1.7}内，得出波散关系如表
+\ref{tab:2.1.2}所示。如图\ref{fig:omx/disper}所示，表\ref{tab:2.1.2}的波散关系均趋近于半圆。
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{Y|Y}
+%\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
+%\toprule
+\hline
+$5^{\circ}$& $k_z=\frac{\omega}{v}$ \\ \hline
+$15^{\circ}$& $k_z=\frac{\omega}{v}-\frac{vk_x^2}{2\omega}$ \\ \hline
+$45^{\circ}$& $k_z=\frac{\omega}{v}-\frac{k_x^2}{2\frac{\omega}{v}-\frac{vk_x^2}{2\omega}}$ \\ \hline
+\end{tabularx}
+%\end{tabular}
+\caption{波散关系}
+\label{tab:2.1.2}
+\end{table}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{omx/disper}
+\caption[disper]{表\ref{tab:2.1.2}与式\ref{eq:ex2.1.6a}所示波散关系。标有$45_{+}^{\circ}$的曲线系按$R_0=cos45^{\circ}$构制，它准确地拟合于$0^{\circ}$和$45^{\circ}$的情形}
+\label{fig:omx/disper}
+\end{figure}
+\subsection{速度随深度而变化的情形}
+以算符$\partial /\partial z$代替$ik_z$可将表\ref{tab:2.1.2}的波散关系转换成表\ref{tab:2.1.3}所示偏微分方程。
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{Y|Y}
+%\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
+%\toprule
+\hline
+$5^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}]P$ \\ \hline
+$15^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}-\frac{vk_x^2}{2\omega}]P$ \\ \hline
+$45^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}-\frac{k_x^2}{2\frac{\omega}{v}-\frac{vk_x^2}{2\omega}}]P$ \\ \hline
+\end{tabularx}
+%\end{tabular}
+
+\caption{速度仅与深度有关时的外推方程}
+\label{tab:2.1.3}
+\end{table}
+表\ref{tab:2.1.3}各偏微分方程均以某个波散关系为基础，因而到头来都是以一种恒定速度假设为
+基础。所以，你不能指望在速度随深度而变化时、即$v=v(z)$时方程还能有重要的应用价值或甚至还有很大用处。它们本身是无能为力描述反射的，这正好说明了它们的实际限度。
+
+以式\ref{eq:ex2.1.6b}或表\ref{tab:2.1.3}所示各式为基础的偏移方法均称作相移法。
+\subsection{延迟频率域}
