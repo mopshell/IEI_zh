@@ -185,3 +185,73 @@ $45^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}-\frac{k_x^2}{2\f
 
 以式\ref{eq:ex2.1.6b}或表\ref{tab:2.1.3}所示各式为基础的偏移方法均称作相移法。
 \subsection{延迟频率域}
+安排这样一种波动计算：消除整体平移效果从而使波显得像是“停止不动”，常常有其
+方便之处，有关波动延迟的这个题目将在\ref{sec:2.6}节作更详尽的研究，其时，对速度为$\hat{v}(z)$之
+假想介质内的垂直传播之波引入时移$t_0$是十分容易的事，即
+\begin{equation}
+t_0=\int_0^z\frac{dz}{\hat{v}(z)}
+\label{eq:ex2.1.10}
+\end{equation}
+时间域内之时延$t_0$相应于频率$\omega$域内乘以$exp(i\omega t_0)$。因此，实际波场$P(z,\omega)$与经过时
+移之波场$Q(z,\omega)$有下列关系
+\begin{subequaitons}
+
+\begin{equation}
+P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+\label{eq:ex2.1.11a}
+\end{equation}
+(方程\ref{eq:ex2.1.11}适用于义$x$空间与$k_x$空间两种情形）。对$z$微分，得
+\begin{equation*}
+\frac{\partial P}{\partial z}=\frac{\partial Q}{\partial z}\exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
++Q(z,\omega)\frac{i\omega}{\hat{v}(z)}\exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+%P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+%\label{eq:ex2.1.11b}
+\end{equation*}
+或
+\begin{equation}
+\frac{\partial P}{\partial z}=exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}][\frac{\partial}{\partial z+\frac{i\omega}{\hat{v}}}]Q
+\label{eq:ex2.1.11b}
+\end{equation}
+\label{eq:ex2.1.11}
+\end{subequations}
+然后，将\ref{eq:ex2.1.11}代入表\ref{tab:2.1.3},得到表\ref{tab:2.1.4}所列各种延迟方程。
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{Y|Y}
+%\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
+%\toprule
+\hline
+$5^{\circ}$& $\frac{\partial Q}{\partial z}=0                +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
+$15^{\circ}$& $\frac{\partial Q}{\partial z}=-i\frac{vk_x^2}{2\omega}Q      +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
+$45^{\circ}$& $\frac{\partial P}{\partial z}=-i\frac{\frac{k_x^2}}{{2\frac{\omega}{v}-\frac{vk_x^2}{2\omega}}}       +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
+\end{tabularx}
+%\end{tabular}
+
+\caption{相移方程的延迟形式}
+\label{tab:2.1.4}
+\end{table}
+\subsection{横向速度变化}
+因平方根已用多项式比值近似，表\ref{tab:2.1.3}或表\ref{tab:2.1.4}各式只须利用$(ik_x)^2=\partial^2/\partial x^2$
+关系就可从水平波数域L反变换至水平空间域$x$。与前相同，所得结果对很宽范围的速度关系$v=v(x,z)$
+均成立，即使看来似乎导数不允许这样做。通常将选择$\hat{v}(z)$
+为$v(x,z)$的某种类
+型之水平方向平均值，不过，允许$\hat{v}$成为一个$x$的函数将产生许多新项，它们很难处理，而忽
+略它们又会引起一些潜在的危险，所以，一般是使$\hat{v}$与$z$有关而与$x$无关。
+\subsection{分离法}
+对表\ref{tab:2.1.3}与表\ref{tab:2.1.4}中各方程的空间$x$域的形式习惯上是采用分离法求其数值解，那就
+是说，每推进一微小的$\Delta z$步长就要交替利用下列两种外推算子
+\begin{subequaitons}
+
+\begin{equation}
+P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+\label{eq:ex2.1.11a}
+\end{equation}
+
+\begin{equation}
+
+
+\end{equation}
+\label{eq:ex2.1.11}
+\end{subequations}
