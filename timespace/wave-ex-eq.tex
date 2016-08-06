@@ -186,30 +186,30 @@ $45^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}-\frac{k_x^2}{2\f
 以式\ref{eq:ex2.1.6b}或表\ref{tab:2.1.3}所示各式为基础的偏移方法均称作相移法。
 \subsection{延迟频率域}
 安排这样一种波动计算：消除整体平移效果从而使波显得像是“停止不动”，常常有其
-方便之处，有关波动延迟的这个题目将在\ref{sec:2.6}节作更详尽的研究，其时，对速度为$\hat{v}(z)$之
+方便之处，有关波动延迟的这个题目将在\ref{sec:2.6}节作更详尽的研究，其时，对速度为$\bar{v}(z)$之
 假想介质内的垂直传播之波引入时移$t_0$是十分容易的事，即
 \begin{equation}
-t_0=\int_0^z\frac{dz}{\hat{v}(z)}
+t_0=\int_0^z\frac{dz}{\bar{v}(z)}
 \label{eq:ex2.1.10}
 \end{equation}
 时间域内之时延$t_0$相应于频率$\omega$域内乘以$exp(i\omega t_0)$。因此，实际波场$P(z,\omega)$与经过时
 移之波场$Q(z,\omega)$有下列关系
-\begin{subequaitons}
+\begin{subequations}
 
 \begin{equation}
-P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\bar{v}(z)}]
 \label{eq:ex2.1.11a}
 \end{equation}
 (方程\ref{eq:ex2.1.11}适用于义$x$空间与$k_x$空间两种情形）。对$z$微分，得
 \begin{equation*}
-\frac{\partial P}{\partial z}=\frac{\partial Q}{\partial z}\exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
-+Q(z,\omega)\frac{i\omega}{\hat{v}(z)}\exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
-%P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
+\frac{\partial P}{\partial z}=\frac{\partial Q}{\partial z}\exp[i\omega\int_0^z\frac{dz}{\bar{v}(z)}]
++Q(z,\omega)\frac{i\omega}{\bar{v}(z)}\exp[i\omega\int_0^z\frac{dz}{\bar{v}(z)}]
+%P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\bar{v}(z)}]
 %\label{eq:ex2.1.11b}
 \end{equation*}
 或
 \begin{equation}
-\frac{\partial P}{\partial z}=exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}][\frac{\partial}{\partial z+\frac{i\omega}{\hat{v}}}]Q
+\frac{\partial P}{\partial z}=exp[i\omega\int_0^z\frac{dz}{\bar{v}(z)}][\frac{\partial}{\partial z+\frac{i\omega}{\bar{v}}}]Q
 \label{eq:ex2.1.11b}
 \end{equation}
 \label{eq:ex2.1.11}
@@ -223,35 +223,91 @@ P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
 %\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
 %\toprule
 \hline
-$5^{\circ}$& $\frac{\partial Q}{\partial z}=0                +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
-$15^{\circ}$& $\frac{\partial Q}{\partial z}=-i\frac{vk_x^2}{2\omega}Q      +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
-$45^{\circ}$& $\frac{\partial P}{\partial z}=-i\frac{\frac{k_x^2}}{{2\frac{\omega}{v}-\frac{vk_x^2}{2\omega}}}       +i\omega[\frac{1}{v}-\frac{1}{\hat{v}}]Q$ \\ \hline
+$5^{\circ}$& $\frac{\partial Q}{\partial z}=0\quad\quad +i\omega[\frac{1}{v}-\frac{1}{\bar{v}}]Q$ \\ \hline
+$15^{\circ}$& $\frac{\partial Q}{\partial z}=-i\frac{vk_x^2}{2\omega}Q\quad\quad+i\omega[\frac{1}{v}-\frac{1}{\bar{v}}]Q$ \\ \hline
+$45^{\circ}$& $\frac{\partial Q}{\partial z}=-i\frac{k_x^2}{2\frac{\omega}{v}-\frac{vk_x^2}{2\omega}}\quad+i\omega[\frac{1}{v}-\frac{1}{\bar{v}}]Q$ \\ \hline
+general&$\frac{\partial Q}{\partial z}$ = diffraction + thin lens \\ \hline
 \end{tabularx}
 %\end{tabular}
-
 \caption{相移方程的延迟形式}
 \label{tab:2.1.4}
 \end{table}
+
 \subsection{横向速度变化}
 因平方根已用多项式比值近似，表\ref{tab:2.1.3}或表\ref{tab:2.1.4}各式只须利用$(ik_x)^2=\partial^2/\partial x^2$
 关系就可从水平波数域L反变换至水平空间域$x$。与前相同，所得结果对很宽范围的速度关系$v=v(x,z)$
-均成立，即使看来似乎导数不允许这样做。通常将选择$\hat{v}(z)$
+均成立，即使看来似乎导数不允许这样做。通常将选择$\bar{v}(z)$
 为$v(x,z)$的某种类
-型之水平方向平均值，不过，允许$\hat{v}$成为一个$x$的函数将产生许多新项，它们很难处理，而忽
-略它们又会引起一些潜在的危险，所以，一般是使$\hat{v}$与$z$有关而与$x$无关。
+型之水平方向平均值，不过，允许$\bar{v}$成为一个$x$的函数将产生许多新项，它们很难处理，而忽
+略它们又会引起一些潜在的危险，所以，一般是使$\bar{v}$与$z$有关而与$x$无关。
 \subsection{分离法}
 对表\ref{tab:2.1.3}与表\ref{tab:2.1.4}中各方程的空间$x$域的形式习惯上是采用分离法求其数值解，那就
 是说，每推进一微小的$\Delta z$步长就要交替利用下列两种外推算子
-\begin{subequaitons}
-
+\begin{subequations}
 \begin{equation}
-P(z,\omega)=Q(z,\omega)exp[i\omega\int_0^z\frac{dz}{\hat{v}(z)}]
-\label{eq:ex2.1.11a}
+\frac{\partial Q}{\partial z}= lens \quad term
+\label{eq:ex2.1.12a}
 \end{equation}
-
 \begin{equation}
-
-
+\frac{\partial Q}{\partial z}= diffraction \quad term
+\label{eq:ex2.1.12b}
 \end{equation}
-\label{eq:ex2.1.11}
+\label{eq:ex2.1.12}
 \end{subequations}
+这种分离过程将在\ref{sec:2.4}节中证明其为合法。称为透镜方程的第一个方程，其解析解为
+\begin{equation}
+Q(z_2)=Q(z_1)\exp\{i\omega\int_{z_1}^{z_2}[\frac{1}{v(x,z}-\frac{1}{\bar{v}z}]\}
+\label{eq:ex2.1.13}
+\end{equation}
+包含有透镜方程的各种偏移方法都称为深度偏移；在关于$v(x)$所知甚少的场合，常常
+将透镜方程略而不计，这样的一些偏移方法均称作时间偏移。
+
+你可观察到，表\ref{tab:2.1.3}和表\ref{tab:2.1.4}中的绕射部分都是相同的，我们可利用它们和方程
+\ref{eq:ex2.1.12b}来定义一项有关绕射方程的表，用$\partial/\partial x$尤代替$ik_x$然后从分母中消去$\partial/\partial x$，即可
+得出表\ref{tab:2.1.5}
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{Y|Y}
+%\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
+%\toprule
+\hline
+$5^{\circ}$& $\frac{\partial Q}{\partial z}=0$ \\ \hline
+$15^{\circ}$& $\frac{\partial Q}{\partial z}=-i\frac{vk_x^2}{2\omega}Q$ \\ \hline
+$45^{\circ}$& $\{1-[\frac{v(x,z)}{-2i\omega}]^2\frac{\partial^2}{\partial x^2}\}\frac{\partial Q}{\partial z}=-\frac{v(x,z)}{2i\omega}\frac{\partial^2 Q}{\partial x^2}$ \\ \hline
+\end{tabularx}
+%\end{tabular}
+
+\caption{横向可变介质情彤下的绕射方程}
+\label{tab:2.1.5}
+\end{table}
+\subsection{时间域}
+为在时间域内表示上述诸方程，仅需在分子内乘以$\omega$，然后用$\partial/\partial t$代替$-i\omega$即可。例
+如，表\ref{tab:2.1.5}中，$v=\bar{v}$时的15°延迟方程变为
+\begin{equation}
+\frac{\partial^2}{\partial z\partial t}Q=\frac{v}{2}\frac{\partial^2}{\partial x^2}Q
+\label{eq:ex2.1.14}
+\end{equation}
+关于对延迟时间变量$Q$的时间$t$的解释，要等到在\ref{sec:2.6}节中作进一步阐明。
+\subsection{上行波}
+以上所有方程均属下行波情形，要得到上行波情形的方程，仅需改变$z$和$\partial/\partial z$的符号。
+例如，令$D$表示下行波场、$U$表示上行波场，方程\ref{eq:ex2.1.14}即取下述形式\\
+$\frac{\partial^2}{\partial z\partial t}D=+\frac{v}{2}\frac{\partial^2}{\partial x^2}D$\\
+$\frac{\partial^2}{\partial z\partial t}U=-\frac{v}{2}\frac{\partial^2}{\partial x^2}U$\\
+这就是15°近似并具有延迟之下行与上行波绕射的时间域方程。利用爆炸反射面概念后，在
+偏移稆绕射程序中出现的就是上行波方程。下行波方程对正演模拟和偏移的处理很有用处，
+这类处理比基于爆炸反射面概念的那些处理更为精细（见\ref{sec:5.7}节）。
+\subsection{习题}
+\begin{enumerate}
+\item 设有切于圆的一条倾斜直线，如图\ref{fig:omx/tanexer}所示，利用该直线
+可引出Muir平方根展开式。试证明后两个Muir半圆近似式并绘出其
+图形（$-2\leq X\geq +2$)。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{omx/tanexer}
+\caption{习题1}
+\label{fig:omx/tanexer}
+\end{figure}
+\end{enumerate}
+
