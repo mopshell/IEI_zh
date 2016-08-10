@@ -254,3 +254,90 @@ d_t^1\\d_t^2\\d_t^3\\d_t^4\\d_t^5
 \label{eq:2.2.13b}
 \end{equation}
 \end{subequations}
+值$e_{lf}$和$e_{rt}$是可调节的，并且必须按旁侧边界条件来调节。值得注意的重要事情是，该矩阵
+是三对角线矩阵，即，除三个中心对角线上的元素外，矩阵\ref{eq:2.2.13b}中所有其他元素均
+为零。能够快速地得出这一类联立方程的解，其计算时间大约仅二倍于式\ref{eq:2.2.9}给出的显
+式方法。事实上，由于式\ref{eq:2.2.13a}的精度高于式\ref{eq:2.2.9}，允许利用非常大的时间步长$\Delta t$，
+结果这种隐式方法证明是种节省时间的方法。下面给出一个可以说明即使是对很大$\Delta t$，
+该方法也具有稳定性的程序。
+
+\begin{minted}{Fortran}
+# Implicit heat-flow equatioil 
+real q(12),d(12),e(12),f(12)
+
+nx= 12;a=8.; write(6,'(/"a= ",f4.2)')a; alpha= .5*a 
+do ix= 1,6; q(ix)= 0. # Initial temperature step
+do ix=7,12; q(ix)= 1. 
+do it== 1,4 {
+write(6,'(20f5.2)') (q(ix),ix= 1,nx) 
+d(l)=0.; d(nx)= 0. 
+do ix=2,nx-l
+d(ix)=q(ix) + alpha*(q(ix-l)-2.*q(ix) + q(ix+ 1)) 
+call rtris(nx,alpha,-alpha,( l. + 2.*alpha),-alpha,alpha,d,q,e,f)
+}
+stop; end 
+# real tridiagonal equation solver
+
+subroutine rtris(n,endl,a,b,c,endr,d,q,e,f) 
+real q(n),d(n),f(n),e(n)
+e(1) =-a/endl; f(1) = d(1)/endl
+do i = 2,n-l {
+den = b + c*e(i-1); e(i) = -a/den;  f(i)= (d(i)-c*f(i-1))/den } 
+q(n) = (d(n)-c*f(n-1))/(endr+ c*e(n-1))
+do i = n-1,1,-1
+q(i) = e(i)*q(i + 1) + f(i) 
+return; end
+
+a = 8.00
+0.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 1.00 1.00 1.00 1.00
+0.17 0.17 0.21 0.30 0.47 0.76 0.24 0.53 0.70 0.79 0.83 0.83
+0.40 0.40 0.42 0.43 0.40 0.24 0.76 0.60 0.57 0.58 0.60 0.60 
+0.44 0.44 0.44 0.44 0.48 0.68 0.32 0.52 0.56 0.56 0.56 0.56
+\end{minted}
+计算中采用了求解三对角线联立方程的子程序，下一节将对该子程序加以解释。
+\subsection{求解三对角线联立方程}
+全世界有很多计算力量都忙于应付求解三对角线联立方程。为参考和完整起见，本节内
+容也将涉及算法。
+
+设将联立方程写成某种差分方程组
+\begin{equation}
+a_iq_{i+1}+b_iq_i+c_iq_{i-1}=d_i
+\label{eq.ex2.2.14}
+\end{equation}
+按照某种方程
+\begin{equation}
+q_i=e_iq_{i+1}+f_i
+\label{eq.ex2.2.15}
+\end{equation}
+引入两个新未知数$e_i$与$f_i$，用经过时移的下标写出式\ref{eq.ex2.2.15}
+\begin{equation}
+q_{i-1}=e_{i-1}q_{i}+f_{i-1}
+\label{eq.ex2.2.16}
+\end{equation}
+将\ref{eq.ex2.2.16}代入\ref{eq.ex2.2.14}，得
+\begin{equation}
+a_iq_{i+1}+b_iq_i+c_i(e_{i-1}q_{i}+f_{i-1})=d_i
+\label{eq.ex2.2.17}
+\end{equation}
+现将式\ref{eq.ex2.2.17}重新排列，使之类似于\ref{eq.ex2.2.15}
+\begin{equation}
+q_i=\frac{-a_i}{b_i+c_ie_{i-1}}q_{i+1}+\frac{d_i-c_if_{i-1}}{b_i+c_ie_{i-1}} 
+\label{eq.ex2.2.18}
+\end{equation}
+将式\ref{eq.ex2.2.18}与式\ref{eq.ex2.2.15}比较即可看出，新的未知数$e_i$与$f_i$的递归公式为
+\begin{subequations}
+\begin{equation}
+e_i=\frac{-a_i}{b_i+c_ie_{i-1}}
+\label{eq:ex2.2.19a}
+\end{equation}
+\begin{equation}
+f_i=\frac{d_i-c_if_{i-1}}{b_i+c_ie_{i-1}} 
+\label{eq:ex2.2.19b}
+\end{equation}
+\label{eq:ex2.2.19}
+\end{subequations}
+首先必须给出左侧边界的某种边界条件，这种条件也许会涉及一个点或两个点。最一般性的
+可能的边缘终端条件是一种在$i=0$时类似于方程\ref{eq.ex2.2.15}
+的线性关系，即$q_0=e_0q_1+f_0$。
+因此边界条件必须给出$e_0$与$f_0$，利用$e_0$以及所有的$a_i$，$b_i$，$c_i$，我们就可采用式\ref{eq:ex2.2.19a}
+计算出所有的$e_i$。
