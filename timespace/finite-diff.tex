@@ -341,3 +341,54 @@ f_i=\frac{d_i-c_if_{i-1}}{b_i+c_ie_{i-1}}
 的线性关系，即$q_0=e_0q_1+f_0$。
 因此边界条件必须给出$e_0$与$f_0$，利用$e_0$以及所有的$a_i$，$b_i$，$c_i$，我们就可采用式\ref{eq:ex2.2.19a}
 计算出所有的$e_i$。
+在右端的边界，我们需要另一种边界条件，最一般性的两点式边界条件为
+\begin{equation}
+c_{n-1}q_{n-1}+e_{rt}q_n=d_n
+\label{eq:ex2.2.20}
+\end{equation}
+作为特殊情形，此式包括了零值边界条件与零斜率边界条件。式\ref{eq:ex2.2.20}可与式\ref{eq.ex2.2.16}在其端点上时的情形相比
+\begin{equation}
+q_{n-1}=e_{n-1}q_n+f_{n-1}
+\label{eq:ex2.2.21}
+\end{equation}
+$q_n$与$q_{n-1}$均为未知数，不过，式\ref{eq:ex2.2.20}与\ref{eq:ex2.2.21}是两个方程，所以求解很容易。最
+后一步是取$q_n$的值，并在式\ref{eq.ex2.2.16}中利用它计算出$q_{n-1}$、$q_{n-2}$、$q_{n-3}$等等。
+
+如果你希望尽可能充分发挥你的讨算机潜力，则应注意有关这种算法的若干事实：
+\begin{enumerate}
+\item $e_i$值的计算通过$a_i$、$b_i$、$c_i$而与介质有关，但与解$q_i$无关（即使是通过$d_i$），这意昧着它有
+可能节省计算时间，而可重复利用$e_i$。
+\item 许多计算机都是除法比乘法慢得多，因此，可以将式\ref{eq:ex2.2.19a}、\ref{eq:ex2.2.19b}中的除数之倒数一次求出来，而且或许可存储起来以备重复使用。
+\end{enumerate}
+\subsection{导数$\partial^3/\partial x^2\partial z$}
+45°绕射方程不同于15°绕射方程之处在于前者包括有导数$\partial^3/\partial x^2\partial z$。幸运的是，这种导
+数可适应六点差分系数表
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{new/fig-2-2-22}
+\caption[fig-2-2-22]{六点差分系数表形式}
+\label{fig:new/fig-2-2-22}
+\end{figure}
+所以，除了改变系数表上的六个系数之外，它并不会对计算效率造成什么影响。
+\subsection{高维方程的困难}
+迄今，为获得节省时间而又精确可靠的求解偏微分方程之差分方法，我们还未遇到麻
+烦，隐式方法已可满足所有的需要。
+可是，在高于一维的空间域，隐式方法的运算时间就高
+得使人不敢问津了。我们将以$\partial^2/\partial x^2$推广为$\partial^2/\partial x^2+\partial^2/\partial y^2$的普通问题为例来讨论一下其
+理由何在。最简单的情形就是热流方程，由Crank-Nicolson方法给出式\ref{eq:2.2.13a}。引入缩
+写$\delta_{xx}q=q^{x+1}-2q^x+q^{x-1}$,式\ref{eq:2.2.13a}变为
+\begin{equation}
+(1-\alpha\delta_{xx})Q_{t+1}=(1+\alpha\delta_{xx})Q_{t}
+\label{eq:ex2.2.23}
+\end{equation}
+左端括内的表达式代表一个三对角线矩阵，关键之处在于4求解未知数$Q_{t+1}$向量的三对角
+线联立方稆。值把庆幸的是有一种获得该解的特殊算法，其计算时间仅随矩阵之大小而线性
+增加。现在就从$x$的一维物理空间转而讨论二维空间$(x,y)$，
+令$\alpha$表示式\ref{eq:ex2.2.23}中的
+数值常数，于是按时间步进的方程为
+\begin{equation}
+[1-\alpha(\delta_{xx}+\delta_{yy})]Q_{t+1}=[1+\alpha(\delta_{xx}+\delta_{yy})]Q_t
+\label{eq:ex2.2.24}
+\end{equation}
+未知数$Q_{t+1}$是$x$与$y$的二维函数，可用一个矩阵表示。其次，我们将解释一下左端括号内的
+表达式，结果证明它是一个四维矩阵！
