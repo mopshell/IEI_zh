@@ -6,5 +6,5 @@ _minted-IEI_zh/*
 *.log
 *.lot
 *.out
-*.pdf
+IEI_zh.pdf
 *.toc
