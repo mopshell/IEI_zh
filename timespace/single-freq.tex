@@ -1,9 +1,9 @@
 \section{单频波的程序}
-我们将按他的启示行事。你的第一个问题与图\ref{fig:new/fig-2-3-1}所示之计算机程序有关。照实际情形来说，它将产生通过某一能量的波动传播的活动电影
+我们将按他的启示行事。你的第一个问题与图\ref{lst:code2.3.1}所示之计算机程序有关。照实际情形来说，它将产生通过某一能量的波动传播的活动电影
 （三维矩阵形式）。从编辑到计算直至最终看见循环影片的整个过程，约为一分钟（当你是计算机仅有的用户的时候）。
 \subsection{循环影片程序之分析}
 要使循环影片对观众有意义，电影的主题必须是周期性的，从而必须安排得使最后的
-面很自然地与第一个画面衔接起来。在图\ref{fig:new/fig-2-3-1}所示程序形成的电影中，有一个参量
+面很自然地与第一个画面衔接起来。在图\ref{lst:code2.3.1}所示程序形成的电影中，有一个参量
 lambda,它控制着从顶部照亮屏幕之波动脉冲的基本重复率。当一个子波往下传播了四分
 之一画面的路程时，另一个子波就应送进去。这种过程由下列一行程序来规定
 \begin{equation*}
@@ -62,8 +62,13 @@ q_{z+1}^x-q_z^x=\alpha[q_z^{x+1}-2q_z^x+q_z^{x-1}+q_z^{x+1}-2q_{z+1}^x+q_{z+1}^{
 Q(z+\Delta z)=Q(z)e^{i\frac{\omega}{v}\Delta z}
 \label{eq:ex2.3.6}
 \end{equation}
-图\ref{fig:new/fig-2-3-1}中的程序严格按\ref{eq:ex2.3.3}、\ref{eq:ex2.3.4}与\ref{eq:ex2.3.6}各式而编制。
-
+图\ref{lst:code2.3.1}中的程序严格按\ref{eq:ex2.3.3}、\ref{eq:ex2.3.4}与\ref{eq:ex2.3.6}各式而编制。
+\begin{listing}[H]
+  \caption{产生单频波之和的电影的计算机程序}
+  \inputminted{Fortran}{timespace/code2-3-1.f90}
+  \label{lst:code2.3.1}
+\end{listing}
+\subsection{相移}
 为作出波动脉冲，须将若干频率成分相加起来。在这个程序中，只利用了两个频率
 $nw=2$。如果你试图只用一个频率$nw =1$
 ，则有些事情就变得不太清晰了。在侧边界上反射
@@ -75,14 +80,13 @@ $nw=2$。如果你试图只用一个频率$nw =1$
 %nx = 13
 %\label{prog:2.3.1}
 %\end{minted}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.85\textwidth]{new/fig-2-3-1}
-\caption[code2-3-1]{产生单频波之和的电影的计算机程序}
-\label{fig:new/fig-2-3-1}
-\end{figure}
 
-\subsection{相移}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.85\textwidth]{new/fig-2-3-1}
+% \caption[code2-3-1]{产生单频波之和的电影的计算机程序}
+% \label{fig:new/fig-2-3-1}
+% \end{figure}
 理论预言，经过一焦点的二维波动将经受90°的相移。你应能注意到，一个对称波形入
 射在焦点上，但是却形成了一个反对称的波形。（在图\ref{fig:2.3.6}中可以很好地看出这点，但在电影
 中比较清楚）。在地震偏移方法中，波是正好到达焦点而不是通过它，所以二维情形的偏移脉
@@ -98,7 +102,7 @@ $nw=2$。如果你试图只用一个频率$nw =1$
 \subsection{侧边界分析}
 在地球物理学中，我们通常都希望别同侧边界问题沾边。要考虑侧边界问题的唯一实际
 原因是我们的勘测或者我们的处理活动有必要对其范围加以限制。既然侧边界是不可避免
-的，那我们就必须想办法对付它。图\ref{fig:new/fig-2-3-1}内的程序包括有零斜率边界条件，取
+的，那我们就必须想办法对付它。\ref{lst:code2.3.1}内的程序包括有零斜率边界条件，取
 \begin{equation*}
 d(1)=0.; d(nx)=0.
 \end{equation*}
@@ -114,12 +118,12 @@ endl = endr = 10^{30}\approx\infty
 显看成是有两个相同的记录道，Dave
 Hale所编制的程序可避免这种浪费，该程序给出如下：
 \begin{minted}{Fortran}
-qO = bl * q ( 1 ) ; qnxpl=br * q ( nx ) 
+qO = bl * q ( 1 ) ; qnxpl=br * q ( nx )
 
 cd ( 1 ) = aa * q ( 2 ) + (1.-2. * aa ) * q ( 1 ) +aa * qO
 cd ( nx ) =aa * q ( nx-1 ) + ( 1.-2. * aa ) * q ( nx )+aa * qnxpl
 
-endl=c * bl + b; 
+endl=c * bl + b;
 endr=a * br + b
 
 call ctris (nx, endl, a, b, c, endr, cd, q, ce, cf)
@@ -145,7 +149,7 @@ l$。令bl与br为复数，则可得到\ref{sec:4.4}节中将导出的吸收边�
 
 练习3试修改程序，使得可用零偉侧边界来代替零斜率边界。
 
-练习4试对衰减球面波应用45°项$\partial _{xxz}$。利用零斜率边界。将你所得结果同用图\ref{fig:new/fig-2-3-1}的
+练习4试对衰减球面波应用45°项$\partial _{xxz}$。利用零斜率边界。将你所得结果同用图\ref{lst:code2.3.1}的
 程序所得结果进行比较。在理论焦点位置上作一记号$X$。
 
 练习5对程序进行一些改变，使之包括一个薄透镜项，通过恒定慢度梯度所产生的画
@@ -165,7 +169,7 @@ l$。令bl与br为复数，则可得到\ref{sec:4.4}节中将导出的吸收边�
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{new/fig-2-3-2}
-\caption[2-3-2]{左：由图\ref{fig:new/fig-2-3-1}所产生的第一个电影画面；右：练习1的解}
+\caption[2-3-2]{左：由图\ref{lst:code2.3.1}所产生的第一个电影画面；右：练习1的解}
 \label{fig:new/fig-2-3-2}
 \end{figure}
 
@@ -205,7 +209,7 @@ l$。令bl与br为复数，则可得到\ref{sec:4.4}节中将导出的吸收边�
 了。
 
 同循环电影不一样，这种过程的输入恐怕将会是野外数据了，所以不会存在频率域的解
-析表达式。由于将在时间域内输入，因而必须进行Fourier变换。图\ref{fig:new/2.3.7}所示程序的开始部
+析表达式。由于将在时间域内输入，因而必须进行Fourier变换。\ref{fig:new/2.3.7}所示程序的开始部
 分定义一呰模拟野处数据的脉冲，这些全是宽脉冲，应将其偏移至近似半圆上。因为差分算子对微分算子的偏差会造成干扰混乱，所以就没利用准确的脉冲。
 
 然后，该程序以Fourier变换方法把人工合成数据从时间域变换至频率域。
@@ -232,11 +236,31 @@ l$。令bl与br为复数，则可得到\ref{sec:4.4}节中将导出的吸收边�
 在该程序中，时间采样间隔心=洫及旅行时间“深度”采样间隔$dtau=\Delta\tau$均取为1，因
 此极大频率即是Nyquist频率。应注章，沿频率的循环只涉及正值频率轴。负值频率仅只用来保持时间函数为实函数，只需取实部就能很容易地做到这点。
 
-\begin{code}
-\begin{minted}{py}
-def my_func(x):
-    print x
-\end{minted}
-\label{lst:my_func}
-\end{code}
+% \begin{code}
+% \begin{minted}[frame=single]{py}
+% def my_func(x):
+%     print x
+% \end{minted}
+% %\caption{My func}
+% \label{lst:my_func}
+% \end{code}
+\begin{listing}[H]
+  \caption{$(\omega,x,z)$域内的偏移程序}
+  \inputminted{Fortran}{timespace/code2-3-7.f90}
+  \label{lst:code2.3.7}
+\end{listing}
+偏移程序运算结果的输出如图\ref{fig:omx/kjartjac}所示。你看见的主要是半圆近似。在较晚的时间上
+还有一些计算假象，可能是频率域假频影响所致。输入脉冲具有相当宽的倾斜条带状外形，
+所以该图预告了以后将要加以证明的一件事实，即，半圆近似实际上是一个经过原点的椭
+圆。
 
+注意，原始脉冲的波形原是一种对称的时间函数，而现在半圆上的波形表现为既非对
+称又非反对称，它是一种45°相移脉冲的波形，三维空间内一个点源所产生的波将具有90°相
+移，由三维空间内一个二维爆炸反射面产生的波则应具有45°相移。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{omx/kjartjac}
+\caption[kjartjac]{程序\ref{lst:code2.3.7}的输出：半圆近似}
+\label{fig:omx/kjartjac}
+\end{figure}

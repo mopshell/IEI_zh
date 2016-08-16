@@ -139,7 +139,7 @@
 \usepackage{minted}
 \setminted{linenos, frame=leftline, xleftmargin=2pc, numbersep=6pt, breaklines=true}
 \setminted[console]{linenos=false, frame=none, fontsize=\small}
-\newenvironment{code}{\captionsetup{type=Listing}}{}
+
 
 % 解决代码复制问题
 % http://tex.stackexchange.com/questions/83204/
@@ -177,7 +177,7 @@
 \usepackage[labelfont={small,bf}, textfont=small]{caption}
 \captionsetup[figure]{aboveskip=6pt, belowskip=-12pt}
 \captionsetup[table]{aboveskip=6pt, belowskip=-6pt}
-
+\newenvironment{code}{\captionsetup{type=Listing}}{}
 % 数学相关
 \usepackage{siunitx}    % 数字与单位
 \sisetup{per-mode = symbol}

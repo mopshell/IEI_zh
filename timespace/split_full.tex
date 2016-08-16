@@ -1,0 +1,49 @@
+\section{分裂法与全分离法}
+\label{sec:2.4}
+通常同时起作用的两个过程A与B也许是或者
+也许不是相互联系的。它们相互独立的这种情形， 称作全分离（full separation）
+。在这种情形下，就概念和就计算而言，想像A过程在B过程开始之
+前正趋近于结束，这往往是很有用的。在两种过程
+彼此有相互联系的场合，有可能是允许A短暂起作
+用，然后转换为B起作用，并如此交替作用下去，
+这种交替起作用的办法称作分裂法（splitting）。
+
+\subsection{热流方程}
+\label{sec:2.4.1}
+绕射方程或偏移方程可称作“波阵面恢复”方程，它把初始条件或透镜项可能引起的波阵面的任
+何横向突变一起加以平滑恢复原状。
+15°偏移方程具有有与热流方程相同的数学形式。不过热
+流方程全是实数，而且它的物理性态更容易理解，这点值得多说两句：（l）x方向的热流
+$H_x$等于温度的负梯度$-\partial T/\partial x$如乘以热传导率$\sigma$。（2）温度降低$-\partial T/\partial t$是同热流发散量$\partial H_x/\partial x$
+除以热容量c成比例。将上述二者结合起来并由一维情形推广至二维情形，取$\sigma$为常数及
+$c=l$，得出方程：
+\begin{equation}
+\frac{\partial T}{\partial t}=\sigma[\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}]T
+\label{eq:ex2.4.1}
+\end{equation}
+
+\subsection{分裂法}
+\label{sec:2.4.2}
+应用于热流方程数值解法的分裂法是用两个微分方程代替热流方程，按交替的时间步长
+应用其中每个方程
+\begin{subequations}
+\begin{equation}
+\frac{\partial T}{\partial t}=2\sigma\frac{\partial^2 T}{\partial x^2} \quad (all\quad y)
+\label{eq:ex2.4.2a}
+\end{equation}
+\begin{equation}
+\frac{\partial T}{\partial t}=2\sigma\frac{\partial^2 T}{\partial y^2} \quad (all\quad x)
+\label{eq:ex2.4.2b}
+\end{equation}
+\label{eq:ex2.4.2}
+\end{subequations}
+
+式\ref{eq:ex2.4.2a}中，对于x方向的热流其热传导率$\sigma$业已增大两倍，而对$y$方向的热流则已取$\sigma$
+为零；在式\ref{eq:ex2.4.2b}中，则情形反之。在时间的奇数时刻，热量按式\ref{eq:ex2.4.2a}的关系流
+动；在时间的偶数时刻则按式\ref{eq:ex2.4.2b}的关系流动。这种轮流交替采用式\ref{eq:ex2.4.2a}与
+\ref{eq:ex2.4.2b}所得的解在数学上可证明是收敛于式\ref{eq:ex2.4.1}的解，其误差为$\Delta t$数量级，因此
+汾趋于零时，误差亦趋于零。高维隐式方法的不可行性是促使采用分离法的原因（参阅\ref{sec:2.2}
+节结尾部分）。
+
+\subsection{全分离法}
+\label{sec:2.4.3}
