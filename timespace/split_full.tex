@@ -225,3 +225,53 @@ Jakubowicz所得结论的有效性并不只限于证明本身。地球物理家�
 
 \subsection{分裂概念与全分离概念的有效性}
 \label{sec:2.4.8}
+在有可能进行傅氏变换时，外推算子都是像$e^{ik_zz}$那样的复数。就复数$a$与$b$来说，$ab=ba$毫无疑问是成立的，因而，分裂法和全分离法总是能成立，但是只有根据更为一般化的讨
+论才能给出证明。
+
+假设始终未作傅氏变换，或者因为物性有某种空间变化而不可能作，这时，将前几节所述
+之差分算子加以组合，用来构造外推算子。令$\mathbf{A}$与$\mathbf{B}$表示两个这类算子。例如，$\mathbf{A}$可以是一个
+含有$x$方向之二阶差分算子的矩阵。视为矩阵时，微分算子的边界条件都位于矩阵各角上。
+重要之点在于是否有关系式$\mathbf{AB}=\mathbf{BA}$，所以，问题显然不但涉及微分算子，而且还涉及边界条件。
+
+短距离前向外推可以用算子$(\mathbf{I}+\mathbf{A}\Delta z)$完成。在二维问题中，把$\mathbf{A}$看成是一个四维矩
+阵。为方便计，可将该四维矩阵的各项加以安排，成为一个超大型普通二维矩阵。隐式有限
+差分计算曾得出像$(\mathbf{I}+\mathbf{A}\Delta z)/(\mathbf{I}-\mathbf{A}\Delta z)$这样的外推算子。令$\mathbf{P}$表示这样一个向量：该向
+量的诸分量代表各种不同位置上的波场。以前已经知道，位置并不需限于$x$轴，而是也可以
+分布于整个$(x,y)$平面。数值分析给我们提供一个矩阵算子，比如$\mathbf{A}$，它使我们能够迸行前
+向投影，比如
+\begin{equation*}
+\mathbf{P}(z+\Delta z)=\mathbf{A_1}P(z)
+\end{equation*}
+$\mathbf{A}$有下标是表示算子可随$z$而变化。为间前推进一个步长，可再次应用该算子。比如
+\begin{equation*}
+\mathbf{P}(z+2\Delta z)=\mathbf{A_2}[\mathbf{A}_1P(z)]
+\end{equation*}
+从运算观点看，矩阵$\mathbf{A}$从未加以平方，但是从分析观点看，它确实是被平方了
+\begin{equation*}
+\mathbf{A}_2[\mathbf{A}_1\mathbf{P}(z)]=(\mathbf{A_2}\mathbf{A}_1)P(z)
+\end{equation*}
+要沿$z$轴向下推进若干距离，就多次应用该算子。取间隔$z_1-z_0$。，将它分成$N$个子区
+间。由于有$N$个间隔，当达到了时间$z_1$时，每个子区间内与$1/N$成比例的误差将累积起来达
+到不能令人接受的程度。另一方面，与$1/N^2$成比例的误差累积起来形成的总误差却仅与$1/N$
+成比例。当增加子区间数时，这类误差将会消失。
+
+为证明分裂法的有效性，现取$\Delta z=(z_1-z_0)/N$。可以看到，算子$\mathbf{I}+(\mathbf{A}+\mathbf{B})\Delta z$不同于算子$(\mathbf{I}+\mathbf{A}\Delta z)(\mathbf{I}+\mathbf{B}\Delta z)$，后者大体是与$\Delta z^2$或者$1/N^2$成比例的，所以，在子区间
+数非常大的极限情形下，误差就消失了。
+
+全分离概念的有效性是非常容易证实的。互易性就在于关系$\mathbf{AB}=
+\mathbf{BA}$是否成立，对于标
+量，互易性恒成立；采用有限差分时，问题就在于两个矩阵是否可互易。取$\mathbf{A}$与$\mathbf{B}$为微分算
+子，藉助于所有可能的波场$P$来定义互易性，这时，如果$\mathbf{AB}P=\mathbf{BA}P$，则$\mathbf{A}$与$\mathbf{B}$就是可互易
+的。
+
+代表$\partial P/\partial z$的算子将取为$\mathbf{A}+\mathbf{B}$，采用分裂法时最简单的数值积分格式为
+\begin{equation}
+P(z_0+\Delta z)=(\mathbf{I}+\mathbf{A}\Delta z)(\mathbf{I}+\mathbf{B}\Delta z)P(z_0)
+\label{eq:ex2.4.13}
+\end{equation}
+在许多步长内应用式\ref{eq:ex2.4.13}，得出许多算子之乘积，给算子$\mathbf{A}$与$\mathbf{B}$加下标$i$，用以表示它
+们随$z$而变化的可能性，于是
+\begin{equation}
+P(z_i)=\prod_{i=1}^N[(\mathbf{I}+\mathbf{A}\Delta z)(\mathbf{I}+\mathbf{B}\Delta z)]P(z_0)
+\label{eq:ex2.4.14}
+\end{equation}
