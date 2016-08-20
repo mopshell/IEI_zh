@@ -34,3 +34,41 @@
 \label{sec:2.5.1}
 令$P$表示原始数据，$Q$表示经过滤波处理之后的数据。当地震资料是准单频情形时，用
 下列空间频率滤波可完成倾角滤波，其中，$\alpha$为可调截频参量：
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{单频资料情形下的倾角滤波（$\omega\approx$常数）}\\ \hline
+低通&$Q=\frac{a}{a+k^2}P$\\ \hline
+高通&$Q=\frac{k^2}{a+k^2}P$ \\ \hline
+\end{tabular}
+\end{table}
+
+要在空间域内应用这些滤波，仅需将$k^2$解释为三对角线矩阵$\mathbf{T}$，其主对角线上的元素为
+$(-1,2,-1)$。具体说，对于低通滤波，需要求解下述三对角线联立方程组
+\begin{equation}
+(\alpha\mathbf{I}+\mathbf{T})\mathbf{q}=\alpha\mathbf{p}
+\label{eq:ex2.5.1}
+\end{equation}
+式中，$\mathbf{q}$与$\mathbf{p}$为列向量，其元素代表$x$轴上的不同位置（译注：式中的$\mathbf{I}$为单位矩阵）。以前求
+解热流方程时，就已经用过这种矩阵。为使滤波是空间可变的，可取参量$\alpha$使与$x$有关，从而可
+用一种任意的对角线矩阵来代替$\alpha\mathbf{I}$。究竟是在频率$\omega$域内还是在时间$t$域内来表示$\mathbf{p}$与$\mathbf{q}$，没什
+么关系。
+
+现在从狭频带资料转而注意具有较宽一点的'频谱之资料，这时可参考下述滤波：
+
+\begin{table}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{中等频带宽度（$\Delta\omega$）资料情形下的倾角滤波} \\ \hline
+低通&$Q=\frac{a}{a+\frac{k^2}{-i\omega}}P$\\ \hline
+高通&$Q=\frac{\frac{k^2}{-i\omega}}{a+\frac{k^2}{-i\omega}}P$ \\ \hline
+\end{tabular}
+%\caption{2.5.2}
+%\label{tab:2.5.2}
+\end{table}
+
+这些滤波自然可以应用于任何频带宽度的资料。不过，只有在适当的中等频带宽度范围内才
+能恰如其份地被称作“倾角滤波”。
