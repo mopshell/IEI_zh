@@ -1,8 +1,12 @@
 \section{四种广角偏移方法}
+\label{sec:1.3}
+
 本节所述反射地震资料的四种偏移方法均为现代生产环境中出现的方法。它们是易于处
 理广角射线问题的一类方法，同时又是难以应用于处理速度横向变化问题的一类方法。
 
 \subsection{旅行时间深度}
+\label{sec:1.3.1}
+
 偏移处理程序的输出，理想的应是$(x,t)$平面中的图像，可实际上垂直坐标轴几乎从
 来不是深度$z$，而是垂直旅行时间$\tau$。在恒速地层情形下，该时间与该深度由一
 个比例因子联系起来，比例因子的意义就是：与$(x,t)$平面相比$(x,\tau)$平面的垂
@@ -18,14 +22,14 @@
   \end{equation}
 地震资料解释中的第一项任务就是计算出垂向放大的近似数值。这个数值恐怕不会打印
 在数据说明中，因为速度还未真正已知。再者，速度通常随深度而增大，意昧着垂向放
-大随深度而减小。对于速度分层介质，时深转换公式为 
+大随深度而减小。对于速度分层介质，时深转换公式为
 \begin{gather}
 \tau(z)=\int_{0}^x\frac{dz}{v(z)} \notag \\　
 \frac{d\tau}{dz}=\frac{1}{v} \label{eq:ex1.3.2}
 \end{gather}
 
 \subsection{绕射扫描与等时线扫描}
-
+\label{sec:1.3.2}
 
 绕射扫描与等时线扫描\footnote{原文中的hyperbola-summation method
 按国内现已熟悉通用的术语，译为绕射扫描，semicircle-super-position method
@@ -117,6 +121,8 @@ $(x,t)$空间内的输入数据剖面就是一种惠更斯二次震源，即能�
 Kirchhoff法，而严格地讲，Kirchhoff分仅能应用于恒定速度的情形。
 
 \subsection{空间假频现象}
+\label{sec:1.4}
+
 空间假频现象意味着沿空间坐标轴的数据采样不足，这种困难如此普遍存在，所有偏移
 方法都必须考虑它的影响。
 
@@ -150,6 +156,8 @@ Kirchhoff法，而严格地讲，Kirchhoff分仅能应用于恒定速度的情�
 \end{figure}
 
 \subsection{相移偏移方法(Gazdag法)}
+\label{sec:1.5}
+
 相移法用$\exp(ik_xz)$直接进行向下外推，然后估算$t=0$时(反射面在$t=0$时激发)的
 波场。所有广角偏移方法中，属它最容易处理速度随深度变化的问题了，即使是相位角
 和倾斜函数的影响，也都能正确地自动包括在内。同$Kirchhoff$偏移方法不一样，采用
@@ -212,6 +220,8 @@ $C$的计算移到关于$z$的内循环之外去进行，可以加快程序的�
 采样率和200毫秒的层厚，该复数乘因子能一直使用50次而后才放弃。
 
 \subsection{Stolt方法}
+\label{sec:1.3.6}
+
 在大多数计算机上，Stolt偏移方法是有充裕余地的一种最快速的方法。就它的许多应
 用而言，这点将是它最重要的特征。对于恒速地层情形，它是严格而又正确地同惠更
 斯二次波源概念一致。像其他方法一样，这种偏移方法也可以使之颠倒而成为正演模
@@ -294,6 +304,8 @@ Image(x,z)=\iint e^{ik_zz+ik_xx}\{P[\omega(k_x,k_z),k_x,0]\frac{v\mid k_z\mid}{k
 述算法重新加以组织。当然，$x$方向有周期性，所以沿$x$轴也需要充填零值。
 
 \subsection{统射扫描法可改进为Kirchhoff法}
+\label{sec:1.3.7}
+
 Schneider ( 1978 )证明惠更斯二次震源子波的解析表达式为\footnote{$step(t-r/v)$
 为阶跃函数。——译者}
 \begin{equation}
@@ -329,10 +341,13 @@ $256\times 64$网格点上的计算结果（在实际处理时，将采用大约
 \caption[huygens]{惠更斯子波(上图)及其平滑时间积分(下图）}
 \label{fig:omk/huygens}
 \end{figure}
+
 \subsection{偏移方法对速度误差的灵敏度}
+\label{sec:1.3.8}
+
 图\ref{fig:omk/sensitive}表示偏移的脉冲响应随速度如何变化的情形。注意，偏移资料
 通常是以时间剖面形式显示的，对于水平成层情形，任何速度误差都没什么影响\footnote{根
-据能量耗散率常数$1/Q$的定义：\\ 
+据能量耗散率常数$1/Q$的定义：\\
 $\frac{\pi}{Q}=\frac{\alpha}{f}$\\
 其中，$\alpha$为衰减系数，$f$为波的频率。因主周期$\Delta T$与频率之关系为$\Delta T = \frac{1}{f}$，
 故得即比值$\frac{T}{\Delta T}=\frac{\alpha T}{\pi}Q$，即比值$\frac{T}{\Delta T}$
@@ -396,7 +411,10 @@ $\frac{\Delta v}{v}<\frac{1}{sin(\frac{\pi}{2})}(\frac{\Delta T}{T})=\frac{\Delt
 \end{figure}
 
 速度极少可精确已知到这神程度，所以我们可以怀疑广角偏移的价值。
+
 \subsection{各种方法之比较与评价 }
+\label{sec:1.3.9}
+
 本节所述偏移的三种方法，比较如下：
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \begin{table}[!ht]
@@ -406,7 +424,7 @@ $\frac{\Delta v}{v}<\frac{1}{sin(\frac{\pi}{2})}(\frac{\Delta T}{T})=\frac{\Delt
 \begin{tabularx}{\textwidth}{Y|Y|Y|Y}
 %\begin{tabular}{p{3cm}p{4cm}p{4cm}p{5cm}}
 %\toprule
-\hline 
+\hline
  & 绕射扫描与等时线扫描法 & 相移法 & Stolt 法\\
 %\midrule
 \hline
