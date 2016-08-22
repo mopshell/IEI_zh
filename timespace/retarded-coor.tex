@@ -1,0 +1,89 @@
+\section{延迟坐标}
+\label{sec:2.6}
+要考察正在奔驰之中的马群，最好是跳上一匹马背一起奔跑。类似地，要考察运动之
+中的波，比较好的办法是沿着这些波一起移动。所以，为描述正在向下移动进入地层中去的
+波，我们可以放弃$(x,z)$坐标而采用运动坐标$(x,z')$，其中$z'=z+tv$。
+
+替代运动坐标系统的一种办法是定义延迟里标$(x,z,t')$，其中，$t'=t-z/v$。延迟
+坐标的经典例子就是太阳时，飞机以太阳的速度向西飞行，则在飞机上看来，时间似乎是静
+止不动的。
+
+无论在运动坐标参照系还是在延迟坚标参照系内，偏移过程都与模拟波动传播过程类
+似。铲迟坐标比运动坐标更为通用。理由就是：在固体地球物理学中，速度可能既与$x$有关
+又与$z$有关，可是我们进行地震观测期间，地层却不随时间$t$而变；而在一个运动坐标系统
+内，速度却可以与所有三个变量都有关，以致不必要地增加了计算的复杂性。Fourier变换
+是求波动方程的一种通用工具，可是当系数不是常数时，它就没有多大用武之地了。
+
+
+\subsection{独立变量定义}
+\label{sec:2.6.1}
+如何具体定义延迟坐标是个方便不方便的间题。延迟作周经常是建立在以速度$\bar{v}(z)$笔
+直向下运动之假想射线的基础上，这些坐标的定义即使在速度横向可变(例如，速度为$v(x,z)$))
+的问题中，也是有用处的。纵使并不存在严格的笔直向下传播的射线。原则上，可以利用任
+何坐标系统去描述任何环境，不过，当用来定义它的射线族越来越偏离实际射线时，延迟坐
+标系统的有效性一般就降低了。
+
+尽管手头有现成的简单情形，但为使定义更正式和精确一点，还是值得花时间的。用普
+通直角坐标$(t,x,z)$表示延迟坐标系$(t',x',z')$可按下列方程组来定义
+\begin{subequations}
+\begin{equation}
+t'=t'(t,x,z)=t-\int_0^z\frac{dz}{\bar{v}(z)}
+\label{eq:ex2.6.1a}
+\end{equation}
+\begin{equation}
+x'=x'(t,x,z)=x
+\label{eq:ex2.6.1b}
+\end{equation}
+\begin{equation}
+z'=z'(t,x,z)=z
+\label{eq:ex2.6.1c}
+\end{equation}
+\label{eq:ex2.6.1}
+\end{subequations}
+取积分的目的是将从地面至深度$z$的传播旅行时间累加起来；将$(x',z')$定义成刚好等于
+$(x,z)$的原因，首先是为了进行偏微分时能避免混乱，其次是为以后的工作做好准备，在
+下一步的工作中，射线族是更为一般化的情形。
+
+\subsection{从属变量定义}
+\label{sec:2.6.2}
+有两类从属变量，即描述介质特征的那些变量和描述波特征的那些变量。介质特征用它
+的速度和它的反射率$c$表示，波的特征则是利用上行波$U$、下行波$D$、压力$P$和压力的调制
+形式$Q$表示。我们说，$P(t,x,z)$是给定$(t,x,z)$时的待求压力之数学函数形式， $P'(t',x',z')$
+则是給定$(t',x',z')$时的数学函数形式。应这样表述这两个数学函数
+$P$与$P'$全都属于相同物理变量
+\begin{equation}
+\begin{split}
+P(t,x,z) &= P'[t'(t,x,z),x'(t,x,z),z'(t,x,z)]\\
+P(t,x,z) &= P'(t',x',z')
+\end{split}
+\label{eq:ex2.6.2}
+\end{equation}
+显然，对于其他从属变量和像速度$v(x,z)$这样的介质参量，也存在类似的表达式。
+
+\subsection{连锁法与高频板限}
+\label{sec:2.6.3}
+
+在$(t,x,z)$空间内，我们遇到的是熟悉的数学物理偏微分方程。偏微分连锁法（ch­ain rule）
+将把偏导数转换至$(t',x',z')$空间。例如，对$z$来微分\ref{eq:ex2.6.2}， 得
+\begin{subequations}
+\begin{equation}
+\frac{\partial P}{\partial z}=\frac{\partial P'}{\partial t'}\frac{\partial t'}{\partial z}+
+\frac{\partial P'}{\partial x'}\frac{\partial x'}{\partial z}+
+\frac{\partial P'}{\partial z'}\frac{\partial z'}{\partial z}
+\label{eq:ex2.6.3a}
+\end{equation}
+利用式\ref{eq:ex2.6.1}计算出坐标导数，得
+\begin{equation}
+\frac{\partial P}{\partial z}=-\frac{1}{\bar{v}}\frac{\partial P'}{\partial t'}+
+\frac{\partial P'}{\partial z'}
+\label{eq:ex2.6.3b}
+\end{equation}
+\label{eq:ex2.6.3}
+\end{subequations}
+在式\ref{eq:ex2.6.3}中，关于变量$P$并没什么特别之处，我们也可写为
+\begin{equation}
+\frac{\partial }{\partial z}=-\frac{1}{\bar{v}}\frac{\partial }{\partial t'}+
+\frac{\partial }{\partial z'}
+\label{eq:ex2.6.4}
+\end{equation}
+式中，左端是对有关$(t,x,z)$的函数施行运算，而右端则是对与$(t',x',z')$有关之函数的运算。微分两次，得
