@@ -1,10 +1,14 @@
 \section{波场外推方程}
+\label{sec:2.1}
+
 波场外推方程是一个有关波场之导数（通常是沿深度$z$的方向）的表达式。当已知波场
 及其导数时，就可利用$P(z+\Delta z)=P(z)+\Delta zdP/dz$的各种不同数值表示方法来处理外推问
 题，所以真正需要的是有关$dP/dz$的表达式。求解$dP/dz$的两种理论方法是早期的变换方法
 和较新的波散关系方法。
 
 \subsection{抛物线型波动方程}
+\label{sec:2.1.1}
+
 在抛物线型方程被引用于石油勘探的时期（1969年），“波动理论不起作用”这种论调
 相当流行。在那个时代，石油勘探人员分析地震资料是采用射线方法，波动方程还与实际工
 作无缘，唯有大学里的理论家们才会问津波动方程（事实上，波动理论对于比地震勘探尺度
@@ -59,7 +63,10 @@ $\frac{\partial^2 Q }{\partial x^2}+(\frac{i\omega}{v}+\frac{\partial}{\partial 
 
 这种办法、即变换方法曾经是而且现在也是非常有用的。不过它很快就为波散方程处理
 方法所取代，这是获得以较宽角度进行波场外推的方程的途径。
+
 \subsection{Muir平方根展开方法}
+\label{sec:2.1.2}
+
 在我们采用较新的求解波场外推算子的方法时，要探索平方根波散关系的各种不同近
 似，然后，将近似波散关系反变换为一个偏微分方程。自从我的《地球物理数据处理基础》
 一书写成以来，波散关系处理方法已经有了显著进展，这得大大感谢Francis
@@ -136,7 +143,10 @@ $65^{\circ}$& $R_3=1-\frac{X^2}{2-\frac{X^2}{2-\frac{X^2}{2}}}$ \\ \hline
 构造复杂性和计算精确度，经常是指定选择45°方程。后来搞清楚了，要是从$R_0=cos45^{\circ}$这
 类的值开始递推计算，可容纳的角度范围还可以再稍微宽一点。热衷于提高精确度的人也许
 可使及。是一个速度的、空间坐标的或者频率的函数。
+
 \subsection{波散关系}
+\label{sec:2.1.3}
+
 为与准确的表达式\ref{eq:ex2.1.6a}比较起见，将表\ref{tab:2.1.1}所列展开式代入式\ref{eq:ex2.1.7}内，得出波散关系如表
 \ref{tab:2.1.2}所示。如图\ref{fig:omx/disper}所示，表\ref{tab:2.1.2}的波散关系均趋近于半圆。
 \begin{table}[!ht]
@@ -161,7 +171,10 @@ $45^{\circ}$& $k_z=\frac{\omega}{v}-\frac{k_x^2}{2\frac{\omega}{v}-\frac{vk_x^2}
 \caption[disper]{表\ref{tab:2.1.2}与式\ref{eq:ex2.1.6a}所示波散关系。标有$45_{+}^{\circ}$的曲线系按$R_0=cos45^{\circ}$构制，它准确地拟合于$0^{\circ}$和$45^{\circ}$的情形}
 \label{fig:omx/disper}
 \end{figure}
+
 \subsection{速度随深度而变化的情形}
+\label{sec:2.1.4}
+
 以算符$\partial /\partial z$代替$ik_z$可将表\ref{tab:2.1.2}的波散关系转换成表\ref{tab:2.1.3}所示偏微分方程。
 \begin{table}[!ht]
 \centering
@@ -184,7 +197,10 @@ $45^{\circ}$& $\frac{\partial P}{\partial z}=i[\frac{\omega}{v}-\frac{k_x^2}{2\f
 基础。所以，你不能指望在速度随深度而变化时、即$v=v(z)$时方程还能有重要的应用价值或甚至还有很大用处。它们本身是无能为力描述反射的，这正好说明了它们的实际限度。
 
 以式\ref{eq:ex2.1.6b}或表\ref{tab:2.1.3}所示各式为基础的偏移方法均称作相移法。
+
 \subsection{延迟频率域}
+\label{sec:2.1.5}
+
 安排这样一种波动计算：消除整体平移效果从而使波显得像是“停止不动”，常常有其
 方便之处，有关波动延迟的这个题目将在\ref{sec:2.6}节作更详尽的研究，其时，对速度为$\bar{v}(z)$之
 假想介质内的垂直传播之波引入时移$t_0$是十分容易的事，即
@@ -234,13 +250,18 @@ general&$\frac{\partial Q}{\partial z}$ = diffraction + thin lens \\ \hline
 \end{table}
 
 \subsection{横向速度变化}
+\label{sec:2.1.6}
+
 因平方根已用多项式比值近似，表\ref{tab:2.1.3}或表\ref{tab:2.1.4}各式只须利用$(ik_x)^2=\partial^2/\partial x^2$
 关系就可从水平波数域L反变换至水平空间域$x$。与前相同，所得结果对很宽范围的速度关系$v=v(x,z)$
 均成立，即使看来似乎导数不允许这样做。通常将选择$\bar{v}(z)$
 为$v(x,z)$的某种类
 型之水平方向平均值，不过，允许$\bar{v}$成为一个$x$的函数将产生许多新项，它们很难处理，而忽
 略它们又会引起一些潜在的危险，所以，一般是使$\bar{v}$与$z$有关而与$x$无关。
+
 \subsection{分离法}
+\label{sec:2.1.7}
+
 对表\ref{tab:2.1.3}与表\ref{tab:2.1.4}中各方程的空间$x$域的形式习惯上是采用分离法求其数值解，那就
 是说，每推进一微小的$\Delta z$步长就要交替利用下列两种外推算子
 \begin{subequations}
@@ -282,7 +303,10 @@ $45^{\circ}$& $\{1-[\frac{v(x,z)}{-2i\omega}]^2\frac{\partial^2}{\partial x^2}\}
 \caption{横向可变介质情彤下的绕射方程}
 \label{tab:2.1.5}
 \end{table}
+
 \subsection{时间域}
+\label{sec:2.1.8}
+
 为在时间域内表示上述诸方程，仅需在分子内乘以$\omega$，然后用$\partial/\partial t$代替$-i\omega$即可。例
 如，表\ref{tab:2.1.5}中，$v=\bar{v}$时的15°延迟方程变为
 \begin{equation}
@@ -290,7 +314,10 @@ $45^{\circ}$& $\{1-[\frac{v(x,z)}{-2i\omega}]^2\frac{\partial^2}{\partial x^2}\}
 \label{eq:ex2.1.14}
 \end{equation}
 关于对延迟时间变量$Q$的时间$t$的解释，要等到在\ref{sec:2.6}节中作进一步阐明。
+
 \subsection{上行波}
+\label{sec:2.1.9}
+
 以上所有方程均属下行波情形，要得到上行波情形的方程，仅需改变$z$和$\partial/\partial z$的符号。
 例如，令$D$表示下行波场、$U$表示上行波场，方程\ref{eq:ex2.1.14}即取下述形式\\
 $\frac{\partial^2}{\partial z\partial t}D=+\frac{v}{2}\frac{\partial^2}{\partial x^2}D$\\
@@ -298,7 +325,10 @@ $\frac{\partial^2}{\partial z\partial t}U=-\frac{v}{2}\frac{\partial^2}{\partial
 这就是15°近似并具有延迟之下行与上行波绕射的时间域方程。利用爆炸反射面概念后，在
 偏移稆绕射程序中出现的就是上行波方程。下行波方程对正演模拟和偏移的处理很有用处，
 这类处理比基于爆炸反射面概念的那些处理更为精细（见\ref{sec:5.7}节）。
+
 \subsection{习题}
+\label{sec:2.1.10}
+
 \begin{enumerate}
 \item 设有切于圆的一条倾斜直线，如图\ref{fig:omx/tanexer}所示，利用该直线
 可引出Muir平方根展开式。试证明后两个Muir半圆近似式并绘出其
@@ -310,4 +340,3 @@ $\frac{\partial^2}{\partial z\partial t}U=-\frac{v}{2}\frac{\partial^2}{\partial
 \label{fig:omx/tanexer}
 \end{figure}
 \end{enumerate}
-
