@@ -78,7 +78,7 @@ $\partial/\partial z \partial/\partial t=\partial^2/(\partial z\partial t)$这�
 \begin{bmatrix}
 1&-1\\
 -1&1
-\end{bmatrix} 
+\end{bmatrix}
 \}*U
 \label{eq:ex2.7.7}
 \end{equation}
@@ -86,7 +86,7 @@ $\partial/\partial z \partial/\partial t=\partial^2/(\partial z\partial t)$这�
 
 两个算子之和按下列形式恒有$\mid b \mid \geq \mid s \mid $
 \begin{equation}
-0 = 
+0 =
 \begin{bmatrix}
 s&b\\
 b&s
@@ -123,3 +123,59 @@ b&s
 
 \subsection{$(t,x,z)$空间的15度绕射程序}
 \label{sec:2.7.2}
+
+要理解$(t,x,z)$空间内的$15$度偏移，最容易的办法就是考虑$(z,t)$空间的偏移。
+现在，我们不采用标量函数$U(k_x)$，而是利用一个向量$\mathbf{u}$，这个向量的各分量$u_j$是在
+$x=j\Delta x$点上测定的压力。把$k_x^2$看作是一种三对角线矩阵，称作$\mathbf{T}$，其主对角线上为$(-1,
+2,-1)$。注意，$k_x^2$恒为正值，故而$\mathbf{T}$是一个其主对角线上均为正值元素的正定矩阵。采用
+\ref{eq:ex2.7.7}并以$\alpha$表示左侧常数，则
+\begin{equation}
+0 = \{
+\alpha\mathbf{T}
+\begin{bmatrix}
+\mathbf{I}&\mathbf{I}\\
+\mathbf{I}&\mathbf{I}
+\end{bmatrix}
+-
+\begin{bmatrix}
+\mathbf{I}&-\mathbf{I}\\
+-\mathbf{I}&\mathbf{I}
+\end{bmatrix}
+\}*\mathbf{u}
+=
+\begin{bmatrix}
+\alpha\mathbf{T}-\mathbf{I}&\alpha\mathbf{T}+\mathbf{I}\\
+\alpha\mathbf{T}+\mathbf{I}&\alpha\mathbf{T}-\mathbf{I}
+\end{bmatrix}*\mathbf{u}
+\label{eq:ex2.7.11}
+\end{equation}
+现在考虑一种模拟程序。利用\ref{fig:new/fig-2-7-2}所示格式的差分系数表，开始向下进入地层内
+部进行计算，对未知数求解式\ref{eq:ex2.7.11}，并略去所有撇号，得
+\begin{equation}
+(\alpha\mathbf{T}+\mathbf{I})
+\mathbf{u}_{t+1,z}=
+-[
+(\alpha\mathbf{T}+\mathbf{I})
+\mathbf{u}_{t,z+1}+
+(\alpha\mathbf{T}-\mathbf{I})
+(\mathbf{u}_{t,z}+\mathbf{u}_{t+1,z+1})
+]
+\label{eq:ex2.7.12}
+\end{equation}
+首先，求出右端表达式的值，左端是有关待求的未知数$\mathbf{u}_{t+1,z}$的三对角线方程组。容许应用
+于式\ref{eq:ex2.7.12}的序列受\ref{fig:new/fig-2-7-2}所示差分系数表所支配。
+
+留意一下先前关于具有中等倾角之波场的评论，即对$z'$轴进行采样无需像$t'$轴那样稠
+密。我们可沿$z'$方向交错跳跃地进行计算。在程序\ref{lst:code2.7.1}所示计算机程序中，所选择的具体计算顺序由下表所列数字表示：
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{new/fig-2-7-4}
+\caption{程序\ref{lst:code2.7.1}所示的差分系数表}
+\label{fig:new/fig-2-7-4}
+\end{figure}
+\begin{listing}[H]
+    \caption{时间域绕射程序（Clayton,Gonzalez,
+JFC,Hale）}
+    \inputminted{Fortran}{code2-7-1.f90}
+    \label{lst:code2.7.1}
+    \end{listing}
