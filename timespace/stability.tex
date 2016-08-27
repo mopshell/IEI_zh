@@ -1,0 +1,32 @@
+\section{稳定性简介}
+\label{sec:2.8}
+
+经验表明，一旦你认识到方法应用显著偏离了教科书所述情况，稳定性雜要比精确度更
+为受到关心。有没有稳定性将决定预计目标是否能完全达到，而精度则仅决定达到目标所需
+付出的计算代价。我们在本节将考虑具有实热传导系数和虚热传导系数的热流方程。由于后
+种情形相应于地震偏移，所以这两种情形为稳定性分析提供了有益的背景。
+
+稳定性分析的基本方法系以傅氏变换为基础，更简单地说，我们要考察的是单个正弦形
+或复指数形的试验解。如果一种方法对任何频率变得不稳定，那么，它对任何实际情形也将是
+不稳定的，因为实际函数只不过是所有频率的合成结果。现在就从下述正弦函数开始讨论：
+\begin{equation}
+P(x)=P_0e^{ikx}
+\label{eq:ex2.8.1}
+\end{equation}
+其二阶导数为
+\begin{equation}
+\frac{\partial^2 P }{\partial x^2} =-k^2P
+\label{eq:ex2.8.2}
+\end{equation}
+用类似于二阶差分算子的一个表达式来定义$\hat{k}$
+\begin{subequations}
+  \begin{equation}
+  \frac{\delta^2 P }{\delta x^2}=\frac{P(x+\Delta x)-2P(x)+P(x-\Delta x)}{\Delta x^2}
+  \label{eq:ex2.8.3a}
+  \end{equation}
+  \begin{equation}
+  =-\hat{k}^2P
+  \label{eq:ex2.8.3b}
+  \end{equation}
+\label{eq:ex2.8.3}
+\end{subequations}
