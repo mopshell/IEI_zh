@@ -30,3 +30,82 @@ P(x)=P_0e^{ikx}
   \end{equation}
 \label{eq:ex2.8.3}
 \end{subequations}
+理想上，$\hat{k}$应该等于$k$。将复指数\ref{eq:ex2.8.1}代入式\ref{eq:ex2.8.3a}，得出关于$\hat{k}$的表达式：
+\begin{subequations}
+  \begin{equation}
+  -\hat{k}^2P=\frac{P_0}{\delta x^2}[e^{ik(x+\Delta x)}-2e^{ikx}+e^{ik(x-\Delta x)}]
+  \label{eq:ex2.8.4a}
+  \end{equation}
+  \begin{equation}
+  (-\hat{k}\Delta x)^2=2[1-cos(k\Delta x)]
+  \label{eq:ex2.8.4b}
+  \end{equation}
+作出式\ref{eq:ex2.8.4b})的图形或者它的平方根的图形，是一件轻而易举的事。利用三角学中的半角
+恒等式，可将\ref{eq:ex2.8.4b}的平方根表示为
+\begin{equation}
+\hat{k}\Delta x=2sin\frac{k\Delta x}{2}
+\label{eq:ex2.8.4c}
+\end{equation}
+\label{eq:ex2.8.4}
+\end{subequations}
+作级数展开后表明，$\hat{k}$与$k$在低空间频率时符合良好。在$k\Delta x=\pi$的关系所定义的Nyquist频
+率时，值$\hat{k}\Delta x=2$只粗略地近似于$\pi$。
+与离散域上的任何傅氏变换一样，超过Nyquist频率
+时，$\hat{k}$是$k$的一个周期函数。虽然$k$的范围是从负无限大至正无限大，$\hat{k}^2$却压缩成从零至四的
+范围。由于不稳定性往往是在值域范围的一个端点上开始，所以变化范围的极限是很重要
+的。
+
+\subsection{显式热流方程}
+\label{sec:2.8.1}
+
+现在就从热流方程和空间域傅氏变换开始讨论。$\partial^2/\partial x^2$直接变为$-k^2$，因而
+\begin{equation}
+\frac{\partial q}{\partial t}=-\frac{\sigma}{c}k^2q
+\label{eq:ex2.8.5}
+\end{equation}
+时间域显式有限差分得出的方程在形式上同通货膨胀方程完全相同：
+\begin{subequations}
+  \begin{equation}
+  \frac{q_{t+1}-q_t}{\Delta t}=-\frac{\sigma}{c}k^2q_t
+  \label{eq:ex2.8.6a}
+  \end{equation}
+  \begin{equation}
+  q_{t+1}=(1-\frac{\sigma\Delta t}{c}k^2)q_t
+  \label{eq:ex2.8.6b}
+  \end{equation}
+\label{eq:ex2.8.6}
+\end{subequations}
+为保证稳定性，$q_{t+1}$的量值应当小于或者等于$q_t$的量值，这就要求括号内的因子具有小于或
+等于一的量值。危险的情况发生在因子甚小于$-1$
+之时，当$k^2>2c/(\sigma\Delta t)$时就要出现不稳
+定性，这意味着高频分量是随时间而发散的，在时间坐标轴上实现显示有限差分给空间坐标
+轴上的短波长招致了灾难性后果。令人惊异的是，只要对空间坐标轴进行的差分足够粗略就
+能够补救这种灾难！傅氏变换域内的二阶空间导数为$-k^2$，当$x$坐标轴离散化时，它变为
+$-\hat{k}^2$。所以，使式\ref{eq:ex2.8.5}与\ref{eq:ex2.8.6}离散化，只不过是用$\hat{k}$代替$k$而已。式\ref{eq:ex2.8.4c}表
+明，在Nyquist频率$k\Delta x=\pi$时，$\hat{k}^2$有一个上限$\hat{k}^2=4/\Delta x^2$。最后，如果
+\begin{equation}
+\hat{k}^2=\frac{4}{\Delta x^2}\leq\frac{2c}{\sigma\Delta t}
+\label{eq:ex2.8.7}
+\end{equation}
+式\ref{eq:ex2.8.6b}中的因子将小于一，从而计算过程就具有稳定性。显然，时间采样比空间采样
+稠密可防止不稳定性。不过，当热传导系数$\sigma(x)$取值范围很广时，这么一种解决办法就
+代价太大了。对于一维空间问题，有种很容易逃避的办法，就是采用隐式差分方法；对于高
+维空间问题，则必须采用显式差分方法。
+
+\subsection{显式15度偏移方程}
+\label{sec:2.8.2}
+
+在\ref{sec:2.1}节中我们已经知道，除了必须用纯虚数$i$代替热传导系数$\sigma$之外，延迟的15度波场外
+推方程很像热流方程，放大因子（式\ref{eq:ex2.8.6b}括号中之因子的大小）现在是实部与虚部之平方
+和的平方根。既然实部已经是$1$，则放大因子在$k^2$的所有非零值情形下均超过$1$。随着倾斜平
+面波的増大，无疑要显现出不稳定性，倾角越大，增长越快，而且增大$x$轴的采样间隔也解
+决不了这个问题。
+
+\subsection{隐式方程}
+\label{sec:2.8.3}
+以前已说过，通货膨胀方程
+\begin{equation}
+q_{t+1}-q_t=rq_t
+\label{eq:ex2.8.8}
+\end{equation}
+就是微分方程$dq/dt\approx q$的一种简单显式有限差分。还知道，Crank-Nicolson形式
