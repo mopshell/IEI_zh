@@ -107,14 +107,103 @@ DSR方程与互换原理有关，我们首先要回顾一下该原理。
 拓是一回事，完全不涉及震源点的延拓处理。上行波可以从一个爆炸反射面开始，或者可以
 在地面开始，向下进行，然后向上反射回去。
 
-为应用观测排列延拓的成像概念，就有必要不但使检波点向下延拓，而且也要使震滙向
+为应用观测排列延拓的成像概念，就有必要不但使检波点向下延拓，而且也要使震源向
 下延拓，我们已经知道如何使检波点向下延拓了，由于互换性允许检波点与炮点相互交换，
 所以实际上我们也就是知道了如何将炮点向下延拓了。
 
 炮点与检波点可以向下延拓至不同的深度水平，因而在这种处理中间，它们可以处于不
 同深度水平，不过就最终处理结果要求来说，仅需要它们处在相同深度水平；这就是说，取
-$z_s$为炮点深度和$z_g$为检波点深度时，向下延拓处理将要求在所有水平上都是$z=z_s=s_g$
+$z_s$为炮点深度和$z_g$为检波点深度时，向下延拓处理将要求在所有水平上都是$z=z_s=s_g$。
 
 位于$(x,z)$的反射面之映像是按最靠近的可能的成对炮点与检波点上所见到的反射强
 度与极性来定义的，取其数学极限时，这种最靠近的成对点相当于震源与检波点在反射面上
 彼此重合了，这时的反射旅行时间等于零。这种观测排列延拓成像概念可总结为下列关系：
+\begin{equation}
+\text{Image}(x,z)=\text{Wave}(s=x,g=x,z,t=0)
+\label{eq:ex3.3.1}
+\end{equation}
+对于良好质量的资料，就是说，对于符合向下延拓方法假设的资料，应可将反射能量偏移至
+零值旅行时间时的零炮检距情形。对反射能量没有达到这种状态的原因仔细进行研究，将能
+使该模型得到迸一步改善，要改善模型通常就相当于要改善速度的空间分布情形。
+
+\subsection{旁轴波动方程评述}
+\label{sec:3.3.3}
+
+在\ref{sec:1.5}节中已就旁轴波动导出了一个方程，其中，关于单个平面波的假设意味着该波的
+到达时间系由单值函数$t(x,z)$給定。在深度$z$为恒定值的一个平面上，比如在地表面上，
+Snell定律的参量$p$是可测定的，即
+\begin{subequations}
+\begin{equation}
+\frac{\partial t}{\partial x}\mid _x = \frac{dt}{dx}=\frac{sin\theta}{v}=p
+\label{eq:ex3.3.2a}
+\end{equation}
+在钻孔内则应有约束，即必须是在水平坐标$x$为恒定的情形下进行观测，这时根据上行波得
+出的相应观测结果将为
+\begin{equation}
+\frac{\partial t}{\partial z}\mid _x = \frac{dt}{dz}=-\frac{cos\theta}{v}=-[\frac{1}{v^2}-(\frac{dt}{dx})^2]^{1/2}
+\label{eq:ex3.3.2b}
+\end{equation}
+\end{subequations}
+回想一下时移偏微分方程及其呈某种任意函数形式$f$的解$U$:
+\begin{subequations}
+\begin{equation}
+\frac{\partial U}{\partial z}=-\frac{\partial t}{\partial z}\frac{\partial U}{\partial t}
+\label{eq:ex3.3.3a}
+\end{equation}
+\begin{equation}
+U=f(t-\int_0^z\frac{\partial t}{\partial z}dz)
+\label{eq:ex3.3.3b}
+\end{equation}
+\end{subequations}
+正同式\ref{eq:ex3.3.2b}一样，在方程\ref{eq:ex3.3.3a}中是在恒定$x$值时取偏早数。
+将\ref{eq:ex3.3.2b}代入后，得
+\begin{subequations}
+\begin{equation}
+\frac{\partial U}{\partial z}=[\frac{1}{v^2}-(\frac{dt}{dx})^2]^{1/2}\frac{\partial U}{\partial t}
+\label{eq:ex3.3.4a}
+\end{equation}
+对波场遍及$(x,t)$进行Fourier变换时，我们用$-i\omega$代替$\partial/\partial t$；同样，对于Fourier积分
+核中的行波$\exp (-i\omega t+ik_x x)$恒定相位意昧着$dt/dx-k_x/\omega$。利用这些结果，式
+\ref{eq:ex3.3.4a}变为
+\begin{equation}
+\frac{\partial U}{\partial z}=-i\omega [\frac{1}{v^2}-\frac{k_x^2}{\omega^2}]^{1/2}U
+\label{eq:ex3.3.4b}
+\end{equation}
+\end{subequations}
+除了$v$是一个$z$的函数之外，方程\ref{eq:ex3.3.4b}的解同标量波动方程的那些解是符合一致的，在
+这种情形下，标量波动方程是既有上行波解又有下行波解，而方程\ref{eq:ex3.3.4b}
+则只有上行波解。第2章所讲的是如何甩$\partial /\partial x$代替$ik_x$来进入横向空间域，对于将许多局部平面波进行叠加
+的情形和横向速度变动$v(x)$的情形来说，所得出的方程是很有用的。
+
+\subsection{炮点与检波点空间域内的双平方根方程}
+\label{sec:3.3.4}
+
+令检波点下降$dz_g$距离进入地层内，所观测上行波的旅行时间变化将为
+\begin{subequations}
+\begin{equation}
+\frac{\partial t}{\partial z_g}=-[\frac{1}{v^2}-(\frac{dt}{dg})^2]^{1/2}
+\label{eq:ex3.3.5a}
+\end{equation}
+设已令炮点下移$dz_s$距离而不是位于2 = 0,这时同样有
+\begin{equation}
+\frac{\partial t}{\partial z_s}=-[\frac{1}{v^2}-(\frac{dt}{ds})^2]^{1/2}
+\label{eq:ex3.3.5b}
+\end{equation}
+\end{subequations}
+
+因为当检波点与炮点全都向下移时，旅行时间减小，所以方程\ref{eq:ex3.3.5a}和\ref{eq:ex3.3.5b}
+全要求有负号。
+
+将炮点与检波点二者同时垂直向下移动完全相等的距离旅行时间的改
+变就等于式\ref{eq:ex3.3.5a}与\ref{eq:ex3.3.5b}之和，即
+\begin{equation}
+dt=\frac{\partial t}{\partial z_g}dz_g + \frac{\partial t}{\partial z_s}dz_s=(\frac{\partial t}{\partial z_g}+\frac{dt}{dz_s} )dz
+\label{eq:ex3.3.6}
+\end{equation}
+
+或者
+\begin{equation}
+\frac{\partial t}{\partial z}=-\{[\frac{1}{v^2}-(\frac{dt}{dg})^2]^{1/2}+[\frac{1}{v^2}-(\frac{dt}{ds})^2]^{1/2}\}
+\label{eq:ex3.3.7}
+\end{equation}
+可以把这个关于$\partial t/\partial z$的表达式代入方程\ref{eq:ex3.3.3a}，于是得
