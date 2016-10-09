@@ -207,3 +207,129 @@ dt=\frac{\partial t}{\partial z_g}dz_g + \frac{\partial t}{\partial z_s}dz_s=(\f
 \label{eq:ex3.3.7}
 \end{equation}
 可以把这个关于$\partial t/\partial z$的表达式代入方程\ref{eq:ex3.3.3a}，于是得
+\begin{equation}
+\frac{\partial U}{\partial z}=\{[\frac{1}{v^2}-(\frac{dt}{dg})^2]^{1/2}+[\frac{1}{v^2}-(\frac{dt}{ds})^2]^{1/2}\}\frac{\partial U}{\partial t}
+\label{eq:ex3.3.8}
+\end{equation}
+三维Fourier变换将上行波数据$u(t,s,g)$转换成$U(\omega,k_s,k_g)$，
+在Fourier空间内表示方程\ref{eq:ex3.3.8}，得出
+\begin{equation}
+\frac{\partial U}{\partial z}=i\omega \{[\frac{1}{v^2}-(\frac{k_g}{\omega})^2]^{1/2}+[\frac{1}{v^2}-(\frac{k_s}{\omega})^2]^{1/2}\}U
+\label{eq:ex3.3.9}
+\end{equation}
+记住方程\ref{eq:ex3.3.9}中两个平方根的来源，一个是检波点所在处的到达角之余弦除以检波点所
+在处之速度，另一个是炮点所在处的出射角之余弦除以炮点所在处之速度。利用以前几章中
+的技巧，我们就知道如何用$\partial/\partial g$代替$ik_g$、用$\partial/\partial s$代替$ik_s$而变换为横向空间域。为体现横向速度变化$v(x)$，必须使炮点位置所在处之速度有别于检波点位置所在处之速度。因而
+\begin{equation}
+\frac{\partial U}{\partial z}=\{[(\frac{-i\omega}{v(g)})^2-\frac{\partial^2}{\partial g^2}]^{1/2}+[(\frac{-i\omega}{v(s)})^2-\frac{\partial^2}{\partial s^2}]^{1/2}\}U
+\label{eq:ex3.3.10}
+\end{equation}
+式\ref{eq:ex3.3.10}就是知名的炮点检波点空间内之双平方根方程（DSR方程），由于它把检
+波点与炮点一起向下移，将它称为观测排列延拓方程也许更能说明问题。回想一下关于分裂
+法和全分离法那一节（\ref{sec:2.4}节）就会明白，两个平方根算子是符合交换律的，所以它完全等
+价于炮点与检波点分别向下延拓或者一起向下延拓.沿着零炮检距时间剖面上可发现的、而
+在爆炸反射面模型中却不存在的那些射线，这种方程将会产生波场。
+
+\subsection{中心点与炮检距$(y,h)$空间的双平方根方程}
+\label{sec:3.3.5}
+
+将双平方根方程转换至中心点与炮检距$(y,h)$空间，我们才有希望把熟悉的零炮检距偏
+移部分同炮检距校正联系起来。
+
+记录参量$(g,s)$与解释参量$(y,h)$之间的变换关系为
+
+\begin{subequations}
+\begin{equation}
+y=\frac{g+s}{2}
+\label{eq:ex3.3.11a}
+\end{equation}
+\begin{equation}
+h=\frac{g-s}{2}
+\label{eq:ex3.3.11b}
+\end{equation}
+\label{eq:ex3.3.11}
+\end{subequations}
+
+在$(g,s)$空间或$(y,h)$空间中的旅行时间$t$可使之参量化，根据导数的连锁法得出这种
+转换的微分关系
+
+\begin{subequations}
+\begin{equation}
+\frac{\partial t}{\partial g}=\frac{\partial t}{\partial y}\frac{\partial y}{\partial g}+
+\frac{\partial t}{\partial h}\frac{\partial h}{\partial g}=\frac{1}{2}(\frac{\partial t}{\partial y}+\frac{\partial t}{\partial h})
+\label{eq:ex3.3.12a}
+\end{equation}
+\begin{equation}
+\frac{\partial t}{\partial s}=\frac{\partial t}{\partial y}\frac{\partial y}{\partial s}+
+\frac{\partial t}{\partial h}\frac{\partial h}{\partial s}=\frac{1}{2}(\frac{\partial t}{\partial y}-\frac{\partial t}{\partial h})
+\label{eq:ex3.3.12b}
+\end{equation}
+\end{subequations}
+
+已经知道如何将时差从炮点与检波点$(g,s)$空间变换至中心点与炮检距$(y,h)$空
+间之后，紧接着让我们看一下如何以非常相同的方式进行空间频率变换。显然，利用式
+\ref{eq:ex3.3.11}能将资料从$(g,s)$空间变换至$(y,h)$空间，然后进行Fourier变换使之变换至
+$(k_y,k_h)$空间。这时的问题是：以空间频率$(k_y,k_h)$表示时，双平方根方程\ref{eq:ex3.3.9}将
+取何种形式？任一种坐标系统中的地震数据场定义为
+
+\begin{equation}
+U(s,g)=U'(y,h)
+\label{eq:ex3.3.13}
+\end{equation}
+
+这个定义引入了一个新数学函数$U'$，它具有与u相同的物理意义；但是像计算机子程序或
+函数调用一样，对于坐标系统$(y,h)$，它应采用一神不同于$(s,g)$坐标系统的下标查询
+过程。对式\ref{eq:ex3.3.13}应用偏微分连锁法，得出
+
+\begin{subequations}
+\begin{equation}
+\frac{\partial U}{\partial s}=\frac{\partial y}{\partial s}\frac{\partial U'}{\partial y}+
+\frac{\partial h}{\partial s}\frac{\partial U'}{\partial h}
+\label{eq:ex3.3.14a}
+\end{equation}
+\begin{equation}
+\frac{\partial U}{\partial g}=\frac{\partial y}{\partial g}\frac{\partial U'}{\partial y}+
+\frac{\partial h}{\partial g}\frac{\partial U'}{\partial h}
+\label{eq:ex3.3.14b}
+\end{equation}
+\end{subequations}
+
+再利用式\ref{eq:ex3.3.11}的关系，得
+
+\begin{subequations}
+\begin{equation}
+\frac{\partial U}{\partial s}=\frac{1}{2}(\frac{\partial U'}{\partial y}-\frac{\partial U'}{\partial h})
+\label{eq:ex3.3.15a}
+\end{equation}
+\begin{equation}
+\frac{\partial U}{\partial g}=\frac{1}{2}(\frac{\partial U'}{\partial y}+\frac{\partial U'}{\partial h})
+\label{eq:ex3.3.15b}
+\end{equation}
+\label{eq:ex3.3.15}
+\end{subequations}
+
+在Fourier变换空间内，$\partial/\partial x$变换为$ik_x$，当从等式两端消掉虚数$i$而且因$U=U'$而可从等式
+两端被消去之后，式\ref{eq:ex3.3.15}就成为
+
+\begin{subequations}
+\begin{equation}
+k_s=\frac{1}{2}(k_y-k_h)
+\label{eq:ex3.3.16a}
+\end{equation}
+\begin{equation}
+k_s=\frac{1}{2}(k_y+k_h)
+\label{eq:ex3.3.16b}
+\end{equation}
+\label{eq:ex3.3.16}
+\end{subequations}
+
+式\ref{eq:ex3.3.16}即是式\ref{eq:ex3.3.15}的Fourier表示式。将式\ref{eq:ex3.3.16}
+代入式\ref{eq:ex3.3.9}内就达到了本节主要目的，即将双平方根偏移方程转换至中心点与炮检距的坐标系统
+$(y,h)$
+\begin{equation}
+\frac{\partial U}{\partial z}=-i\frac{\omega}{v} \{
+[1-(\frac{vk_y+vk_h}{2\omega})^2]^{1/2}+
+[1-(\frac{vk_y-vk_h}{2\omega})^2]^{1/2}
+\}U
+\label{eq:ex3.3.17}
+\end{equation}
