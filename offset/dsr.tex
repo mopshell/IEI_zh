@@ -194,11 +194,11 @@ Fresnel带的定义必须涉及到某一种频率，就实用目的考虑，我�
 \begin{subequations}
 \begin{equation}
 (\frac{\partial}{\partial z}+\frac{v}{-i\omega 8}\frac{\partial^2}{\partial y^2})
-(\int Udh)+\frac{v}{-i\omega g}\frac{\partial U}{\partial h}\mid_{h=-\infty}^{h=+\infty}=0
+(\int Udh)+\frac{v}{-i\omega g}\frac{\partial U}{\partial h}\mid_{h=-\inf}^{h=+\inf}=0
 \label{eq:ex3.4.7a}
 \end{equation}
 
-在无限大炮检距$h=±\infty$之处，波应消失，从而其对水平炮检距之导数也应等于零，
+在无限大炮检距$h=±\inf$之处，波应消失，从而其对水平炮检距之导数也应等于零，
 由此可知，式\ref{eq:ex3.4.7a}中的最后一顼应等于零。所以，令$H=0$就是意味着下列关系成立
 \begin{equation}
 (\text{旁轴算子})(\text{垂直叠加})=0
@@ -237,8 +237,15 @@ Y=sin\alpha cos\beta
 的。在中等大小的角度时，则需要进行余弦校正，如式\ref{eq:ex3.4.8}所示。当角度超出45°时。
 灵敏度反向，因而事情就颠倒混乱了。读者应当提防简单地把$Y$同倾角联系起来、把$H$同速
 度联系起来的这种不正规讨论。倾角和炮检距可以混合发生影响，\ref{sec:3.2}节中的“Larner条
-痕”就是一个例子。实际上，在陡倾角时，利用$H$来确定速度的这种普通处理办法应当以某
+瘕”就是一个例子。实际上，在陡倾角时，利用$H$来确定塋变的这种普通处理办法应当以某
 科方式使之改变为利用$Y$来进行。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{ofs/clay}
+\caption[clay]{倾斜地层几何形态。注意，角度$2\beta$的平分线并不通过$g$与$s$之间的中心点(Clayton)}
+\label{fig:ofs/clay}
+\end{figure}
 
 接下去我们就来证明式\ref{eq:ex3.4.8}的关系。震源出射角为$\gamma_s$，入射至接收点的角度为
 $\gamma_g$。首先，使$\gamma_s$与$\gamma_g$，同$\alpha$与$\beta$发生关系，将图\ref{fig:ofs/clay}中所作出的较小之三角形的所有角相加起来，得
@@ -262,10 +269,66 @@ $\gamma_g$。首先，使$\gamma_s$与$\gamma_g$，同$\alpha$与$\beta$发生�
 要把一定深度时的角度$\alpha$和$\beta$同地表上的时差$dt/ds$和$dt/dg$联系起来，需要告心符号之正负，
 注意旅行时间之随检波点向右移而增大、随炮点向右移而减小。根据\ref{sec:3.3}节中的方程\ref{eq:ex3.3.16}
 和\ref{eq:ex3.3.18}以及视倾角$Y$和$H$的定义，应有
+\begin{equation*}
+Y-H=S=\frac{vk_s}{\omega}=v\frac{dt}{ds}=-sin\gamma_s=sin(\alpha-\beta)
+\end{equation*}
+\begin{equation*}
+Y+H=G=\frac{vk_g}{\omega}=v\frac{dt}{dg}=+sin\gamma_g=sin(\alpha+\beta)
+\end{equation*}
+将上述一对方程相加和相减，然后利用三角学的合角公式，得出Clayton的余弦校正公式\ref{eq:ex3.4.8}
+\begin{equation*}
+Y=\frac{1}{2}sin(\alpha+\beta)+\frac{1}{2}sin(\alpha-\beta)=sin\alpha cos\beta
+\end{equation*}
+\begin{equation*}
+H=\frac{1}{2}sin(\alpha+\beta)-\frac{1}{2}sin(\alpha-\beta)=sin\beta cos\alpha
+\end{equation*}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.65\textwidth]{ofs/clay}
-\caption[clay]{倾斜地层几何形态。注意，角度$2\beta$的平分线并不通过$g$与$s$之间的中心点(Clayton)}
-\label{fig:ofs/clay}
-\end{figure}
+\subsection{Snell波叠加与共中心点道集倾斜叠加}
+\label{sec:3.4.6}
+
+令出射角S等于零，也就是把双平方根方程简化成单平方根方程了。$S=0$的意思是$k_s =
+0$、或是其等价的意义：将数据遍及所有炮点$s$进行求和（无需时移而求和）。这样一种求和
+相当于是模拟下行平面波，该求和过程幕后所隐含的成像原理是要找出在下行波到达时间上
+出现的上行波（\ref{sec:5.7}）。从历史渊源说，这就是我的CDP叠加剖面有限差分波动方程偏
+移所隐含的思想。如以后在\ref{sec:5.2}节和\ref{sec:5.3}节中所阐述的，也可令$S$等于
+一个常数以模拟下行Snell波。
+
+Snell波是非垂直入射下行平面波的一种推广，炮点不是同时起爆，而是与$dt/ds$=$S/v$
+成反比地相继起爆。通过$(t,s)$平面沿着斜率为心$dt/ds$的直线对野外资料进行求和，即可
+模拟这种情形。令$S$为某种常数，例如也就是把双平方根方程简化为旁轴波动
+方程，上述假想观测的下行Snell波向下延拓所需要的正是这个方程。Snell波能够用各种不
+同的值$p=dt/ds$来构制，可各自偏移并成像，然后把所成的像遍及所有$p$进行叠加。早在双
+平方根方程提出之前就已经产生这些思想了，可是至今它们尚未得到流行，其原因何在？
+
+与模拟Snell波有关的一个问题就是：波场通常是沿检波器电缆方向按粗网格间隔加以
+采样的，电缆长度本身几乎从未超出波传播的距离。在共检波点道集中，双曲线的顶部并不
+需要位于零炮检距上，对数据进行内插与外推的精巧方法因此而失效。对于倾斜地层，最尽
+到达的波至往往要偏离排列的墙点，所以数据处理因缺失数据而受到很大影响。
+
+共中心点道集倾斜叠加、即$H=pv$，就是为了避免这些困雄而有了用武之地（关于倾
+斜叠加的完整解释，见\ref{sec:5.2}节）。在其中心点上，双曲线以零斜率通过零炮检距，因而数据
+更适合于沿一条倾斜直线迸行积分时所需采用的内插与外推运算。令$H=pv$，得
+\begin{equation}
+k_z=-\frac{\omega}{v}[\sqrt{1-(Y+pv)^2}+\sqrt{1-(Y-pv)^2}]
+\label{eq:ex3.4.10}
+\end{equation}
+这个关系已经不能由双平方根方程简化为旁轴波动方程，值是它却使问题归结为一种易于
+采用现成可用技术的形式了，诸如采用Stolt方法或者相移法等，这种处理办法的细节可参
+阅Richard Ottolini的博士论文（1982）。
+
+\subsection{为何不在(S,G)空间内向下延拓？}
+\label{sec:3.4.7}
+
+如果速度已知，因而仅有的任务只是偏移的话，这时不能在(S,G)空间内完成向下
+延拓的基本理由就不存在了。可是，速度实际上总不是完全已知的。偏移对速度误差影响的
+灵敏度随角度而迅速增大，因而得假设(S,G)空间内有相当的角度精度。此外，记录电
+缆的有限长度范围以及出现空间假频的可能，均使(S,G)空间内的偏移遇到了与Snell叠加
+所遭遇的相同问题。我看没什么重要理由可以使人相信(S,G)空间的偏移就是要比共中
+心点道集倾斜叠加好一点，而且假频和截断误差的影晌看来似乎还使它更为糟糕。少为人知
+但更实际的处理广角偏移问题的办法将在本章以后几节中讨论。
+
+另一方面，速度有横向变化(如可已知的话)，则可能需要在(s,
+g)空间内来实现偏移。
+
+采用炮点检波点空间还有另一个原因，这就是炮点彼此相距很远。这时数据无论在中心
+点空间或炮检距空间内，都耍受到假频影响（见\ref{sec:5.7}节）。
