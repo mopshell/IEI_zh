@@ -84,24 +84,95 @@ Rocca算子。
 \label{fig:vdmo/rocca2}
 \end{figure}
 
+Rocca算子就是图\ref{fig:vdmo/rocca}中的密切曲线（curve of osculation），
+即各双曲线彼此得到
+増强之处的微笑曲线（smile-shaped curve）\footnote{
+该曲线状似人们微笑时的嘴，是以得名。---译者
+}。如在椭圆弧上处处作出如图\ref{fig:vdmo/rocca}所示的
+许多双曲线，而不是在几个孤立的点上作双曲线的话，这时该密切曲线就会在图上成为仅有
+可见的东西了（而且还使你看不出它是从何而来）。
+
+Rocca微笑曲线弧所相应之旅行时间的解析表达式表明，该弧是位于图\ref{fig:vdmo/rocca2}所示的一
+个扃椭圆的末端部分。我们将略去这个微笑曲线方程的导出过程，最终可证明该方程为
+\begin{equation}
+\frac{(y-y_0)^2}{h^2}+\frac{t^2}{t_0^2} 
+\label{eq:ex3.6.2}
+\end{equation}
+从这十方程看，Rocca算子好像是同速度无关似的。其实，它并不完全如此，因为微笑曲线
+是在满足$dt/dy=2/v$关系的点上才截止的。
+
+Rocca算子把共炮检距剖面变换成为零炮检距剖面，这种变换过程达到两个目的：第
+一，它完成正常时差校正；第二，它完成Sherwood倾角校正。沿共炮检距剖面的中心点坐
+标轴进行如图\ref{fig:vdmo/rocca}所示的运算，只在一个时间$t_0$上得出零炮检距剖面作为输出。对于每一
+个时间$t_0$必须设计出不同的Rocca算子，所有$t_0$值时得出的输出必须叠加起来。图\ref{fig:vdmo/dmopoint}所
+示就是若干$t_0$值时的若干个Rocca微笑曲线之叠加结果。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{vdmo/dmopoint}
+\caption[dmopoint]{倾角时差校正之点源响应（左图）与共炮检距偏移扫描（右图）的比较（据Hale
+）}
+\label{fig:vdmo/dmopoint}
+\end{figure}
+
+从实用的观点看，这种算子特别有吸引力，因为对各个共炮检距剖面进行偏移处理时，
+不是利用大而宽的椭圆进行大数据量处理，而只需要狭而小的Rocca算子。由图\ref{fig:vdmo/dmopoint}可
+知，倾角时差校正算子\footnote{
+文中所述倾角时差校正算子(dip moveout operator)、
+Rocca微笑曲线、Rocca算子，Rocca叠前局部偏移
+算子，密切曲线等等，大体均指同一类运算。---译者
+}内的能量集中于该曲线底部附近很狭的范围内；在极限情形下，半
+椭圆趋近于半圆，那就是说，在值较小的情形下，能量全部趋向底部。当所有能量集
+中于底部一个点附近时，该Rocca算子实际上就变成一个$\delta$函数。在各炮检距均被校正为零
+炮检距情形之后，根据正常时差剩余校正确定速度，然后再将数据叠加并偏移。
+
+Rocca椭球体的扁度（narrowness
+）在两种意义上有好处，从实用上说，它意味着在完
+成速度估计和叠加以前，不需要将很多的中心点资料数据输入于计算机内存；更为重要的
+是，由于算子所需的运算如此简洁紧凑，它确实不必对数据作大量运算。这点好处很重要，
+因为运算是在完全已知速度之前的早期阶段完成的，所以有可能令人满意地选取区域性的恒
+定值、例如取2.5公里/秒作为Rocca算子所需的速度值。
+
+若有倾角时差校正算子的旅行时间曲线表达式，可能会有助于Kirchhoff积分求和型的
+偏移扫描勉理，这将要求某些代数推导演绎，由此可导至Ottolini与Hale所建立算子牟身的
+Fourier变换表现形式。
+
+\subsection{Hale的共炮检距倾角时差校正}
+\label{sec:3.6.3}
+
+Hale(1983年)求出了对共炮检距剖面进行运算的倾角时差校正之Fourier变换表达形
+式。参阅下表所列各定义方程：
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{|Y|Y|Y|}
+\hline
+正常时差校正（NMO）& $t\rightarrow t_n$ & $t=\sqrt{t_n^2+4h^2/v^2}$\\
+\hline
+Levin正常时差校正& $t\rightarrow t_0$ & $t=\sqrt{t_0^2+4h^2cos^2\alpha/v^2}$\\
+\hline
+倾角时差校正（DMO）& $t_n\rightarrow t_0$ & $t=\sqrt{t_0^2-4h^2sin^2\alpha/v^2}$\\
+\hline
+\end{tabularx}
+\end{table}
+将倾角时差校正（DMO）方程代入正常时差校正（NMO
+）方程中，就得出Levin正常时差校正方程\footnote{
+$t$为反射时间，$2h$为炮点至检波点的炮检距，$v$为地层速度，$\alpha$为地层倾角，$t_0$为中心点（炮点与检波点之间的中心
+点）下之界面的双程垂直时间（垂直深度$vt_0/2$)。若炮点位于上倾方向，检波点位于下倾方向，则炮点下界面的
+双程垂直时间为$t_0-2hsin\alpha/v$；检波点下之界面双程垂直时间为$t_0+2hsin\alpha/v$；,由此可知，时间$t_n$为上述两种垂直时间的几何平均值。---译者
+}。
+
+要利用上表中的倾角关系方程，需知地层倾角$\alpha$，该倾角可由零炮检距剖面测定。在
+Fourier空间内的零炮检距剖面上，该倾角的正弦为$vk_y/2\omega$，其中$k_y$为沿中心点坐标$y$的空
+间波数；为强调这种测定仅应用于零炮检距剖面，我们总将$\omega$写为$\omega_0$，即
+\begin{equation}
+sin\alpha = \frac{vk_y}{2\omega_0}
+\label{eq:ex3.6.3}
+\end{equation}
 
 
-% \subsection{切除与加权}
-% \label{sec:3.5.3}
-%
-% 定义切除函数是常规赴理中
-% 的重要一部分。切除函数就是用 于压制掉数据中某些不希望要的
-% 部分时所使用的一种加权函数。图\ref{fig:vdmo/mute}所示是经过切除处理之野外剖面的例子。加权与切
-% 除对叠加的质量有重大影晌。因此，有许多试验和理论讨论实际上都是以它们作为研究主
-% 题，这是毫不奇怪的。
-%
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{vdmo/mute}
-% \caption[mute]{左图是Alberta地区的陆地勉震记录，右图是该记录经过切除处理后
-% 的结果，地滚波（记录中部）与首波（第一个波至）均已消除}
-% \label{fig:vdmo/mute}
-% \end{figure}
+
 %
 % 切除函数往往是以r为变量的一维函数，其中\footnote{h为炮检距，t为时间.------译者}，$r=h/t$。
 % 既切除大r值时的数据也切除小r值时的数据，其原因如下所述。
