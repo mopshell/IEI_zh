@@ -1,9 +1,0 @@
-qO = bl * q ( 1 ) ; qnxpl=br * q ( nx )
-
-cd ( 1 ) = aa * q ( 2 ) + (1.-2. * aa ) * q ( 1 ) +aa * qO
-cd ( nx ) =aa * q ( nx-1 ) + ( 1.-2. * aa ) * q ( nx )+aa * qnxpl
-
-endl=c * bl + b;
-endr=a * br + b
-
-call ctris (nx, endl, a, b, c, endr, cd, q, ce, cf)
