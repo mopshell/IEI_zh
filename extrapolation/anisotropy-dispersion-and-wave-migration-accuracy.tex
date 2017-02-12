@@ -118,28 +118,129 @@ d\phi=-\omega dt+k_xdx+k_zdz=0
 节将会指出，熟悉的外推方程（15°的，45°的等等）并不表现出频散性质。那就是说，作为
 $\omega$与角度$k_x/\omega$的函数，在这些方程中的速度并不依赖于频率$\omega$。换句话说，图\ref{fig:dspr/anisoxz}中的椭圆形与心脏形曲线均与频率无关。
 
+各向异性弥散的一个有趣现象是，能量看起来好像是沿某一个方向在行进着而其实它实
+际上是在沿另一个方向行进着。当群速度有一个向下分量而相速度有一向上分量时，就会出现
+这种现象。描述45°外推方程之弥散关系的图\ref{fig:dspr/group15}就是一个例子，从原点至弥散曲线所画之
+箭头表示沿波阵面法线方向的慢度向量，注意到群速度以式\ref{eq:ex4.2.1b}中的梯度算子来每
+义，现在就能用图解方法确定相应的群速度方向。试将$\omega$值考虑为一个小山的高度，$k_z$就是
+从该$\omega$山头指向南而$k_x$则指向东，于是，弥散关系曲线就是等高线，按不同的比例标度绘出图
+\ref{fig:dspr/group15}就形成了不同频率的数值，沿梯度方向的群速度则是垂直于各$\omega$的等值线。
 
-% \subsection{$5^{\circ}$近似方程中的复速度}
-% \label{sec:4.1.3}
-%
-% 5°近似方程，即
-% \begin{subequations}
-% \begin{equation}
-% \frac{\partial P}{\partial z}=\frac{1}{v}\frac{\partial P}{\partial t}
-% \label{eq:ex4.1.2a}
-% \end{equation}
-% \begin{equation}
-% ik_z=-\frac{i\omega}{v}
-% \label{eq:ex4.1.2b}
-% \end{equation}
-% \label{eq:ex4.1.2}
-% \end{subequations}
-% 表明一个波阵面要取若干时间才能从一个深度传播到另一个深度。因速度$v$为实常数，由式
-% \ref{eq:ex4.1.2}所描述的各波在传播中均不改变其形状。在实际工作中，总观察到有波形变化，
-% 所以，$v$不应该是一个实常数。速度的虚部将形成衰减，速度与频率有关将引起频散。
-%
-% \subsection{吸收作用}
-% \label{sec:4.1.4}
+采用活动电影形式可以非常清楚地识别出各向异性弥散现象，尽管在如图\ref{fig:dspr/prism}所示的
+单个画面上也可以认识出来。图\ref{fig:dspr/prism}中所绘直线是解释能量由顶部进入，经过棱镜，在棱
+镜的45°淘度一侧反射，再从画面的一侧反射，最后进入图中某一个区域，该区域有足够的
+大小，因而许多波阵面不致群集一起，足以识别出能量看似向上传播其实真正的是向下传
+播。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/group15}
+\caption[group15]{表示群速度向量与慢度向量的向下外推方程弥散关系曲线（据Rothman）}
+\label{fig:dspr/group15}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/prism}
+\caption[prism]{四种不同频率的平面波，传播通过一个具有$45$°角度的棱镜。左图为
+波场，右图是说明能量的不同方向和波阵面法线方向的射线解释图（据Estevez）}
+\label{fig:dspr/prism}
+\end{figure}
+
+当你考虑到计算波场所用的程序时，
+在图\ref{fig:dspr/prism}中无论能量还是信息都不可能
+向上传播，这一点就应更清楚了。程序并
+没把整个画面都输入于内存，它每次紧挨着前一个条带，一次计算出一个水平条
+带。所以活动电影中的波阵面是貌似向上
+移动，似乎很难令人理解。从理论上说，利用45°方程的波场外推方法是不能指望
+可以处理达到90°的角度的，而图\ref{fig:dspr/prism}中
+的例子却尚表明，虽然是以一种有点不正
+常的方式、但确实是可以处理这些极端情形的。
+
+有一次，我在地质上属于是逆掩断层地区的反射地震剖面上观察到过类似的环境条件，
+这个剖面目前已不能为我所用，现在大概早就从拥有者的底片中消失了，所以我仅能根据记
+忆提供如图\ref{fig:dspr/overthrust}所示的简图。图中，速度随深度而增大，引起射线向上弯曲，并从逆掩断
+层的下侧反射。为了想知道在波动方程中究竟正在发生什么事，画出如图\ref{fig:dspr/disper2z}所示的两种不同速度时的弥散曲线，将是很有帮助的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/overthrust}
+\caption[overthrust]{从逆掩断层下侧发生反射的射线}
+\label{fig:dspr/overthrust}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/disper2z}
+\caption[disper2z]{两种不同速度$v_{fast}$与$v_{slow}$时的弥散曲线}
+\label{fig:dspr/disper2z}
+\end{figure}
+
+具有某种特定时差心的一小部分能量在近地表处（即这时适用低速弥散曲
+线）以某种普通的角度开始向下延拓，但是当遇到较深层具有高速的地层时，这时应适用高
+速弥散曲线，在此情形下由图\ref{fig:dspr/disper2z}可知，相同的时差$k_x/\omega$却预示着应有负值的相速度。虽
+然上冲角的大小未必正确，可总的图象大体是合适的，它很像图\ref{fig:dspr/prism}中所示的情形。如果你想要定量上是正确的偏移，可参阅\ref{sec:4.5}节，或者想要有点完全不同的偏移，则可参阅
+Kosloff等（1983）和Baysal等（1983）提出的方法。
+
+\subsection{偏移误差分析}
+\label{sec:4.2.3}
+
+利用相速度概念可以对平坦规则的倾斜反射面作整钵分析，仅在同时存在有一个以上的
+传播角度时，才需要利用群速度概念。采用点源散射体响应时，会出现这种同时性的要求，
+在沿倾斜地层存在有可变反射振幅时，也会出现这种要求。群速度之所以需要，是因为表示
+弯曲同相轴或振幅异常，要求平面波传播角度有一定范围。与此类似，在时间序列分析中，
+一个经过振輻调制的正弦波之Fourier变换需要有一定频带范围内的正弦谐波。
+
+图\ref{fig:dspr/undermig}所示是光滑平坦倾斜地层，因为用某种有理平方根近似或某种数值近似所定义
+的波数$\hat{k_z}$同$k_z$的正确平方根值并不符合一致，以致偏移不足。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/undermig}
+\caption[undermig]{偏移不足的倾斜反射面}
+\label{fig:dspr/undermig}
+\end{figure}
+
+图\ref{fig:dspr/undermig}中的误差全部是某种时移误差。由于沿反射面的反射系数为常数，识别不出什
+么横向位移误差。该时间误差在理论上可按下式确定：
+\begin{equation}
+\frac{dt}{t}\approx\frac{dz}{z}\approx\frac{\hat{k_z}-k_z}{k_z}
+\label{eq.ex4.2.2}
+\end{equation}
+就所谓15°外推方程来说，在25°度时所造成的相位误差可证明大约为百分之五十。
+
+其次，我们要确定一下双曲线收缩压扁时的误差。图\ref{fig:dspr/errcollapse}所示是一个双曲线的向下延
+拓，为清晰起见，向下延拓没有沿指向聚焦点的所有路径进行。选定某个斜率$p$就可选出具
+有某个Snell参量$p=dt/dx$的射线。试想像有一斜率为$p$的切线段切于各双曲线。如果斜率
+为p之处有一点振幅异常。那末，你就能在各个双曲面上追踪出它。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/errcollapse}
+\caption[errcollapse]{双曲线挤缩收敛误差。
+注意，实际曲线位于所期望曲线之上，但是
+实际的点却是位于所期望点之下}
+\label{fig:dspr/errcollapse}
+\end{figure}
+
+在图\ref{fig:dspr/errcollapse}中，时间移动量太小了，横向移动距离同样也很小。实际上，具有$r_0=1$的
+15°方程的误差，有时采取把深度坐标$z$或者速度$v$增大6\%的办法就能被补偿掉。各误差量可
+根据下式计算
+\begin{subequations}
+\begin{equation}
+\frac{\Delta t}{t}=\frac{\frac{\partial}{\partial \omega}(\hat{k_z}-k_z)}{\frac{\partial}{\partial \omega}k_z}
+\label{eq:ex4.2.3a}
+\end{equation}
+\begin{equation}
+\frac{\Delta x}{x}=\frac{\frac{\partial}{\partial k_x}(\hat{k_z}-k_z)}{\frac{\partial}{\partial k_x}k_z}
+\label{eq:ex4.2.3b}
+\end{equation}
+\end{subequations}
+式中，$k_z$取为$\omega$和$k_x$的函数。它证明，就15°外推方程而言，在角度为20°度时出现百分之五
+十左右的群速度误差，因而群速度误差一般是要比相速度误差更为严重的。
+
+\subsection{群速度方程的导出}
+\label{sec:4.2.4}
 %
 % 当速度$v(\omega)$按下述方程定义时
 % \begin{equation}
