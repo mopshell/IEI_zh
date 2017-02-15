@@ -130,165 +130,100 @@ Nyquist频率$\pi/\Delta x$。频率域方法和有限差分方法部要在处�
 \label{fig:dspr/fdvrso}
 \end{figure}
 
+\subsection{二阶空间导数 }
+\label{sec:4.3.2}
 
-% 惠更斯二次震源所形成的理想波阵面应是一个半圆。由15°外推方程形成的二次震源波
-% 阵面应是椭圆；由45°外推方程形成的二次震源波阵面是一种有趣的心脏形，这些均绘于图
-% 图\ref{fig:dspr/anisoxz}
-% 内。实际上，棉圆与心脏形之顶部很少能被看
-% 到，因为它们均位于指数衰减区域之内，而且沿欠轴
-% 的点距极少可能加密到足以显示它们所需的低于空间假
-% 频的程度。采用45°外推程序时，有时能在$(x,t)$平
-% 面内看出该心脏形曲线的中心，图\ref{fig:dspr/anisoxt}中所绘直线即
-% 用以表示该中心。采闱45°绕射程序处理时的情形如图\ref{fig:dspr/45imp}所示。
+二阶差分算子的定义方程为
+\begin{equation}
+\frac{\delta^2}{\delta x^2}P=\frac{P(x+\Delta x)-2P(x)+P(x-\Delta x)}{(\Delta x)^2}
+\label{eq:ex4.3.1}
+\end{equation}
+取下列极限则可定义二阶导数算子
+\begin{equation}
+\frac{\partial^2}{\partial x^2}P=\lim_{\Delta \to 0}\frac{\delta^2}{\delta x^2}P
+\label{eq:ex4.3.2}
+\end{equation}
+$\Delta x$趋于零时，许多不同的定义可以全部趋于相同的极限。问题在于要求出一种表达式，该表
+达式当$\Delta x$大于零时应是准确的，而且，按某种实用水平衡量，该表达式还不得过于复杂。我
+们第一个目标就是要知道方程\ref{eq:ex4.3.1}的精确度如何能定量计算，第二个目标就是要考虑一
+种比方程\ref{eq:ex4.3.1}稍微复杂一点但比它更精确得多的表达式。
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/anisoxz}
-% \caption[anisoxz]{15°外推方程的波阵面（左图）及45°外推方程的波阵面（右图），二者均内接于半圆之内。
-% 凡属$\frac{vk_x}{\omega}=\sin\theta=\pm1$的波均以小黑点表示，倏逝波均在曲线脱离半圆之处的小圆点
-% 以上（据Rothman）}
-% \label{fig:dspr/anisoxz}
-% \end{figure}
+我们将采用的基本分析方法是Fourier变换。取复指数的导数$P=P_0\exp(ikx)$，并将
+任何误差均考虑为空间波数的函数，对于二阶导数，有
+\begin{equation}
+\frac{\partial^2}{\partial x^2}P=-k^2P
+\label{eq:ex4.3.3}
+\end{equation}
+用类似于差分算子的表达式来定义$\hat{k}$
+\begin{equation}
+\frac{\delta^2}{\delta x^2}P=-\hat{k^2}P
+\label{eq:ex4.3.4}
+\end{equation}
+理想情形是$\hat{k}$要等于k。将复指数$P_0\exp(ikx)=P$代入式\ref{eq:ex4.3.1}，
+可看到由定义式\ref{eq:ex4.3.4}得出以$k$表示的一种有关$k$之表达式
+\begin{subequations}
+\begin{equation}
+-\hat{k^2}P=\frac{P_0}{(\Delta x)^2}[e^{ik(x+\Delta x)}-2e^{ikx}+e^{ik(x-\Delta x)}]
+\label{eq:ex4.3.5a}
+\end{equation}
+\begin{equation}
+-\frac{\delta^2}{\delta x^2}=\hat{k^2}=\frac{2}{(\Delta x)^2}[1-\cos(k\Delta x)]
+\label{eq:ex4.3.5b}
+\end{equation}
+\label{eq:ex4.3.5}
+根据式\ref{eq:ex4.3.5b}作出$\hat{k}\Delta x$对$k\Delta x$的关系图，是很直接了当的事。三角学的半角公式允
+许我们取式\ref{eq:ex4.3.5b}的解析平方根，得
+\begin{equation}
+\frac{\hat{k}\Delta x}{2}=\sin\frac{k\Delta x}{2}
+\label{eq:ex4.3.5c}
+\end{equation}
+\end{subequations}
+作级数展开之后将表明，在低频情形下，$\hat{k}$确实是能很好地近似于$k$，在Nyquist频率上，
+根据定义$k\Delta x=\pi$，所得近似$\hat{k}\Delta x=2$则是对于$\pi$的一种很坏的近似。
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/anisoxt}
-% \caption[anisoxt]{45°外推方程的心脏形理论曲线。尖点
-% 出现在指数衰减区域内（据Rothman）}
-% \label{fig:dspr/anisoxt}
-% \end{figure}
 
-% \subsection{波阵面方向与能量速度}
-% \label{sec:4.2.2}
+\subsection{1/6策略}
+\label{sec:4.3.3}
 
-% 在普通的波动传播理论中，能量传播方向是垂直于
-% 波阵面的。当存在有各向异性弥散时，角度将不再是呈直角了。
+减小$\Delta x$，恒可提高绝对精度。增加较高阶项，例如
+\begin{equation}
+\frac{\partial^2}{\partial x^2}\approx\frac{\delta^2}{\delta x^2}
+-\frac{\Delta x^2}{12}\frac{\delta^4}{\delta x^4}+\text{等等}
+\label{eq:ex4.3.6}
+\end{equation}
+则需要以增加计算机时间和分析时的麻烦为代价，换得提高与Nyquist频率有关的精度。当
+$\Delta x$趋于零时，方程\ref{eq:ex4.3.6}趋于基本定义式\ref{eq:ex4.3.1}和\ref{eq:ex4.3.2}。
+如果希望在$k$值小时有
+高精度，可以用Taylor级数方法决定式\ref{eq:ex4.3.6}中像1/12这类的系数。或者，如果希望在
+办值的某种范围内有一定精度，可以用曲线拟合方法来确定稍微有点不同的系数。在实际处
+理中，极少采用式\ref{eq:ex4.3.6}，因为还有一种不太明显的表达式能以很少代价就可提供高得
+多的精度！这种思想可用下式简要说明：
+\begin{subequations}
+\begin{equation}
+\frac{\partial^2}{\partial x^2}\approx
+\frac{\frac{\delta^2}{\delta x^2}}{1+b\Delta x^2\frac{\delta^2}{\delta x^2}}
+\label{eq:ex4.3.7a}
+\end{equation}
+式中，$b$是一个可调常数。
+将式\ref{eq:ex4.3.5b}代入，得
+\begin{equation}
+(\frac{\hat{k}\Delta x}{2})^2=
+\frac{\sin^2(\frac{k\Delta x}{2})}{1-b4\sin^2(\frac{k\Delta x}{2})}
+\label{eq:ex4.3.7b}
+\end{equation}
+\label{eq:ex4.3.7}
+\end{subequations}
+就能对式\ref{eq:ex4.3.7a}的精度作出数值估计。在取值$b=
+1/6$的情形下，对上式取平方根的计算结果绘于图\ref{fig:dspr/sixth}。
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/45imp}
-% \caption[45imp]{45°波场外推方程的脉冲响应。$t_0$时间
-% 以前的初至是折叠频率产生的影响。}
-% \label{fig:dspr/45imp}
-% \end{figure}
-
-% 沿地表能看到的水平视速度为$dx/dt$，沿垂直方向
-% 的视速度（如在井中所见）为$dz/dt$，根据几何关系可
-% 知，这些视速度全都大于波动传播速度。大小与速度呈
-% 反比而方向垂直于波阵面的一个向量，称作慢度向量
-% \begin{equation*}
-% \text{慢度向量}=(\frac{dt}{dx},\frac{dt}{dz})
-% \end{equation*}
-% 沿慢度向量的方向行进但具有波阵面法线速度的一种向
-% 量，定义为相速度向量，更精确地说，相速度向量等于慢度向量除以其平方幅度
-% \begin{equation*}
-% \text{相速度}=\frac{(\frac{dt}{dx},\frac{dt}{dz})}{(\frac{dt}{dx})^2+(\frac{dt}{dz})^2}
-% \end{equation*}
-
-% 就正弦形扰动$\exp(i\phi)=\exp(-i\omega t+ik_xx+ik_zz)$
-% 而言，可令相位$\phi$等于常数
-% \begin{equation*}
-% d\phi=-\omega dt+k_xdx+k_zdz=0
-% \end{equation*}
-% 因而，在Fourier空间内，慢度向量为
-% \begin{subequations}
-% \begin{equation}
-% \text{慢度向量}=(\frac{k_x}{\omega},\frac{k_z}{\omega})
-% \label{eq:ex4.2.1a}
-% \end{equation}
-% 要导出能量传播方向则更为困难一点，不过可由所谓群速度向量导出它
-% \begin{equation}
-% \text{群速度向量}=(\frac{\partial}{\k_x},\frac{\partial }{k_z})\omega(k_x,k_z)
-% \label{eq:ex4.2.1b}
-% \end{equation}
-% \end{subequations}
-% 对于标量波动方程应有$\omega^2/v^2=k_x^2+k_z^2$，由是迸行微分并代入，可以证明群速度向量原来同
-% 相速度向量是相同的。最熟悉的弥散类型是频散，这时不同频率是以不同速度传播。以后本
-% 节将会指出，熟悉的外推方程（15°的，45°的等等）并不表现出频散性质。那就是说，作为
-% $\omega$与角度$k_x/\omega$的函数，在这些方程中的速度并不依赖于频率$\omega$。换句话说，图\ref{fig:dspr/anisoxz}中的椭圆形与心脏形曲线均与频率无关。
-
-% 各向异性弥散的一个有趣现象是，能量看起来好像是沿某一个方向在行进着而其实它实
-% 际上是在沿另一个方向行进着。当群速度有一个向下分量而相速度有一向上分量时，就会出现
-% 这种现象。描述45°外推方程之弥散关系的图\ref{fig:dspr/group15}就是一个例子，从原点至弥散曲线所画之
-% 箭头表示沿波阵面法线方向的慢度向量，注意到群速度以式\ref{eq:ex4.2.1b}中的梯度算子来每
-% 义，现在就能用图解方法确定相应的群速度方向。试将$\omega$值考虑为一个小山的高度，$k_z$就是
-% 从该$\omega$山头指向南而$k_x$则指向东，于是，弥散关系曲线就是等高线，按不同的比例标度绘出图
-% \ref{fig:dspr/group15}就形成了不同频率的数值，沿梯度方向的群速度则是垂直于各$\omega$的等值线。
-
-% 采用活动电影形式可以非常清楚地识别出各向异性弥散现象，尽管在如图\ref{fig:dspr/prism}所示的
-% 单个画面上也可以认识出来。图\ref{fig:dspr/prism}中所绘直线是解释能量由顶部进入，经过棱镜，在棱
-% 镜的45°淘度一侧反射，再从画面的一侧反射，最后进入图中某一个区域，该区域有足够的
-% 大小，因而许多波阵面不致群集一起，足以识别出能量看似向上传播其实真正的是向下传
-% 播。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/group15}
-% \caption[group15]{表示群速度向量与慢度向量的向下外推方程弥散关系曲线（据Rothman）}
-% \label{fig:dspr/group15}
-% \end{figure}
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/prism}
-% \caption[prism]{四种不同频率的平面波，传播通过一个具有$45$°角度的棱镜。左图为
-% 波场，右图是说明能量的不同方向和波阵面法线方向的射线解释图（据Estevez）}
-% \label{fig:dspr/prism}
-% \end{figure}
-
-% 当你考虑到计算波场所用的程序时，
-% 在图\ref{fig:dspr/prism}中无论能量还是信息都不可能
-% 向上传播，这一点就应更清楚了。程序并
-% 没把整个画面都输入于内存，它每次紧挨着前一个条带，一次计算出一个水平条
-% 带。所以活动电影中的波阵面是貌似向上
-% 移动，似乎很难令人理解。从理论上说，利用45°方程的波场外推方法是不能指望
-% 可以处理达到90°的角度的，而图\ref{fig:dspr/prism}中
-% 的例子却尚表明，虽然是以一种有点不正
-% 常的方式、但确实是可以处理这些极端情形的。
-
-% 有一次，我在地质上属于是逆掩断层地区的反射地震剖面上观察到过类似的环境条件，
-% 这个剖面目前已不能为我所用，现在大概早就从拥有者的底片中消失了，所以我仅能根据记
-% 忆提供如图\ref{fig:dspr/overthrust}所示的简图。图中，速度随深度而增大，引起射线向上弯曲，并从逆掩断
-% 层的下侧反射。为了想知道在波动方程中究竟正在发生什么事，画出如图\ref{fig:dspr/disper2z}所示的两种不同速度时的弥散曲线，将是很有帮助的。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/overthrust}
-% \caption[overthrust]{从逆掩断层下侧发生反射的射线}
-% \label{fig:dspr/overthrust}
-% \end{figure}
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/disper2z}
-% \caption[disper2z]{两种不同速度$v_{fast}$与$v_{slow}$时的弥散曲线}
-% \label{fig:dspr/disper2z}
-% \end{figure}
-
-% 具有某种特定时差心的一小部分能量在近地表处（即这时适用低速弥散曲
-% 线）以某种普通的角度开始向下延拓，但是当遇到较深层具有高速的地层时，这时应适用高
-% 速弥散曲线，在此情形下由图\ref{fig:dspr/disper2z}可知，相同的时差$k_x/\omega$却预示着应有负值的相速度。虽
-% 然上冲角的大小未必正确，可总的图象大体是合适的，它很像图\ref{fig:dspr/prism}中所示的情形。如果你想要定量上是正确的偏移，可参阅\ref{sec:4.5}节，或者想要有点完全不同的偏移，则可参阅
-% Kosloff等（1983）和Baysal等（1983）提出的方法。
-
-% \subsection{偏移误差分析}
-% \label{sec:4.2.3}
-
-% 利用相速度概念可以对平坦规则的倾斜反射面作整钵分析，仅在同时存在有一个以上的
-% 传播角度时，才需要利用群速度概念。采用点源散射体响应时，会出现这种同时性的要求，
-% 在沿倾斜地层存在有可变反射振幅时，也会出现这种要求。群速度之所以需要，是因为表示
-% 弯曲同相轴或振幅异常，要求平面波传播角度有一定范围。与此类似，在时间序列分析中，
-% 一个经过振輻调制的正弦波之Fourier变换需要有一定频带范围内的正弦谐波。
-
-% 图\ref{fig:dspr/undermig}所示是光滑平坦倾斜地层，因为用某种有理平方根近似或某种数值近似所定义
-% 的波数$\hat{k_z}$同$k_z$的正确平方根值并不符合一致，以致偏移不足。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/undermig}
-% \caption[undermig]{偏移不足的倾斜反射面}
-% \label{fig:dspr/undermig}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/sixth}
+\caption[sixth]{作为空间波数之函数的二阶导数表示式\ref{eq:ex4.3.7}的精度
+式\ref{eq:ex4.3.7b}之平方根的符号在$-\pi$至$\pi$满范围内取成与$k$一致，而在该范围
+之外则为周期性质（据Hale）}
+\label{fig:dspr/sixth}
+\end{figure}
 
 % 图\ref{fig:dspr/undermig}中的误差全部是某种时移误差。由于沿反射面的反射系数为常数，识别不出什
 % 么横向位移误差。该时间误差在理论上可按下式确定：
