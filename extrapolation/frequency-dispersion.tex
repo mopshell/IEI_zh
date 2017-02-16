@@ -225,61 +225,101 @@ $\Delta x$趋于零时，方程\ref{eq:ex4.3.6}趋于基本定义式\ref{eq:ex4.
 \label{fig:dspr/sixth}
 \end{figure}
 
-% 图\ref{fig:dspr/undermig}中的误差全部是某种时移误差。由于沿反射面的反射系数为常数，识别不出什
-% 么横向位移误差。该时间误差在理论上可按下式确定：
-% \begin{equation}
-% \frac{dt}{t}\approx\frac{dz}{z}\approx\frac{\hat{k_z}-k_z}{k_z}
-% \label{eq.ex4.2.2}
-% \end{equation}
-% 就所谓15°外推方程来说，在25°度时所造成的相位误差可证明大约为百分之五十。
+若式\ref{eq:ex4.3.7}内的系数1/6
+以1/12代替。则略去高于二阶$\Delta x$的各项后，式\ref{eq:ex4.3.4}与
+\ref{eq:ex4.3.7}将是一致的。系数
+1/12来自级数展开，但是系数取为1/6则可适用于较宽的范围，
+因而是共同采用的值。 Francis Muir曾经指出，值$1/4-1/\pi^2\approx1/6.726$
+在Nyquist频率给出
+严格的拟合，并且在所有低频范
+围上都是准确地拟合！很少有勘
+探人员考虑到，尽管式\ref{eq:ex4.3.7}还有精度不足之嫌，但已足以保证野外记录值的内插了。
+图\ref{fig:dspr/sixth5}是各种不同b值之双曲线的比较，在图中可观察到，不论b值是多少，最长的波长都
+是以相同的速度传播的。图\ref{fig:dspr/sixth5}中的时间轴仅有256个点的长度，而在实际工作中，它将方
+有成千个以上的点。所以，图\ref{fig:dspr/sixth5}是夸大了实际工作中应归因于沿x轴进行有限差分而产生
+的频散影响。
 
-% 其次，我们要确定一下双曲线收缩压扁时的误差。图\ref{fig:dspr/errcollapse}所示是一个双曲线的向下延
-% 拓，为清晰起见，向下延拓没有沿指向聚焦点的所有路径进行。选定某个斜率$p$就可选出具
-% 有某个Snell参量$p=dt/dx$的射线。试想像有一斜率为$p$的切线段切于各双曲线。如果斜率
-% 为p之处有一点振幅异常。那末，你就能在各个双曲面上追踪出它。
+让我们确信：如何把式\ref{eq:ex4.3.7}付诸应用算是搞清楚了吧。取$b
+= 6$。最简单的典型会
+程是热流方程：
+\begin{equation}
+\frac{\partial}{\partial t}q=
+\frac{\partial^2}{\partial x^2}q\approx
+\frac{\frac{\delta^2}{\delta x^2}}{1+\frac{\Delta x^2}{6}
+\frac{\delta^2}{\delta x^2}}q
+\label{eq:ex4.3.8}
+\end{equation}
+由此可知，将该方程通乘以式中的分母项，得
+\begin{equation}
+(1+\frac{\delta x^2}{6}\frac{\delta^2}{\delta x^2})
+\frac{\partial}{\partial t}q=
+\frac{\partial^2}{\partial x^2}q\approx
+\delta_{xx}q
+\label{eq:ex4.3.9}
+\end{equation}
+据此即可进行计算了。
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{dspr/errcollapse}
-% \caption[errcollapse]{双曲线挤缩收敛误差。
-% 注意，实际曲线位于所期望曲线之上，但是
-% 实际的点却是位于所期望点之下}
-% \label{fig:dspr/errcollapse}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/sixth5}
+\caption[sixth5]{ b = 0, 1/12, 1/6.726, 1/6 和l/5 情形下的双曲线}
+\label{fig:dspr/sixth5}
+\end{figure}
 
-% 在图\ref{fig:dspr/errcollapse}中，时间移动量太小了，横向移动距离同样也很小。实际上，具有$r_0=1$的
-% 15°方程的误差，有时采取把深度坐标$z$或者速度$v$增大6\%的办法就能被补偿掉。各误差量可
-% 根据下式计算
-% \begin{subequations}
-% \begin{equation}
-% \frac{\Delta t}{t}=\frac{\frac{\partial}{\partial \omega}(\hat{k_z}-k_z)}{\frac{\partial}{\partial \omega}k_z}
-% \label{eq:ex4.2.3a}
-% \end{equation}
-% \begin{equation}
-% \frac{\Delta x}{x}=\frac{\frac{\partial}{\partial k_x}(\hat{k_z}-k_z)}{\frac{\partial}{\partial k_x}k_z}
-% \label{eq:ex4.2.3b}
-% \end{equation}
-% \label{eq:ex4.2.3}
-% \end{subequations}
-% 式中，$k_z$取为$\omega$和$k_x$的函数。它证明，就15°外推方程而言，在角度为20°度时出现百分之五
-% 十左右的群速度误差，因而群速度误差一般是要比相速度误差更为严重的。
+\subsection{时间导数与深度导数及双线变换}
+\label{sec:4.3.4}
 
-% \subsection{群速度方程的导出}
-% \label{sec:4.2.4}
-% 在$(x,z)$空间的原点上之脉冲函数是许多Fourier分量的叠加结果：
-% \begin{equation}
-% \iint e^{+ik_xx+ik_zz}dk_xdk_z
-% \label{eq:ex4.2.4}
-% \end{equation}
-% 根据物理规律（或许还有根据数值分析）所导出的弥散关系是$\omega$、$k_x$与$k_z$之间的一种函数关
-% 系，比方说，以$\omega(k_x,k_z)$表示这种关系。由标量波动方程得出的就是这
-% 一类弥散关系的最普通的例子。该方程的解为
-% \begin{equation}
-% e^{-i\omega t+ k_xx+ik_zz}
-% \label{eq:ex4.2.5}
-% \end{equation}
-% 遍及$(k_x,k_z)$对式\ref{eq:ex4.2.5}进行积分，得出一种单频时间函数，该函数在$t=0$时就是
-% 位于$(x,z)=(0,0)$点上的脉冲。在某个非常大的时间$t$时，这种函数的表达式为
+你很可能会认为二阶导数就是二阶导数，没什么数学理由要把时间导数作不同于空间导
+数的处理。事情可不是这么回事。考虑一下边界条件，你就能受到启示，明白时间导数与空
+间导数之间是有悬殊不同的，处理时间导数时（而且总是要同沿深度z的导数一起处理），
+我们必须考虑因果性条件---这意味着，未来是唯一地决定于现在和过去，加在时间坐标上
+的适当边界条件就是初始条件，它是该函数本身（或许还有它的某些导数）在一个点上，即
+在时间初始点上的具体值，对于深度坐标z来说，那种特殊点就是时的地表面，但是横
+向空间导数则有所不同：它们需要有在两个分离很远的点上的边界条件，通常这些点是在所
+论体积的左侧和右侧。
+
+微分方程
+\begin{equation}
+\frac{dq}{dz}=ik_z(\omega
+,k_x)q
+\label{eq:ex4.3.10}
+\end{equation}
+是与$k_z$的定义本身有联系的，类似的差分方程则将定义一个$\hat{k_z}$ :
+\begin{equation}
+\frac{q_{z+\Delta z}-q_z}{\Delta z}=i\hat{k_z}
+\frac{q_{z+\Delta z}+q_z}{2}
+\label{eq:ex4.3.11}
+\end{equation}
+将式\ref{eq:ex4.3.10}的解$g=g_0exp(ik_zz)$
+代入式\ref{eq:ex4.3.11}，使我们得到所期望的$k_z$与实际有
+的$k_z$二者之间的关系：
+\begin{equation}
+i\hat{k_z}\Delta z=
+2\frac{e^{ik_z\Delta z-1}}{e^{ik_z\Delta z+1}}=
+2\frac{e^{ik_z\Delta z/2}-e^{-ik_z\Delta z/2}}
+{e^{ik_z\Delta z/2}+e^{-ik_z\Delta z/2}}
+\label{eq:ex4.3.12}
+\end{equation}
+这个关系以双线变换而著称（见\ref{sec:4. 6}节）
+\begin{equation}
+i\hat{k_z}\Delta z=2i\frac{\sin k_z\Delta z/2}{\cos k_z\Delta z/2}
+\label{eq:ex4.3.13}
+\end{equation}
+\begin{equation}
+\frac{\hat{k_z}\Delta z}{2}=\tan\frac{k_z\Delta z}{2}
+\label{eq:ex4.3.14}
+\end{equation}
+
+式\ref{eq:ex4.3.14}给出了采用Crank-Nicolson方法所得一阶导数的精度，
+回顾一下\ref{sec:2.7}节
+中所述的偏移差分格式，我们曾经以完成深度差分的相同方式来完成时间差分，所以必须应
+用相同的精度限制，即
+\begin{equation}
+\frac{\hat{\omega}\Delta t}{2}=\tan\frac{\omega \Delta t}{2}
+\label{eq:ex4.3.15}
+\end{equation}
+作级数展开将表明，当$\Delta t$趋于零时，$\hat{\omega}$趋近于$\omega$。每个波长有4、10和20个点时的相对误差
+分别为30\%, 3\%和1\%。不论是要求选取很小的Af还是需要比式\ref{eq:ex4.3.14}更精确的方法， 这些误差都相当地大了。
 % \begin{equation}
 % \iint e^{-it[\omega(k_x,k_z)-k_xx/t-k_zz/t]}dk_xdk_z
 % \label{eq:ex4.2.6}
