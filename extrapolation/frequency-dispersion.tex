@@ -320,60 +320,34 @@ i\hat{k_z}\Delta z=2i\frac{\sin k_z\Delta z/2}{\cos k_z\Delta z/2}
 \end{equation}
 作级数展开将表明，当$\Delta t$趋于零时，$\hat{\omega}$趋近于$\omega$。每个波长有4、10和20个点时的相对误差
 分别为30\%, 3\%和1\%。不论是要求选取很小的$\Delta t$还是需要比式\ref{eq:ex4.3.14}更精确的方法， 这些误差都相当地大了。
-% \begin{equation}
-% \iint e^{-it[\omega(k_x,k_z)-k_xx/t-k_zz/t]}dk_xdk_z
-% \label{eq:ex4.2.6}
-% \end{equation}
-% 在$t$非常之大时，被积函数是具有单位幅度的非常快速振荡之函数。因此，除非知道方括号
-% 内的量在$(k_x,k_z)$空间相当广大的区域内近乎与$k_x$和$k_z$独立无关，否则这个积分将接近于
-% 零。像求出一个二维函数之极大值和极小值的作法一样，就是说，采用令其各个偏导数等于
-% 零的办法，就可以求出这样一种平点(flat spot)。这种分析方法即是众所围知的稳相法
-% (stationary phase method)。由它得出
-% \begin{subequations}
-% \begin{equation}
-% \frac{\partial}{\partial k_x}[]=\frac{\partial\omega}{\partial k_x}-\frac{x}{t}=0
-% \label{eq:ex4.2.7a}
-% \end{equation}
-% \begin{equation}
-% \frac{\partial}{\partial k_z}[]=\frac{\partial\omega}{\partial k_z}-\frac{z}{t}=0
-% \label{eq:ex4.2.7b}
-% \end{equation}
-% \label{eq:ex4.2.7}
-% \end{subequations}
-% 所以，最终得出结论，在时间$t$时， 该扰动将位于
-% \begin{equation}
-% (x,z)=t(\frac{\partial\omega}{\partial k_x},\frac{\partial\omega}{\partial k_z})
-% \label{eq:ex4.2.8}
-% \end{equation}
-% 由此证明群速度的定义是正确的。
-% 现在让我们看一看图\ref{fig:dspr/anisoxz}中的15°外推方程情形下的波阵面是如何计算出来的。解出
-% 15°弥散关系的$\omega$值并代入式\ref{eq:ex4.2.8}，所得结果$(x,z)$证明是的一个函数，利用一
-% 切可能的值就可绘出该图中的曲线。
 
-% \subsection{能量偏移方程的导出}
-% \label{sec:4.2.5}
+可惜，看来似乎还不存在比Crank-Nicolson表示式要精确一些的满足因果性条件之微
+分表示式，这里没什么像1/6策略那样的东西，这样一来就必然要根据Nyquist准则把采样间
+隔$\Delta z$与$\Delta t$大大地加以减小了.也许实际景象不会像我正在描绘的那样前途暗淡吧，许多人
+都对以4毫秒采样间隔$\Delta t = 4ms$进行时间域偏移的效率和精度还是满意的。
 
-% 现在以类似于导出群速度的方式来分析$(x,t)$空间内的能量偏移。将积分
-% \begin{equation}
-% \iint e^{iz[k_z(\omega,k_x)-\omega t/z+k_xx/2]}d\omega dk_x
-% \label{eq:ex4.2.9}
-% \end{equation}
-% 内的深度z取得很大，结果就使能量趋向下列位置
-% \begin{equation}
-% (x,t)=z(-\frac{\partial k_z}{\partial k_x},\frac{\partial k_z}{\partial \omega})
-% \label{eq:ex4.2.10}
-% \end{equation}
-% 这就证明了我们以前断言可以用式\ref{eq:ex4.2.3}来分析能量传播误差一事是正确的。式
-% \ref{eq:ex4.2.10}也可用于计算图\ref{fig:dspr/anisoxt}中的曲线。稳相概念的有效性已为图
-% \ref{fig:dspr/45imp}所证实，该图就是利
-% 用反Fourier变换方法得到的。
-% %
-% \subsection{外推方程不具有频散性质}
-% \label{sec:4.2.6}
+Stolt的经典论文（1978
+）除了介绍快速Fourier变换偏移方法之外，还指出：降低因果
+性条件的要求时可以达到更高的精度。
+Stolt说明了如何在已知深度水平上使因果性条件要
+求降低，而同时保持它在下一个深度水平上能进行稳定的有限差分。尽管Fourier方法能够
+应用于分立的各地层，可是沿着深度的$z$坐标轴我们还是不得不同因果性微分打交道。然
+而，深度坐标轴没有像测线方向x坐标轴和时间f坐标轴那样的麻烦事，因为它只影响计算时
+间，并不影响数据内存。
 
-% 为证明所熟悉的15°、45°等等的波场外推方法不是频散的，回想一下\ref{sec:2.2}节，在该节
-% 中，弥散关系都具有$k_z/\omega=f(k_x/\omega)$
-% 的形式，其中，$f$是某种半圆近似，比方说，15°近似
-% 或45°近似。这种形式的弥散关系没有一种能够是频散的。作出式(4.2.10)所要求的求导运
-% 算，你就会明白，虽然波阵面的$(x,t)$坐标通过Snell参量$vk_x/\omega$而与倾角有关，可它们并非明
-% 显迪直接依赖于频率$\omega$。所以，实践中所观察到的任何频散并不是由15°或45°近似所产生的。
+有限差分的解并不只是要求频率近似---它们真正要达到的是对的近似。解
+出式\ref{eq:ex4.3.11}的未知数，得
+\begin{equation}
+q_{z+\Delta z}=(\frac{1+i\hat{k_z}\Delta z/2}{1-i\hat{k_z}\Delta z/2})q_z
+\label{eq:ex4.3.16}
+\end{equation}
+所以，在深度$z=N\Delta z$之内有$N_z$层的情形下，我们得下列近似
+\begin{equation}
+e^{ik_zN\Delta z}\approx(\frac{1+i\hat{k_z}\Delta z/2}{1-i\hat{k_z}\Delta z/2})^N
+\label{eq:ex4.3.17}
+\end{equation}
+以后我们将把它用于有限差分之Fourier域模拟的程序。将在\ref{sec:4.7}节内讨论的这类模拟使我
+们能够对各种不同偏移方法的精度进行比较。
+
+
+
