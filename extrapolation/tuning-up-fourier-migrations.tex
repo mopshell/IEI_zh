@@ -145,38 +145,87 @@ v_0^2\tau^2=x^2+z^2
 \frac{d^2 t}{dx^2}\mid_{x=0}=\frac{1}{tv_{RMS}^2}
 \label{eq:ex4.5.4}
 \end{equation}
+式\ref{eq:ex4.5.3}是可应用于层状介质内的。我们现在要针对层状介质寻找出一种经拉伸扩展的
+时间$\tau(t)$，使得可以用式\ref{eq:ex4.5.3}有效地代替式\ref{eq:ex4.5.4}。我们很想使$t(x)$曲线与
+$(x)$曲线在所有$x$值情形下都能匹配，但那就会使问题过于复杂化了。退而求其次，我们
+可以只求在双曲线顶部的导数能相符、即与$x=0$点上的$\tau[t(x)]$对$x$之二阶导数能够匹
+配。代入式\ref{eq:ex4.5.3}与式\ref{eq:ex4.5.4}的关系，可由这种作法导出$\tau d\tau/dt$而的表达式。在进行
+积分并取其平方根之后，即得出式\ref{eq:ex4.5.1}。
 
+有一种与此不同的导出拉伸扩展时间$\tau$的方法，它可以在较陡角度时给出更精确的结
+果，这种方法不是在顶点上使双曲线曲率匹配，而是在侧翼上离开顶部有若干距离之处使双
+曲线斜率和函数值均匹配。实际偏移的正是双曲线的两翼而不是顶部，所以这种结果就要更
+准确些。从代数运算说，这种导出方法也较容易，因为所需要的仅是一阶导数。对于任意深
+度$z_i$上的反射面，将式\ref{eq:ex4.5.2}对$x$微分，得出
+\begin{equation}
+\frac{d\tau}{dx}=\frac{x}{\tau v_0^2}
+\label{eq:ex4.5.5}
+\end{equation}
+在层状介质内也存在类似的表达式，为得出这个表达式，解出$x=\int v\sin\theta dt=p\int v^2 dt$，
+就得出
+$p=dt/dx$为:
+\begin{equation}
+\frac{dt}{dx}=\frac{x}{\int_0^tv^2(p,t)dt}
+\label{eq:ex4.5.6}
+\end{equation}
+表达式\ref{eq:ex4.5.5}与\ref{eq:ex4.5.6}起着与式\ref{eq:ex4.5.3}和式\ref{eq:ex4.5.4}相同的作用，但式\ref{eq:ex4.5.5}与式\ref{eq:ex4.5.6}在任何地方均成立，而不仅只在双曲线顶部成立。对$\tau(t)$进行微分，得
+\begin{equation}
+\frac{d\tau}{dx}=\frac{d\tau}{dt}\frac{dt}{dx}
+\label{eq:ex4.5.7}
+\end{equation}
+将式\ref{eq:ex4.5.5}与\ref{eq:ex4.5.6}代入式\ref{eq:ex4.5.7}，得
+\begin{equation}
+\frac{x}{\tau v_0^2}=\frac{d\tau}{dt}\frac{x}{\int_0^tv^2(p,t)dt}
+\label{eq:ex4.5.8}
+\end{equation}
+\begin{equation}
+\tau d\tau=[\frac{1}{v_0^2}\int_0^tv^2(p,t')dt']dt
+\label{eq:ex4.5.9}
+\end{equation}
+对式\ref{eq:ex4.5.9}进行积分，其左端得出$\tau^2/2$，这时取平方根即可得出式
+\ref{eq:ex4.5.1a}，但须采用下列均方根速度$v_{RMS}$的新定义
+\begin{equation}
+v_{RMS}^2=\frac{1}{t}\int_0^tv^2(p,t)dt
+\label{eq:ex4.5.1c}
+\end{equation}
 
+现在的新鲜事是出现了Snell参量p。在以某种速度$v'(z)$为其特征的一种层状介质
+内，$v(p,t)$定义为射线速度，该射线对地面呈某个角度，可用时差p量度。在实际处理
+中，应该采用什么p值？最好的处理办法是先检查一下所用资料，针对你希望对它进行良好
+偏移的那些同相轴测定出，$p=dt/dx$；有一个缺省值为
+\begin{equation*}
+p=\frac{2\sin30^{\circ}}{2.5km/s}=0.4ms/m
+\end{equation*}
+式中的因子2是根据爆炸反射面模型得出的。
 
-% \subsection{反射系数的量值}
-% \label{sec:4.4.5}
+\subsection{Gazdag的横向可变速度$v(x)$处理法}
+\label{sec:4.5.5}
 
-% 现在让我们考察一下计算反射系数的某些细节，单位振幅的单频平面波入射在侧边界
-% 上，产生幅度为$c$的一个反射波，其数学表现形式为
-% \begin{equation}
-% P(x,z)=e^{-i\omega t+ik_zz}(e^{+ik_xx}+ce^{-ik_xx})
-% \label{eq:ex4.4.3}
-% \end{equation}
-% 式\ref{eq:ex4.4.3}中的频率$\omega$与水平波数$k_x$都是任意的，而垂直波数$k_z$则是利用内部区域的波散
-% 关系、即半圆近似，根据$\omega$与$k_x$来确定的。假设在侧边界上可应用这种内部解，这时你可将
-% 式\ref{eq:ex4.4.3}代入代表侧边界的微分方程\ref{eq:ex4.4.2}内。结果，在入射波方面，$\partial/\partial x$
-% 转换为$+ik_x$；在反射波方面，$\frac{\partial}{\partial x}$转换为$-ik_x$。还有，$\partial/\partial z$被转换为$ik_z$。因而，式\ref{eq:ex4.4.3}中
-% 的第一项就是波散关系$D(\omega,k_x,k_z)$乘以振幅$P$，第二项等于反射系数c乘$D(\omega,-k_x,k_z)$
-% 再乘$P$。所以，用式\ref{eq:ex4.4.3}代入以后，式\ref{eq:ex4.4.2}就变为
-% \begin{equation}
-% c=\frac{-D(\omega,k_x,k_z)}{D(\omega,-k_x,k_z)}
-% \label{eq:ex4.4.4}
-% \end{equation}
+相移偏移方法很受欢迎，因为它允许速度随深度作任意变化，而且允许传播角度任意，
+直至为90°。可惜，由于沿x坐标作Fourier变换，不允许速度有横向变化。为减轻这种困
+难，JenoGazdag与Sguazzero(l984)提出过一种内插方法。回想一下\ref{sec:1.3}节内容，相移法
+把数据$p(x,t)$通过二维Fourier变换，转换为$P(k_x,\omega)$，然后，乘以$\exp[ik_z(\omega,k_x)\Delta z]$
+即可将$P(k_x,\omega)$按深度步长向下延拓。
+Gazdag提出了若干个参考速度$v_1$、$v_2$、
+$v_3$和$v_4$等，他用每一种速度向下延拓一个深度步长，获得经过向下延拓处理之数据的若干参
+考结果$P_1$、$P_2$、$P_3$和$P_4$等，然后按横向波数$k_x$将每一种$P_i$作Fourier反变换，转换为
+$p_i(x,\omega)$。在每一种x值时，他都对速度最相近的那些参考波进行了内插，得出最终值
+$p(x,\omega)$。为下一个步长作准备，他把$p(x,\omega)$重又变换成$P(k_x,\omega)$，重复前面的
+处理过程，就这样逐个步长作下去。由于对每一种参考速度情形都是重复通常的偏移计算，
+这看来好像是一种效率不高的方法。使人惊奇的是，也许因为有利用阵列处理机进行计算所
+具有的独特性质，这种方法似乎是很成功的。
 
-% 当根据$\omega,k_x$点上之内部方程所选取的$k_z$数值恰好也准确满足侧边界条件的波散关
-% 系$D$的时候，发生了零反射的情形，这个结果说明了为什么我们要尽可能紧密地与四分之一
-% 圆弧匹配一致，直线型波散关系并不相应于仅可在两个端点上表示的最一般形式之侧边界条
-% 件。有一种具有可调参量$b_8$、$b_2$与$b_1$更一般表达式，它能拟合得甚至更好一点，这种表达式为
-% \begin{equation*}
-% D(\omega,k_x,k_z)=(1-b_8\frac{vk_x}{\omega})\frac{vk_z}{\omega}-(b_1-b_2\frac{vk_x}{\omega}
-% \end{equation*}
+\subsection{习 题}
+\label{sec:4.5.6}
 
-% 对于偏移方程，可以证实直线型吸收侧边界条件是绝对稳定的。可惜，严密的稳定
-% 性分析似乎是超出了
-% Muir的阻抗规则的理论范围，就是因这个缘故，我是不相信对于45°偏
-% 移方程也已经证实了有稳定性这种说法的。
+\begin{enumerate}
+\item 为在时间$t_c$获得尖锐的截止，就需要频率域内的谱具有宽广频带。设已知图\ref{fig:crft/hyptrunc}是在一种$1000\times
+1000$的网格上表示的，试推断出在截止时间$t^c$内的不确定度(uncertainty)。
+\item 因为对时间t的Fourier变换具有周期性，相移方法往往产生对$z$轴是周期性的偏移。通
+常，这并不引起麻烦，因为我们不理会很大的$z$很大深度上的上行波在$t=0$
+以前应该是等
+于零的。Kjartansson曾指出，如果在继续往下进行计算之前，从波场中减掉在$t=0$时的
+波，那就可以避免沿深度$z$的周期性，因而信息永不可能与负时间和“折叠”现象沾边。试
+指出应如何改变相移方法的程序。
+\end{enumerate}
+
