@@ -187,6 +187,46 @@ R(Z)+\bar{R(\frac{1}{Z}}\geq 0, \text{对实数$\omega$}
 \label{eq:ex4.6.7}
 \end{subequations}
 
+\subsection{因果性积分}
+\label{sec:4.6.4}
+
+设有离散时间函数其Fourier变换经代换$Z=exp(i\omega \Delta t)$之后，得Z变换为
+\begin{equation}
+P(z)=......+P_{-2}Z^{-2}+p_{-1}Z^{-1}+p_0+p_1Z+p_2Z^2+......
+\label{eq:ex4.6.8}
+\end{equation}
+根据以下的关系，定义一个算子$-i\hat{\omega}$
+\begin{equation}
+\frac{1}{-i\hat{\omega}\Delta t}=\frac{1}{2}\frac{1+Z}{1-Z}
+\label{eq:ex4.6.9}
+\end{equation}
+将此算子应用于$P(Z)$，定义出另一个离散时间函数$q_t$，其Z变换为Q(Z)
+\begin{equation}
+Q(Z)=\frac{1}{2}\frac{1+Z}{1-Z}P(Z)
+\label{eq:ex4.6.10}
+\end{equation}
+两端乘以$(1-Z)$，得
+\begin{equation}
+(1-Z)Q(Z)=\frac{1}{2}(1+Z)P(Z)
+\label{eq:ex4.6.11}
+\end{equation}
+令两端同幂项$Z^t$的系数相等，则得
+\begin{equation}
+q_t-q_{t-1}=\frac{p_t+p_{t-1}}{2}
+\label{eq:ex4.6.12}
+\end{equation}
+令$p_t$为脉冲函数，我们就可看出$q_t$原来是一种阶跃函数，即
+\begin{subequations}
+\begin{equation}
+p=......,0,0,0,0,0,1,0,0,0,0,0,......
+\label{eq:ex4.6.13a}
+\end{equation}
+\begin{equation}
+q=......,0,0,0,0,0,\frac{1}{2},1,1,1,1,1,......
+\label{eq:ex4.6.13b}
+\end{equation}
+\label{eq:ex4.6.13}
+\end{subequations}
 
 % \subsection{Stolt拉伸扩展法}
 % \label{sec:4.5.4}
