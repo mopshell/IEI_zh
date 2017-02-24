@@ -57,7 +57,7 @@ X(Z)=......x_{-2}Z^{-2}+x_{-1}Z^{-1}+x_0+x_1Z+x_2Z^2
 \end{equation}
 在物理上可把变量Z解释为有一个单位时间的时延，于是之$Z^2$就代表有两个单位时间的延迟，
 等等。像$X(Z)U(Z)$和$X(Z)U(1/Z)$这样的表达式在以后是很有用处的，因为它们
-的意思是指时间域系数的褶积和互相关（见《地球物理数据处理基础》一书）。
+的意思是指时间域系数的褶积和互相关（见《地球物理数据处理基飿》一书）。
 
 再往下考虑延迟算子$Z$的数值，我们发现，很有用的是问一下$X(Z)$究竟是有限的还是
 无限的。算子$Z$具有特殊意义的数值是$Z=+1$和$Z=-1$，以及$Z$具有单位幅度$\mid Z\mid =1$
@@ -173,7 +173,7 @@ $\omega$均成立。以上所述可总结如下：
 
 
 将阻抗函数与其Fourier共轭函数相加，得出一种像功率谱一般的实数正依函数（其虚
-部等于零），例如
+部等于零），例如 
 \begin{subequations}
 \begin{equation}
 (r_0+r_1Z+r_2Z^2+...)+(\bar{r_0}+\bar{r_1}\frac{1}{Z}+\bar{r_2}\frac{1}{Z^2}
@@ -186,6 +186,7 @@ R(Z)+\bar{R(\frac{1}{Z}}\geq 0, \text{对实数$\omega$}
 \end{equation}
 \label{eq:ex4.6.7}
 \end{subequations}
+
 
 \subsection{因果性积分}
 \label{sec:4.6.4}
@@ -228,128 +229,85 @@ q=......,0,0,0,0,0,\frac{1}{2},1,1,1,1,1,......
 \label{eq:ex4.6.13}
 \end{subequations}
 
-% \subsection{Stolt拉伸扩展法}
-% \label{sec:4.5.4}
-%
-% 采用深度方向的Fourier变换是Stolt偏移方法的一大长处，同时也是它的一大弱点。这是
-% 一大长处是因为这使他的方法在运算上比所有其他方法都快速得多，这又是一个弱点是因为
-% 它要求速度必须是深度的一种恒定函数。在地震剖面范围之内变化两倍是速度的典型变化范
-% 围，而速度对偏移的影响则往往与速度的平方有关。为减轻这种困难，Stoit曾建议将时间
-% 坐标轴拉伸扩展，使得数据看上去很像是由某一恒定速度的地层所产生的。
-% Stolt提出过下 列拉伸扩展函数：
-% \begin{subequations}
-% \begin{equation}
-% \tau(t)=(\frac{2}{v_0^2}\int_0^t t'v_{RMS}^2(t')dt')^{1/2}
-% \label{eq:ex4.5.1a}
-% \end{equation}
-% \begin{equation}
-% v_{RMS}^2(t)=\frac{1}{t}\int_0^t v^2(t')dt'
-% \label{eq:ex4.5.1b}
-% \end{equation}
-% \label{eq:ex4.5.1}
-% \end{subequations}
-%
-% 在涉及高速度的很大时间之处，Stolt的拉伸扩展意味着$\tau$值的增长要比t值快速一些。为能
-% 应用快速傅氏变换FFT，要沿$\tau$轴均匀采样，这么一来，在很大时间之处，就得在t坐标轴上增大
-% 采样密度；这正同关于地层Q值和采样定理的要求相反，但是大多数人都认为值得这么作。
-%
-% 导出式\ref{eq:ex4.5.1}的最直接方法是基于这么一种思想：要使理想双曲线顶部的曲率同拉
-% 伸扩展之数据中的曲率相符一致。$(x,\tau)$ 空间内的理想双曲线方程为
-% \begin{equation}
-% v_0^2\tau^2=x^2+z^2
-% \label{eq:ex4.5.2}
-% \end{equation}
-% 作简单的微分即可表明，双曲线顶部的曲率为
-% \begin{equation}
-% \frac{d^2\tau}{dx^2}\mid_{x=0}=\frac{1}{\tau v_0^2}
-% \label{eq:ex4.5.3}
-% \end{equation}
-% 可以证明，除了速度必须用均方根速度代替之外
-% \begin{equation}
-% \frac{d^2 t}{dx^2}\mid_{x=0}=\frac{1}{tv_{RMS}^2}
-% \label{eq:ex4.5.4}
-% \end{equation}
-% 式\ref{eq:ex4.5.3}是可应用于层状介质内的。我们现在要针对层状介质寻找出一种经拉伸扩展的
-% 时间$\tau(t)$，使得可以用式\ref{eq:ex4.5.3}有效地代替式\ref{eq:ex4.5.4}。我们很想使$t(x)$曲线与
-% $(x)$曲线在所有$x$值情形下都能匹配，但那就会使问题过于复杂化了。退而求其次，我们
-% 可以只求在双曲线顶部的导数能相符、即与$x=0$点上的$\tau[t(x)]$对$x$之二阶导数能够匹
-% 配。代入式\ref{eq:ex4.5.3}与式\ref{eq:ex4.5.4}的关系，可由这种作法导出$\tau d\tau/dt$而的表达式。在进行
-% 积分并取其平方根之后，即得出式\ref{eq:ex4.5.1}。
-%
-% 有一种与此不同的导出拉伸扩展时间$\tau$的方法，它可以在较陡角度时给出更精确的结
-% 果，这种方法不是在顶点上使双曲线曲率匹配，而是在侧翼上离开顶部有若干距离之处使双
-% 曲线斜率和函数值均匹配。实际偏移的正是双曲线的两翼而不是顶部，所以这种结果就要更
-% 准确些。从代数运算说，这种导出方法也较容易，因为所需要的仅是一阶导数。对于任意深
-% 度$z_i$上的反射面，将式\ref{eq:ex4.5.2}对$x$微分，得出
-% \begin{equation}
-% \frac{d\tau}{dx}=\frac{x}{\tau v_0^2}
-% \label{eq:ex4.5.5}
-% \end{equation}
-% 在层状介质内也存在类似的表达式，为得出这个表达式，解出$x=\int v\sin\theta dt=p\int v^2 dt$，
-% 就得出
-% $p=dt/dx$为:
-% \begin{equation}
-% \frac{dt}{dx}=\frac{x}{\int_0^tv^2(p,t)dt}
-% \label{eq:ex4.5.6}
-% \end{equation}
-% 表达式\ref{eq:ex4.5.5}与\ref{eq:ex4.5.6}起着与式\ref{eq:ex4.5.3}和式\ref{eq:ex4.5.4}相同的作用，但式\ref{eq:ex4.5.5}与式\ref{eq:ex4.5.6}在任何地方均成立，而不仅只在双曲线顶部成立。对$\tau(t)$进行微分，得
-% \begin{equation}
-% \frac{d\tau}{dx}=\frac{d\tau}{dt}\frac{dt}{dx}
-% \label{eq:ex4.5.7}
-% \end{equation}
-% 将式\ref{eq:ex4.5.5}与\ref{eq:ex4.5.6}代入式\ref{eq:ex4.5.7}，得
-% \begin{equation}
-% \frac{x}{\tau v_0^2}=\frac{d\tau}{dt}\frac{x}{\int_0^tv^2(p,t)dt}
-% \label{eq:ex4.5.8}
-% \end{equation}
-% \begin{equation}
-% \tau d\tau=[\frac{1}{v_0^2}\int_0^tv^2(p,t')dt']dt
-% \label{eq:ex4.5.9}
-% \end{equation}
-% 对式\ref{eq:ex4.5.9}进行积分，其左端得出$\tau^2/2$，这时取平方根即可得出式
-% \ref{eq:ex4.5.1a}，但须采用下列均方根速度$v_{RMS}$的新定义
-% \begin{equation}
-% v_{RMS}^2=\frac{1}{t}\int_0^tv^2(p,t)dt
-% \label{eq:ex4.5.1c}
-% \end{equation}
-%
-% 现在的新鲜事是出现了Snell参量p。在以某种速度$v'(z)$为其特征的一种层状介质
-% 内，$v(p,t)$定义为射线速度，该射线对地面呈某个角度，可用时差p量度。在实际处理
-% 中，应该采用什么p值？最好的处理办法是先检查一下所用资料，针对你希望对它进行良好
-% 偏移的那些同相轴测定出，$p=dt/dx$；有一个缺省值为
-% \begin{equation*}
-% p=\frac{2\sin30^{\circ}}{2.5km/s}=0.4ms/m
-% \end{equation*}
-% 式中的因子2是根据爆炸反射面模型得出的。
-%
-% \subsection{Gazdag的横向可变速度$v(x)$处理法}
-% \label{sec:4.5.5}
-%
-% 相移偏移方法很受欢迎，因为它允许速度随深度作任意变化，而且允许传播角度任意，
-% 直至为90°。可惜，由于沿x坐标作Fourier变换，不允许速度有横向变化。为减轻这种困
-% 难，JenoGazdag与Sguazzero(l984)提出过一种内插方法。回想一下\ref{sec:1.3}节内容，相移法
-% 把数据$p(x,t)$通过二维Fourier变换，转换为$P(k_x,\omega)$，然后，乘以$\exp[ik_z(\omega,k_x)\Delta z]$
-% 即可将$P(k_x,\omega)$按深度步长向下延拓。
-% Gazdag提出了若干个参考速度$v_1$、$v_2$、
-% $v_3$和$v_4$等，他用每一种速度向下延拓一个深度步长，获得经过向下延拓处理之数据的若干参
-% 考结果$P_1$、$P_2$、$P_3$和$P_4$等，然后按横向波数$k_x$将每一种$P_i$作Fourier反变换，转换为
-% $p_i(x,\omega)$。在每一种x值时，他都对速度最相近的那些参考波进行了内插，得出最终值
-% $p(x,\omega)$。为下一个步长作准备，他把$p(x,\omega)$重又变换成$P(k_x,\omega)$，重复前面的
-% 处理过程，就这样逐个步长作下去。由于对每一种参考速度情形都是重复通常的偏移计算，
-% 这看来好像是一种效率不高的方法。使人惊奇的是，也许因为有利用阵列处理机进行计算所
-% 具有的独特性质，这种方法似乎是很成功的。
-%
-% \subsection{习 题}
-% \label{sec:4.5.6}
-%
-% \begin{enumerate}
-% \item 为在时间$t_c$获得尖锐的截止，就需要频率域内的谱具有宽广频带。设已知图\ref{fig:crft/hyptrunc}是在一种$1000\times
-% 1000$的网格上表示的，试推断出在截止时间$t^c$内的不确定度(uncertainty)。
-% \item 因为对时间t的Fourier变换具有周期性，相移方法往往产生对$z$轴是周期性的偏移。通
-% 常，这并不引起麻烦，因为我们不理会很大的$z$很大深度上的上行波在$t=0$
-% 以前应该是等
-% 于零的。Kjartansson曾指出，如果在继续往下进行计算之前，从波场中减掉在$t=0$时的
-% 波，那就可以避免沿深度$z$的周期性，因而信息永不可能与负时间和“折叠”现象沾边。试
-% 指出应如何改变相移方法的程序。
-% \end{enumerate}
-%
+因此，$q_t$就是$p_t$从负无限大至时间t之积分的离散时间域表示式，它正好与微分方程
+$dQ/dt=P$的Crank-Nicolson型数值积分相同。算子$(1+Z)/(1-Z)$称为双线变换，
+对其分子项与分母项各乘以$Z^{-0.5}$并以$Z=e^{i\omega \Delta t}$代入，即可知
+对微分作近似时的精度
+\begin{subequations}
+\begin{equation}
+-i\frac{\hat{\omega}\Delta t}{2}=\frac{1-Z}{1+Z}=\frac{Z^{-0.5}-Z^{+0.5}}{Z^{-0.5}+Z^{+0.5}}
+\label{eq:ex4.6.14a}
+\end{equation}
+\begin{equation}
+=-i\frac{\sin(\omega \Delta t/2)}{\cos(\omega \Delta t/2)}=-i\tan(\frac{\omega\Delta t}{2})
+\label{eq:ex4.6.14b}
+\end{equation}
+\label{eq:ex4.6.14}
+\end{subequations}
+
+该积分算子$(1 + Z)/(1 — Z)$在上有极点，极点正位于单位圆上，这就产生了出现无限大谬误的可能性。换言之，还存在有可作其他形式的非因果性展开的可能。例如，取$1/( —i\omega )$为$\omega$的虚数反对称函数，就是暗示存在有实数的反对称时间函数$sgn(t)=t/\mid t\mid$，而这通常是不能看作积分算子的。为避免任何意义模糊，我们在这里引入一项很小的正数$\epsilon$并定义$\epsilon =l—\rho$，使积分算子变为
+\begin{subequations}
+\begin{equation}
+I=\frac{1}{2}\frac{1+\rho Z}{1-\rho Z}=\frac{1}{2}(1+\rho Z)
+[1+(\rho Z)+(\rho Z)^2+(\rho Z)^3+...]
+\label{eq:ex4.6.15a}
+\end{equation}
+\begin{equation}
+=\frac{1}{2}+(\rho Z)+(\rho Z)^2+(\rho Z)^3+...
+\label{eq:ex4.6.15b}
+\end{equation}
+\label{eq:ex4.6.15}
+\end{subequations}
+因为$\rho$比1稍小，这个级数对单位圆上的任何Z值均为收敛；若$\epsilon$为微小的负值而不是正值，则
+应将这种展开式表示为Z的负幂而不用正幂。
+
+现在的一铧大好事是，具有时间因果性的积分算子就是阻抗函数的一个例子。该算子很
+显然是遵守因果性的，且其逆亦具因果性。让我们检查一下，在频率域内其实部是否为正
+值。使分母项有理化，得
+\begin{subequations}
+\begin{equation}
+I=\frac{1}{2}\frac{1+\rho Z}{1-\rho Z}\frac{1-\rho Z}{1-\rho Z}=
+\frac{(1-\rho^2)+\rho(Z-1/Z)}{(\text{正值项})}
+\label{eq:ex4.6.16a}
+\end{equation}
+\begin{equation}
+=\frac{(1-\rho^2)-i2\rho\sin\omega\Delta t}{(\text{正值项})}
+\label{eq:ex4.6.16b}
+\end{equation}
+\label{eq:ex4.6.16}
+\end{subequations}
+由此又一次看到，正因为选取一个正使得$(1-\rho^2)$已成为正值，从而使实部对所有频率
+$\omega$均为正值，如图\ref{fig:crft/cintegral}所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{crft/cintegral}
+\caption[cintegral]{时间因果性之积分算子I。频率轴上的曲线代表
+256个点上的离散Fourier变换，零时间及零频率各位于其相应坐标轴
+之左端。}
+\label{fig:crft/cintegral}
+\end{figure}
+
+在频率域内乘以$-i\omega$，相应
+于时间域内进行微分运箅$d/dt$；
+除以$-i\omega$则相应时间域内进行积分运算。人们通常都认为非对称算子$(1,-1)$
+相应于时间域的微分运算，但要注意，因果性积分算子的倒数、即
+\begin{equation}
+I^{-1}=2\frac{1-\rho Z}{1+\rho Z}=2-4\rho Z+4(\rho Z)^2-4(\rho Z)^8+
+......
+\label{eq:ex4.6.17}
+\end{equation}
+也代表微分运算，尽管它完全具有因果性而且全然不是非对称的。在线性系统分析中，离散
+微分的这种表示式是经常采用的一种形式，构制高阶稳定微分方程要遵守阻抗组合的一定规
+则。
+
+偶而需要使微分算子具有负实部，为达此目的，可取$\epsilon$为负值，这意味着要取$\rho>1$，然
+后以的幂次作无穷级数展开，就是说，它应是反因果性的而不是因果性的；无论在反因
+果性情形或因果性情形下，虚部仍将是$-i\omega$，而实部则将具有与此相反的符号。
+
+
+\subsection{阻抗组合的Muir规则}
+\label{sec:4.6.5}
+
+
+
