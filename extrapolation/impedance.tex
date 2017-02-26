@@ -397,6 +397,100 @@ $4Re\hat{R}\geq 0$。第二，
 为证明$\hat{C}$有时间因果性，我们要求助于Muir的第一条规则，即：可以用你愿意用的
 任何正实数使阻抗按比例放大或缩小，而如此作之后它将仍然是一种阻抗。试考虑有一类似
 于$\hat{C}$之函数B
+\begin{equation}
+B=\frac{1-\epsilon \hat{R}}{1+\epsilon \hat{R}}
+\label{eq:ex4.6.22}
+\end{equation}
+取$\epsilon$在所有频率$\omega$情形下均足够小$\epsilon\mid\hat{R}\mid<1$，这就保证了分母有R的正幂项形式的收敛展开式。
+因此，$B$是一种反射率，其相应之阻抗为$\epsilon\hat{R}$，但是阻抗总可以闱一正数作比例放大或缩小，
+取该正数为$1/\epsilon$即可证明$\hat{R}$确系一项阻抗。这样就最终完成了每一个正实因果性滤波均系一
+种阻抗的有关证明过程。
 
+所以，阻抗的产生比你所能想像的还要容易，没必要把反射率C代到关系式$
+R=(1-C)/(1+C)$
+内去求，我们仅需要有一种正实因果性滤波因子就可以了。
+
+\subsection{函数分析}
+\label{sec:4.6.7}
+
+我们要建立下列有关滤波因子的Fourier变换之指数、对数与乘幂的一些定理：
+\begin{enumerate}
+\item 因果性滤波因子之指数仍具因果性；
+\item 因果性滤波因子之指数为极小相位滤波因子；
+\item 极小相位滤波因子之频率域表示式是不包围复平面原点的曲线；
+\item 极小相位滤波因子之对数具有因果性；
+\item 极小相位滤波因子之任何乘幂仍为极小相位；
+\item 阻抗函数的任何实分数乘幂$-1\leq \rho\le1 1$仍为阻抗函数。
+\end{enumerate}
+为建立定理1，定义任意因杲性函数之Z变换为
+\begin{equation}
+U(Z)=u_0+u_1Z+u_2Z^2+...
+\label{eq:ex4.6.23}
+\end{equation}
+将它代入熟悉的指数函数之幂级数内
+\begin{equation}
+B(Z)=e^{U}=1+U+\frac{U^2}{2!}+\frac{U^3}{3!} +...(\mid U\mid < \infty \text{时})
+\label{eq:ex4.6.24}
+\end{equation}
+在式\ref{eq:ex4.6.24}的右端没有Z的负幂项，所以$B(Z)$将只有Z的非负幂项。还有，分母内的
+阶乘保证了式\ref{eq:ex4.6.24}恒为收敛，因而、恒具有时间因果性。
+
+为建立定理2,即指数不但具有时间因果性而且为极小相位，试考虑有
+\begin{subequations}
+\begin{equation}
+B_+=e^{+U}
+\label{eq:ex4.6.25a}
+\end{equation}
+\begin{equation}
+B_-=e^{-U}
+\label{eq:ex4.6.25b}
+\end{equation}
+\label{eq:ex4.6.25}
+\end{subequations}
+显然，$B_+$与$B_-$二者均具时间因果性，而且它们彼此可逆。极小相位滤波因子的定义是具有
+因果性且其倒数亦具因果性，因此$B_+$与$B_-$均属极小相位。
+
+定理3涉及极小相位滤波因子之Fourier域表象。在复平面内，滤波因子给出一个曲线
+的参量方程，比方说是$[x(\omega),y(\omega)]=[ReB(Z),ImB(Z)]$。由比值$y/x$的反正切可定义
+相位角免$\phi(\omega)$。例如，时间因果性非极小相位滤波因子$U(Z)=Z=e^{i\omega}$给出参量方程$x=\cos\omega$
+和$y=\sin\omega$，它们定义了一个以原点为圆心的圆。注意，$Z=e^{i\omega}$的相位是$\phi (\omega)=\omega$，它是频率$\omega$的单调增函数。在极小相位情形下，$\phi(\omega=0)=\phi(\omega=2\pi)$。在非极小相位情彩下，由于
+该曲线闭合环绕原点，所以应有$\phi(\omega=0)=\phi(\omega=2\pi)+2\pi$。以后将要证明的定理4能使我们
+肯定：极小相位滤波因子的一般公式为
+\begin{subequations}
+\begin{equation}
+B=e^{U(Z)}=\exp(\sum_{k=0}^NU_k\cos(k\omega)+i\sum_{k=0}^NU_k\sin(k\omega))
+\label{eq:ex4.6.26a}
+\end{equation}
+\begin{equation}
+=exp[r(\omega)+i\phi(\omega)]
+\label{eq:ex4.6.26b}
+\end{equation}
+\label{eq:ex4.6.26}
+\end{subequations}
+作为周期函数之和的相位$\phi(\omega)$本身就是$\omega$的一个周期函数，这意味着；代表$B(\omega)$
+的曲线在平面$(ReB,ImB)$内并不环绕原点。
+
+我们现在将建立定理2的反定理、即定理4，该定理阐明极小相位滤波因子之对数仍具时
+间因果性。取式\ref{eq:ex4.6.24}的对数并求其对Z的导数
+\begin{subequations}
+\begin{equation}
+U=lnB
+\label{eq:ex4.6.27a}
+\end{equation}
+\begin{equation}
+\frac{dU}{dZ}=u_1+2u_2Z+
+3u_3Z^3+...
+\label{eq:ex4.6.27b}
+\end{equation}
+\begin{equation}
+\frac{dU}{dZ}=\frac{1}{B}\frac{dB}{dZ}
+\label{eq:ex4.6.27c}
+\end{equation}
+\label{eq:ex4.6.27}
+\end{subequations}
+既然已假设B为极小相位，则式\ref{eq:ex4.6.27c}右端的$1/B$与$dB/dz$二者均具时间因果性。由于
+两个因果性因子之乘积仍具因果性，因而$dU/dz$具有因果性。然而，除非$U$具有因果性，
+不然不可能具有因果性。如果无视B可能收敛而$dB/dz$却为发散这种极少可能出现的
+危险，那末以上所述就是证明了定理4能成立。
 
 
