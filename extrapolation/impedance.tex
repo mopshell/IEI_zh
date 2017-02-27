@@ -433,7 +433,8 @@ B(Z)=e^{U}=1+U+\frac{U^2}{2!}+\frac{U^3}{3!} +...(\mid U\mid < \infty \text{时}
 \label{eq:ex4.6.24}
 \end{equation}
 在式\ref{eq:ex4.6.24}的右端没有Z的负幂项，所以$B(Z)$将只有Z的非负幂项。还有，分母内的
-阶乘保证了式\ref{eq:ex4.6.24}恒为收敛，因而、恒具有时间因果性。
+阶乘保证了式\ref{eq:ex4.6.24}恒为收敛，因而$b_t$恒具有时间因果性\footnote{
+$b_t$是$B(Z)$的逆Z变换结杲。---译者}。
 
 为建立定理2,即指数不但具有时间因果性而且为极小相位，试考虑有
 \begin{subequations}
@@ -493,4 +494,94 @@ U=lnB
 不然不可能具有因果性。如果无视B可能收敛而$dB/dz$却为发散这种极少可能出现的
 危险，那末以上所述就是证明了定理4能成立。
 
+现转向定理5的证明，该定理说，极小相位函数之任何乘幂仍为极小柑位。试考虑
+\begin{equation}
+B^{\tau}=(e^{lnB})^{\tau}=e^{\tau lnB}
+\label{eq:ex4.6.28}
+\end{equation}
+由于假设$B$为极小相位，根据定理4可知，$lnB$将具有时间因果性。用某一常数r作其比例因子
+并不改变其因果性，于是稂据定理2可知，取指数运算就证明了$B^\tau$为极小相位。
 
+最后是证明定理6，该定理说，阻抗函数可作任意实分数$-1\leq \rho\leq 1$乘幂而其结果仍将楚
+阻抗函数。阻抗函数被定义为是具有这么一种附加性质的极小相位函数：其Fourier变换的
+实部是正值的。这意味着相位角$\phi$是位于$-\pi/2<\phi<+\pi/2$范围内。对该阻抗函数作$\rho$次乘
+幂，将使该范围应缩至$-\pi \rho/2<\phi <\pi\rho/2$，这种相角范围将使该阻抗函数之实部仍保持为正
+值。定理5阐明：极小相位函数的任何幂次仍具时间因果性，这就足以使我们确信一个阻抗
+函数的分数实幂将具有时间因果性。
+
+\subsection{广角波场外推}
+\label{sec:4.6.8}
+
+令微分算子之正值因果性离散表示式记为$s=-i\hat{\omega}$，比如
+\begin{equation}
+s=-i\hat{\omega}=\frac{2}{\Delta t}\frac{1-\rho Z}{1+\rho Z}
+\label{eq:ex4.6.29}
+\end{equation}
+
+图\ref{fig:crft/cxfreq}是按$\omega$构制之双曲线与按制之双曲线二者的比较。你可看出，折叠干扰侖令
+人可喜的减少，看来好像比\ref{sec:4.1}节中的$\epsilon$更起作用。正如我们将会看到的，引入复值的使
+我们在倏逝波过渡区上对平方根进行更自然的处理。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{crft/cxfreq}
+\caption[cxfreq]{按实频率构制的双曲线（左图）和按复频率构制的双曲线（右图）
+显示时，采用\ref{sec:4.1}节所述平方根增益}
+\label{fig:crft/cxfreq}
+\end{figure}
+
+考虑下列由$R_0=s$开始的递归算法
+\begin{equation}
+R_{n+1}=s+\frac{X^2}{s+R_n}
+\label{eq:ex4.6.30}
+\end{equation}
+这种递归产生的是连分式，Francis
+Muir曾将它引入作为建立偏移的广角平方根近似时的
+工具（见\ref{sec:2.1}节），而且他为表明每个均是一种阻抗函数而建立了他的三条规则。要想明白为
+什么每种均为阻抗函数，首先得注意，从$n=0$时开始，分母$s+R_n$都是两个阻抗函数之和，
+于是它的倒数应是一种阻抗函数。用正值实常数$X^2$乘和加上另一个s后全都保持着阻抗函数
+的性质，如此循环作下去，我们将看到，所有的$R_n$都是阻抗函数。当n变大时，这种递归不
+是收敛就是发散，假设它是收敛，令$R_{n+1}=R_n=R_{\infty}=R$我们就能知道它为什么会收敛。于
+是
+\begin{subequations}
+\begin{equation}
+R=s+\frac{X^2}{s+R}
+\label{eq:ex4.6.31a}
+\end{equation}
+\begin{equation}
+R(s+R)=s(s+R)+X^2
+\label{eq:ex4.6.31b}
+\end{equation}
+\begin{equation}
+R^2=s^2+X^2
+\label{eq:ex4.6.31c}
+\end{equation}
+\begin{equation}
+R=\sqrt{s^2+X^2}
+\label{eq:ex4.6.31d}
+\end{equation}
+\end{subequations}
+
+在波场外推问题中，$X^2$就是$v^2k_x^2$，其中v为波速，$k_x$为水平空间波数、即水平x坐标的
+Fourier变换对偶。进行这些代换，我们得
+\begin{equation}
+R=\pm \sqrt{-\hat{\omega^2}+v^2k_x^2}
+\label{eq:ex4.6.32}
+\end{equation}
+由此可知R类似于$\pm ik_zv$。记住，$R_0$作为对R的一级近似，就是$-i\hat{\omega}$。所以下行波为
+\begin{equation}
+D(x,z,t)=D(x,0,t)e^{ik_x}e^{-Rz/v}e^{-i\omega t}
+\label{eq:ex4.6.33}
+\end{equation}
+为从下行波改换为上行波，我们可以改变R前面的符号，或者我们取R的复共轭，其差别就
+看你要怎么处理实部---你要这个波增长还是不增长？
+
+考虑一下波在爆炸反射面模型中的耗散。波随着自爆炸源至地面的传播而阻尼，这意味
+着我们对波进行偏移时，它们应作指数式増长。可是，我们实际上并不想要它们这样，我们
+真正想要的是保证它们不要增长，我们多半甚至是想使它们随着我们将它外推回去而阻尼。
+所以，为进行偏移，我们是利用下式将单频菠向下延拓
+\begin{equation}
+U(x,z,t)=U(x,0,t)e^{ik_xx}e^{-\bar{R}z/v}e^{-i\omega t}
+\label{eq:ex4.6.34}
+\end{equation}
+尽管由爆炸反射面产生的波其实际性态应为
