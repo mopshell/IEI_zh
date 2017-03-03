@@ -1,0 +1,676 @@
+\section{精度---承包人的观点}
+\label{sec:4.7}
+
+千里之堤，溃于一穴。一环薄弱，全局皆垮。经济的需要强迫所有的环节应该具珩相同
+的强度。诸如与速度不确定性有关的误差，以及与叠后偏移有关而不是与叠前偏移有关的
+误差等，有许多广泛性问题是值得研究的。对本书内容既然已经理解很多了，你现在有资格
+去着手解玦这些广泛性问题。现在我们要缩小我们的注意范围，仅只考察向下延拓中由熟悉
+的数据处理近似所产生的误差。
+
+在波动方程偏移生产性程序的结构中，薄弱环节出现在许多不同地方所作的近似上。出
+于节约的考虑，人们必须把周于提高资料精度的资金投资于该资金能获最佳经济效益之处。地
+球物理承包商很自然就成了在叠加资料偏移方面对精度与费用进行权衡利弊的专家，承包商
+将采用下面所收集的程序和一些方程，以最低的费用获得最佳的结果。使用反射资料的用户对
+学会识别不完善的偏移一事会有兴趣，所以他们大概想利用该程序来看一下各种捷径的效果。
+
+为重大生产任务作准备时，进行精度检查有两种一般性处理办法。第一种办法屉用各种
+:方法作合成的双曲线，它给出关于定性现象的最透徹理解，可以用录像系统或者绘在幻灯片
+上的方式将合成双曲线同手头的数据加以比较。在第二种处理办法中，你要按不同的网格大
+小计算出波在不同时差和频率等等情形下的荻曲面或球面之旅行时间，然后可以执行一个最
+优化方法的程序，使重要参数范围内的平均误差达到极小。
+
+要想知道合成双曲面看起来像什么，没必要去写一个时间域45°有限差分偏移程序，我
+们可以在$(\omega,k_x)$域内简单表示出所有公式，然后就作二维逆Fourier变换。为方便于在
+许多种偏移方法之间进行比较，我们将按需要的先后顺序从本书的不同部分搜集各该方程。
+到时我会提出可为许多种方法作出绕射双曲线的程序，采用相同的方程时，你就能计算出旅
+冇时间并按你的希望解出最优化问题。
+
+\subsection{横向导数}
+\label{sec:4.7.1}
+
+首先，$k_x$将变化于$\pm\frac{\pi}{\Delta}$的范围内。如果打算沿$x$轴作有限差分处理，这时我们将需要
+有 
+\begin{equation}
+(\frac{\hat{k}\Delta x}{2})^2=\frac{\sin^2\frac{k\Delta x}{2}}{1-b4\sin^2\frac{k\Delta x}{2}}
+\label{eq:ex4.3.7b}
+\end{equation}
+所以，如x轴准备按有限差分处理，则以后有关$k_x$的项都应当用$\hat{k_x}$代替。进行有限差分时，
+引入了自由参量b，类似地，你也可以用一个接近于1的可调参量来标定整个表达式。还有，
+$\Delta x$没必要受数据采集的限制而固定死，你总是能够在处理之前对数据进行内插的，有足够
+的横向速度变动就得强制有限差分方法采用经过内插的数据。
+
+\subsection{粘滞性与因果性}
+\label{sec:4.7.2}
+
+
+频率将变化于士疋/Af的范围内，如果打算沿f轴作有限碧分处理，这时我们将需要Z变换变量
+\begin{equation}
+Z=e^{i\omega \Delta t}
+\label{eq:ex4.6.2}
+\end{equation}
+以及服从因果律的导数
+\begin{equation}
+-i\hat{\omega}=\frac{2}{\Delta t}\frac{1-\rho Z}{1+\rho Z} \quad \quad -1\leq \rho <1
+\label{eq:ex4.6.29}
+\end{equation}
+在处理之前，数据可能是采样不足或过采样的，所以$\Delta t$应该是一个可補参量。因杲性参量$\rho$
+应是小于1的数，比方说，$\rho =1-\epsilon$，此处$\epsilon>0$是一可调参量。即使你在频率域内进行偏移，
+你也许还是需要引入$\rho$，因为它可减小时间域内出现的折叠现象一这是粘滞性的一种类
+型。$\epsilon$应大致等于数据长度的倒数$1/N_t$，此处$N_t$，是时间轴上的采样点数（因为我曾以平方根
+増益$\gamma= 1/2$作过许多合成双肋线的图形，时间域折叠现象都比实际的要严重一些，所以我已
+经使程序中$\epsilon$的缺省范围大了四倍）。你如喜欢调节自由参量，那你可分别调节分母和分子
+的$\rho$值。往后，我对$\omega$与$\hat{\omega}$将加以区别，但是你如不关心因果性的引入，你就可令$\hat{\omega}$为
+$\omega$。
+
+\subsection{Muir延迟递归}
+\label{sec:4.7.3}
+
+$k_z$的平方根可以用你计算机内的平方根函数或采用Muir展开的办法计算出来。为使
+Fourier变换域的计算体现出因果性，你必须利用某种复值平方根函数，这样作也会自动地
+照顾到耗散区---你不再有耗散区与非耗散区之间的不连续性了。复数的平方根是多值的，
+所以你最好首先检查一下你的计算机是否选取了如图\ref{fig:crft/kzplane}中所示的相位。我就是曾经这样
+作的，但是我发现，一直到我把表达式$\sqrt{s^2+v^2k^2}-s$用代数上与它等值的表达式
+$v^2k^2/(\sqrt{s^2+v^2k^2}+s)$代替之前，受限制的数值精度总是妨碍了我使阻抗的实部达到严格的正值
+性。
+
+为进行有限差分，我们需要的将是Muir递归。设$r_0$定义为开始Muir递归时之角度的余
+弦，这角度往往为0°或45°。对最优化来说，这个角度是另一个自由参量。例如可参见图
+\ref{fig:omx/disper}。这种角度也是一个对所有阶次递归都准确拟合的角度。令
+\begin{equation}
+s=-i\hat{\omega}
+\label{eq:ex4.6.29}
+\end{equation}
+从$R_0=r_0s$开始的Muir递归为
+\begin{equation}
+R_{n+1}=s+\frac{v^2k_x^2}{s+R_n}
+\label{eq:4.6.30}
+\end{equation}
+
+
+对于绕射程序，我们将要对$\exp(-Rz)$进行计算。由于在\ref{sec:4.6}节中已证明$R$具有正实部，
+该指数项应永不增长。存限差分计算通常是利用延迟时间完成的，为使时间有延迟，将$\exp(-Rz)$
+表示为
+\begin{equation}
+e^{-Rz/v}=e^{-(R-s)z/v}e^{-sz/v}
+\label{eq:4.7.1}
+\end{equation}
+正如\ref{sec:4.1}节中所讨论的，你大概并不想使延迟的时移与牯滞影响有联系，所以你大概会想使
+向下延拓用下式代替
+\begin{equation}
+e^{-[R(-i\hat{\omega})+i\hat{\omega}]z/v}e^{+i\omega z/v}
+\label{eq:ex4.7.2}
+\end{equation}
+注意其中的符号和$\omega$有别于$\hat{\omega}$。
+
+
+% 将阻抗函数与其Fourier共轭函数相加，得出一种像功率谱一般的实数正依函数（其虚
+% 部等于零），例如
+% \begin{subequations}
+% \begin{equation}
+% (r_0+r_1Z+r_2Z^2+...)+(\bar{r_0}+\bar{r_1}\frac{1}{Z}+\bar{r_2}\frac{1}{Z^2}
+% +...) \geq 0, \text{对实数$\omega$}
+% \label{eq:ex4.6.7a}
+% \end{equation}
+% \begin{equation}
+% R(Z)+\bar{R(\frac{1}{Z}}\geq 0, \text{对实数$\omega$}
+% \label{eq:ex4.6.7b}
+% \end{equation}
+% \label{eq:ex4.6.7}
+% \end{subequations}
+
+
+% \subsection{因果性积分}
+% \label{sec:4.6.4}
+
+% 设有离散时间函数其Fourier变换经代换$Z=exp(i\omega \Delta t)$之后，得Z变换为
+% \begin{equation}
+% P(z)=......+P_{-2}Z^{-2}+p_{-1}Z^{-1}+p_0+p_1Z+p_2Z^2+......
+% \label{eq:ex4.6.8}
+% \end{equation}
+% 根据以下的关系，定义一个算子$-i\hat{\omega}$
+% \begin{equation}
+% \frac{1}{-i\hat{\omega}\Delta t}=\frac{1}{2}\frac{1+Z}{1-Z}
+% \label{eq:ex4.6.9}
+% \end{equation}
+% 将此算子应用于$P(Z)$，定义出另一个离散时间函数$q_t$，其Z变换为Q(Z)
+% \begin{equation}
+% Q(Z)=\frac{1}{2}\frac{1+Z}{1-Z}P(Z)
+% \label{eq:ex4.6.10}
+% \end{equation}
+% 两端乘以$(1-Z)$，得
+% \begin{equation}
+% (1-Z)Q(Z)=\frac{1}{2}(1+Z)P(Z)
+% \label{eq:ex4.6.11}
+% \end{equation}
+% 令两端同幂项$Z^t$的系数相等，则得
+% \begin{equation}
+% q_t-q_{t-1}=\frac{p_t+p_{t-1}}{2}
+% \label{eq:ex4.6.12}
+% \end{equation}
+% 令$p_t$为脉冲函数，我们就可看出$q_t$原来是一种阶跃函数，即
+% \begin{subequations}
+% \begin{equation}
+% p=......,0,0,0,0,0,1,0,0,0,0,0,......
+% \label{eq:ex4.6.13a}
+% \end{equation}
+% \begin{equation}
+% q=......,0,0,0,0,0,\frac{1}{2},1,1,1,1,1,......
+% \label{eq:ex4.6.13b}
+% \end{equation}
+% \label{eq:ex4.6.13}
+% \end{subequations}
+
+% 因此，$q_t$就是$p_t$从负无限大至时间t之积分的离散时间域表示式，它正好与微分方程
+% $dQ/dt=P$的Crank-Nicolson型数值积分相同。算子$(1+Z)/(1-Z)$称为双线变换，
+% 对其分子项与分母项各乘以$Z^{-0.5}$并以$Z=e^{i\omega \Delta t}$代入，即可知
+% 对微分作近似时的精度
+% \begin{subequations}
+% \begin{equation}
+% -i\frac{\hat{\omega}\Delta t}{2}=\frac{1-Z}{1+Z}=\frac{Z^{-0.5}-Z^{+0.5}}{Z^{-0.5}+Z^{+0.5}}
+% \label{eq:ex4.6.14a}
+% \end{equation}
+% \begin{equation}
+% =-i\frac{\sin(\omega \Delta t/2)}{\cos(\omega \Delta t/2)}=-i\tan(\frac{\omega\Delta t}{2})
+% \label{eq:ex4.6.14b}
+% \end{equation}
+% \label{eq:ex4.6.14}
+% \end{subequations}
+
+% 该积分算子$(1 + Z)/(1 — Z)$在上有极点，极点正位于单位圆上，这就产生了出现无限大谬误的可能性。换言之，还存在有可作其他形式的非因果性展开的可能。例如，取$1/( —i\omega )$为$\omega$的虚数反对称函数，就是暗示存在有实数的反对称时间函数$sgn(t)=t/\mid t\mid$，而这通常是不能看作积分算子的。为避免任何意义模糊，我们在这里引入一项很小的正数$\epsilon$并定义$\epsilon =l—\rho$，使积分算子变为
+% \begin{subequations}
+% \begin{equation}
+% I=\frac{1}{2}\frac{1+\rho Z}{1-\rho Z}=\frac{1}{2}(1+\rho Z)
+% [1+(\rho Z)+(\rho Z)^2+(\rho Z)^3+...]
+% \label{eq:ex4.6.15a}
+% \end{equation}
+% \begin{equation}
+% =\frac{1}{2}+(\rho Z)+(\rho Z)^2+(\rho Z)^3+...
+% \label{eq:ex4.6.15b}
+% \end{equation}
+% \label{eq:ex4.6.15}
+% \end{subequations}
+% 因为$\rho$比1稍小，这个级数对单位圆上的任何Z值均为收敛；若$\epsilon$为微小的负值而不是正值，则
+% 应将这种展开式表示为Z的负幂而不用正幂。
+
+% 现在的一铧大好事是，具有时间因果性的积分算子就是阻抗函数的一个例子。该算子很
+% 显然是遵守因果性的，且其逆亦具因果性。让我们检查一下，在频率域内其实部是否为正
+% 值。使分母项有理化，得
+% \begin{subequations}
+% \begin{equation}
+% I=\frac{1}{2}\frac{1+\rho Z}{1-\rho Z}\frac{1-\rho Z}{1-\rho Z}=
+% \frac{(1-\rho^2)+\rho(Z-1/Z)}{(\text{正值项})}
+% \label{eq:ex4.6.16a}
+% \end{equation}
+% \begin{equation}
+% =\frac{(1-\rho^2)-i2\rho\sin\omega\Delta t}{(\text{正值项})}
+% \label{eq:ex4.6.16b}
+% \end{equation}
+% \label{eq:ex4.6.16}
+% \end{subequations}
+% 由此又一次看到，正因为选取一个正使得$(1-\rho^2)$已成为正值，从而使实部对所有频率
+% $\omega$均为正值，如图\ref{fig:crft/cintegral}所示。
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.65\textwidth]{crft/cintegral}
+% \caption[cintegral]{时间因果性之积分算子I。频率轴上的曲线代表
+% 256个点上的离散Fourier变换，零时间及零频率各位于其相应坐标轴
+% 之左端。}
+% \label{fig:crft/cintegral}
+% \end{figure}
+
+% 在频率域内乘以$-i\omega$，相应
+% 于时间域内进行微分运箅$d/dt$；
+% 除以$-i\omega$则相应时间域内进行积分运算。人们通常都认为非对称算子$(1,-1)$
+% 相应于时间域的微分运算，但要注意，因果性积分算子的倒数、即
+% \begin{equation}
+% I^{-1}=2\frac{1-\rho Z}{1+\rho Z}=2-4\rho Z+4(\rho Z)^2-4(\rho Z)^8+
+% ......
+% \label{eq:ex4.6.17}
+% \end{equation}
+% 也代表微分运算，尽管它完全具有因果性而且全然不是非对称的。在线性系统分析中，离散
+% 微分的这种表示式是经常采用的一种形式，构制高阶稳定微分方程要遵守阻抗组合的一定规
+% 则。
+
+% 偶而需要使微分算子具有负实部，为达此目的，可取$\epsilon$为负值，这意味着要取$\rho>1$，然
+% 后以的幂次作无穷级数展开，就是说，它应是反因果性的而不是因果性的；无论在反因
+% 果性情形或因果性情形下，虚部仍将是$-i\omega$，而实部则将具有与此相反的符号。
+
+
+% \subsection{阻抗组合的Muir规则}
+% \label{sec:4.6.5}
+
+% 每一种能量守恒或能量耗散的物理系统都有其阻抗函数，阻抗函数是微分算子与正值物
+% 理常量的特种组合。我们要看一看什么样的组合才是允许的。
+
+% 要想保证计算过程稳定，重要的是要能够保证假定的阻抗函数确实是一种阻抗函数。应
+% 用地球物理学有这么一种困难：虽然你也许要求所得结果只是遍及有限频率范围，而且你能
+% 够作的近似在那种范围之内也是合理的，可是如果所计算出的阻抗超出该应用范围而变成负
+% 值（接近Nyquist频率时往往出现这种情形），那末阻抗滤波器就会产生数值发散的输出。
+% 因此，即使阻抗几乎就是正确的，也没法采用它。
+
+% 为将简单阻抗进行组合以得出更复杂的一些阻抗，Francis Muir曾提出三条规则\footnote{
+% 据Francis Muir私人通信。---原注}
+% 这些规则所以特别有用，是因为我们据此可以从微分算子和积分算子的离散时间形式出发进
+% 行讨论。令$R'$表示由已知阻抗函数R及、$R_1$与$R_2$所产生的一个新的阻抗函数，将阻抗组合起
+% 来有三种途径：
+% \begin{enumerate}
+% \item 乘以正值标量a $R'$=aR
+% \item 倒数         $R'=\frac{1}{R}$
+% \item 加法         $R'=R_1+R_2$
+% \end{enumerate}
+
+% 这些规则不包括阻抗函数彼此相乘，不允许乘法是因为要避免出现平方，例如，采用平
+% 方就会使相位角加倍，从而可能破坏实部的正值性。既然这些规则不包括乘法而只是求和、
+% 求倒数和按比例放大或缩小，于是按本来面貌出现的阻抗函数将总是在数学上被表示为连分
+% 式形式。
+
+% Muir的头两条规则非常明确，我们将不再证明它们,第三条规则则值得很仔细地注意。
+% 要证明任何规则，我们都需要指明有关的三件事，即它遵守时间因果性，它是正实的
+% （Fourier变换有正的实部），以及它是可逆的。这最后一部分是Muir的第三条规则的难
+% 题，即两个阻抗之和应具有遵守时间因果性的倒数，证明这件事实得写大约两页纸，并且要
+% 引入若干附加的概念才行。
+
+% \subsection{根据反射率定义的阻抗}
+% \label{sec:4.6.6}
+
+% 被称为阻抗的一类滤波其范围是很大的，因为阻抗均由易于说明的、被称作反射率的滤
+% 波族$c_t$及其Fourier变换$C(\omega)$经过转换而导出。作为反射率的时间函数必须是严格因果性
+% 的，而且频率函数必须严格小于1。所谓严格因果性是指：时间函数在零时间和零时间以前
+% 都等于零。例如，取$-1<\rho<+1$且反射率$c_t$为某一时刻$\Delta t$之后其幅度为$\rho$的脉冲，其Fourier变换为
+% \begin{equation}
+% C=\rho Z=\rho e^{i\omega\Delta t}
+% \label{eq:ex4.6.18}
+% \end{equation}
+% 显然，两个反射率之乘积应等于另一个反射率。
+
+% 阻抗已定义为具有因果性倒数之因果性滤波且其Fourier变换具有正实性（实部为正）
+% 之后，将可证明：根据任何反射率C，可由下列表达式形成一种阻抗R
+% \begin{equation}
+% R=\frac{1-C}{1+C}
+% \label{eq:ex4.6.19}
+% \end{equation}
+% 有三件事要证明：遵守时间因果性，具有因果性倒数，且为正实性。第一种性质成立是因
+% 为假设幅度严格小于1，即$C\bar{C}<1$，因而分母项可展为收敛级数$1 + C +
+% C^2+\ldots\ldots$。第二种性质
+% 成立是因为直接改变C的符号即可求出$R$的倒数。将分子与分母均乘以复共轭$(1+\bar{C}$，则
+% \begin{subequations}
+% \begin{equation}
+% ReR=Re[\frac{(1-C)(1+\bar{C})}{\text{正值项}}]\geq 0
+% \label{eq:ex4.6.20a}
+% \end{equation}
+% \begin{equation}
+% ReR=Re[\frac{(1-C\bar{C})+\text{虚部}}{\text{正值项}}]\geq 0
+% \label{eq:ex4.6.20b}
+% \end{equation}
+% \end{subequations}
+% 这表明第三种性质成立，即R具有的实部为正值。
+
+% 由及$R(C)$的表达式很容易反向求出$C(R)$的表达式，但由每个R均产生一反射率这种
+% 反定理却较难话明。不过，采用一个较深刻的定理将能证明它。一个滤波既是因果性的又是
+% 上正实性的，就说它是正实因果性CPR的(causal and positive real)；该较深刻的定理就
+% 是：每种CPR滤波均具有倒数，因而也就是一种阻抗。指出下列一点就能证明这个定理：
+% 每个具有正实因果性的$\hat{R}$均可用以构制出反射，既然$\hat{R}$是一
+% 种反射率，那末这就是暗示具
+% 有正实因果性的$\hat{R}$即足一种阻抗$R$，于是反解求出
+% \begin{equation}
+% \hat{C}=\frac{1-\hat{R}}{1+\hat{R}}
+% \label{eq:ex4.6.21}
+% \end{equation}
+
+% 证明要求表明两件事。第一，$\hat{C}$的幅度小于1；为证实这点，取分母$(1+\hat{R})$
+% 的幅度并从中减去分子$(1-\hat{R})$的幅度，所得结果等于四乘$\hat{R}$的实部，这是个正数
+% $4Re\hat{R}\geq 0$。第二，
+% 必须证明$\hat{C}$有时间因果性。这点比较难证明；可以把分母$(1+\hat{R})^{-1}$展成R的正
+% 幂项之和、因而也就是延迟算子的正幂项之和，可是没法保证这个级数必然收敛，因为对$\hat{R}$必须小
+% 于1没作什么要求。
+
+% 为证明$\hat{C}$有时间因果性，我们要求助于Muir的第一条规则，即：可以用你愿意用的
+% 任何正实数使阻抗按比例放大或缩小，而如此作之后它将仍然是一种阻抗。试考虑有一类似
+% 于$\hat{C}$之函数B
+% \begin{equation}
+% B=\frac{1-\epsilon \hat{R}}{1+\epsilon \hat{R}}
+% \label{eq:ex4.6.22}
+% \end{equation}
+% 取$\epsilon$在所有频率$\omega$情形下均足够小$\epsilon\mid\hat{R}\mid<1$，这就保证了分母有R的正幂项形式的收敛展开式。
+% 因此，$B$是一种反射率，其相应之阻抗为$\epsilon\hat{R}$，但是阻抗总可以闱一正数作比例放大或缩小，
+% 取该正数为$1/\epsilon$即可证明$\hat{R}$确系一项阻抗。这样就最终完成了每一个正实因果性滤波均系一
+% 种阻抗的有关证明过程。
+
+% 所以，阻抗的产生比你所能想像的还要容易，没必要把反射率C代到关系式$
+% R=(1-C)/(1+C)$
+% 内去求，我们仅需要有一种正实因果性滤波因子就可以了。
+
+% \subsection{函数分析}
+% \label{sec:4.6.7}
+
+% 我们要建立下列有关滤波因子的Fourier变换之指数、对数与乘幂的一些定理：
+% \begin{enumerate}
+% \item 因果性滤波因子之指数仍具因果性；
+% \item 因果性滤波因子之指数为极小相位滤波因子；
+% \item 极小相位滤波因子之频率域表示式是不包围复平面原点的曲线；
+% \item 极小相位滤波因子之对数具有因果性；
+% \item 极小相位滤波因子之任何乘幂仍为极小相位；
+% \item 阻抗函数的任何实分数乘幂$-1\leq \rho\le1 1$仍为阻抗函数。
+% \end{enumerate}
+% 为建立定理1，定义任意因杲性函数之Z变换为
+% \begin{equation}
+% U(Z)=u_0+u_1Z+u_2Z^2+...
+% \label{eq:ex4.6.23}
+% \end{equation}
+% 将它代入熟悉的指数函数之幂级数内
+% \begin{equation}
+% B(Z)=e^{U}=1+U+\frac{U^2}{2!}+\frac{U^3}{3!} +...(\mid U\mid < \infty \text{时})
+% \label{eq:ex4.6.24}
+% \end{equation}
+% 在式\ref{eq:ex4.6.24}的右端没有Z的负幂项，所以$B(Z)$将只有Z的非负幂项。还有，分母内的
+% 阶乘保证了式\ref{eq:ex4.6.24}恒为收敛，因而$b_t$恒具有时间因果性\footnote{
+% $b_t$是$B(Z)$的逆Z变换结杲。---译者}。
+
+% 为建立定理2,即指数不但具有时间因果性而且为极小相位，试考虑有
+% \begin{subequations}
+% \begin{equation}
+% B_+=e^{+U}
+% \label{eq:ex4.6.25a}
+% \end{equation}
+% \begin{equation}
+% B_-=e^{-U}
+% \label{eq:ex4.6.25b}
+% \end{equation}
+% \label{eq:ex4.6.25}
+% \end{subequations}
+% 显然，$B_+$与$B_-$二者均具时间因果性，而且它们彼此可逆。极小相位滤波因子的定义是具有
+% 因果性且其倒数亦具因果性，因此$B_+$与$B_-$均属极小相位。
+
+% 定理3涉及极小相位滤波因子之Fourier域表象。在复平面内，滤波因子给出一个曲线
+% 的参量方程，比方说是$[x(\omega),y(\omega)]=[ReB(Z),ImB(Z)]$。由比值$y/x$的反正切可定义
+% 相位角免$\phi(\omega)$。例如，时间因果性非极小相位滤波因子$U(Z)=Z=e^{i\omega}$给出参量方程$x=\cos\omega$
+% 和$y=\sin\omega$，它们定义了一个以原点为圆心的圆。注意，$Z=e^{i\omega}$的相位是$\phi (\omega)=\omega$，它是频率$\omega$的单调增函数。在极小相位情形下，$\phi(\omega=0)=\phi(\omega=2\pi)$。在非极小相位情彩下，由于
+% 该曲线闭合环绕原点，所以应有$\phi(\omega=0)=\phi(\omega=2\pi)+2\pi$。以后将要证明的定理4能使我们
+% 肯定：极小相位滤波因子的一般公式为
+% \begin{subequations}
+% \begin{equation}
+% B=e^{U(Z)}=\exp(\sum_{k=0}^NU_k\cos(k\omega)+i\sum_{k=0}^NU_k\sin(k\omega))
+% \label{eq:ex4.6.26a}
+% \end{equation}
+% \begin{equation}
+% =exp[r(\omega)+i\phi(\omega)]
+% \label{eq:ex4.6.26b}
+% \end{equation}
+% \label{eq:ex4.6.26}
+% \end{subequations}
+% 作为周期函数之和的相位$\phi(\omega)$本身就是$\omega$的一个周期函数，这意味着；代表$B(\omega)$
+% 的曲线在平面$(ReB,ImB)$内并不环绕原点。
+
+% 我们现在将建立定理2的反定理、即定理4，该定理阐明极小相位滤波因子之对数仍具时
+% 间因果性。取式\ref{eq:ex4.6.24}的对数并求其对Z的导数
+% \begin{subequations}
+% \begin{equation}
+% U=lnB
+% \label{eq:ex4.6.27a}
+% \end{equation}
+% \begin{equation}
+% \frac{dU}{dZ}=u_1+2u_2Z+
+% 3u_3Z^3+...
+% \label{eq:ex4.6.27b}
+% \end{equation}
+% \begin{equation}
+% \frac{dU}{dZ}=\frac{1}{B}\frac{dB}{dZ}
+% \label{eq:ex4.6.27c}
+% \end{equation}
+% \label{eq:ex4.6.27}
+% \end{subequations}
+% 既然已假设B为极小相位，则式\ref{eq:ex4.6.27c}右端的$1/B$与$dB/dz$二者均具时间因果性。由于
+% 两个因果性因子之乘积仍具因果性，因而$dU/dz$具有因果性。然而，除非$U$具有因果性，
+% 不然不可能具有因果性。如果无视B可能收敛而$dB/dz$却为发散这种极少可能出现的
+% 危险，那末以上所述就是证明了定理4能成立。
+
+% 现转向定理5的证明，该定理说，极小相位函数之任何乘幂仍为极小柑位。试考虑
+% \begin{equation}
+% B^{\tau}=(e^{lnB})^{\tau}=e^{\tau lnB}
+% \label{eq:ex4.6.28}
+% \end{equation}
+% 由于假设$B$为极小相位，根据定理4可知，$lnB$将具有时间因果性。用某一常数r作其比例因子
+% 并不改变其因果性，于是稂据定理2可知，取指数运算就证明了$B^\tau$为极小相位。
+
+% 最后是证明定理6，该定理说，阻抗函数可作任意实分数$-1\leq \rho\leq 1$乘幂而其结果仍将楚
+% 阻抗函数。阻抗函数被定义为是具有这么一种附加性质的极小相位函数：其Fourier变换的
+% 实部是正值的。这意味着相位角$\phi$是位于$-\pi/2<\phi<+\pi/2$范围内。对该阻抗函数作$\rho$次乘
+% 幂，将使该范围应缩至$-\pi \rho/2<\phi <\pi\rho/2$，这种相角范围将使该阻抗函数之实部仍保持为正
+% 值。定理5阐明：极小相位函数的任何幂次仍具时间因果性，这就足以使我们确信一个阻抗
+% 函数的分数实幂将具有时间因果性。
+
+% \subsection{广角波场外推}
+% \label{sec:4.6.8}
+
+% 令微分算子之正值因果性离散表示式记为$s=-i\hat{\omega}$，比如
+% \begin{equation}
+% s=-i\hat{\omega}=\frac{2}{\Delta t}\frac{1-\rho Z}{1+\rho Z}
+% \label{eq:ex4.6.29}
+% \end{equation}
+
+% 图\ref{fig:crft/cxfreq}是按$\omega$构制之双曲线与按制之双曲线二者的比较。你可看出，折叠干扰侖令
+% 人可喜的减少，看来好像比\ref{sec:4.1}节中的$\epsilon$更起作用。正如我们将会看到的，引入复值的使
+% 我们在倏逝波过渡区上对平方根进行更自然的处理。
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.65\textwidth]{crft/cxfreq}
+% \caption[cxfreq]{按实频率构制的双曲线（左图）和按复频率构制的双曲线（右图）
+% 显示时，采用\ref{sec:4.1}节所述平方根增益}
+% \label{fig:crft/cxfreq}
+% \end{figure}
+
+% 考虑下列由$R_0=s$开始的递归算法
+% \begin{equation}
+% R_{n+1}=s+\frac{X^2}{s+R_n}
+% \label{eq:ex4.6.30}
+% \end{equation}
+% 这种递归产生的是连分式，Francis
+% Muir曾将它引入作为建立偏移的广角平方根近似时的
+% 工具（见\ref{sec:2.1}节），而且他为表明每个均是一种阻抗函数而建立了他的三条规则。要想明白为
+% 什么每种均为阻抗函数，首先得注意，从$n=0$时开始，分母$s+R_n$都是两个阻抗函数之和，
+% 于是它的倒数应是一种阻抗函数。用正值实常数$X^2$乘和加上另一个s后全都保持着阻抗函数
+% 的性质，如此循环作下去，我们将看到，所有的$R_n$都是阻抗函数。当n变大时，这种递归不
+% 是收敛就是发散，假设它是收敛，令$R_{n+1}=R_n=R_{\infty}=R$我们就能知道它为什么会收敛。于
+% 是
+% \begin{subequations}
+% \begin{equation}
+% R=s+\frac{X^2}{s+R}
+% \label{eq:ex4.6.31a}
+% \end{equation}
+% \begin{equation}
+% R(s+R)=s(s+R)+X^2
+% \label{eq:ex4.6.31b}
+% \end{equation}
+% \begin{equation}
+% R^2=s^2+X^2
+% \label{eq:ex4.6.31c}
+% \end{equation}
+% \begin{equation}
+% R=\sqrt{s^2+X^2}
+% \label{eq:ex4.6.31d}
+% \end{equation}
+% \end{subequations}
+
+% 在波场外推问题中，$X^2$就是$v^2k_x^2$，其中v为波速，$k_x$为水平空间波数、即水平x坐标的
+% Fourier变换对偶。进行这些代换，我们得
+% \begin{equation}
+% R=\pm \sqrt{-\hat{\omega^2}+v^2k_x^2}
+% \label{eq:ex4.6.32}
+% \end{equation}
+% 由此可知R类似于$\pm ik_zv$。记住，$R_0$作为对R的一级近似，就是$-i\hat{\omega}$。所以下行波为
+% \begin{equation}
+% D(x,z,t)=D(x,0,t)e^{ik_x}e^{-Rz/v}e^{-i\omega t}
+% \label{eq:ex4.6.33}
+% \end{equation}
+% 为从下行波改换为上行波，我们可以改变R前面的符号，或者我们取R的复共轭，其差别就
+% 看你要怎么处理实部---你要这个波增长还是不增长？
+
+% 考虑一下波在爆炸反射面模型中的耗散。波随着自爆炸源至地面的传播而阻尼，这意味
+% 着我们对波进行偏移时，它们应作指数式増长。可是，我们实际上并不想要它们这样，我们
+% 真正想要的是保证它们不要增长，我们多半甚至是想使它们随着我们将它外推回去而阻尼。
+% 所以，为进行偏移，我们是利用下式将单频菠向下延拓
+% \begin{equation}
+% U(x,z,t)=U(x,0,t)e^{ik_xx}e^{-\bar{R}z/v}e^{-i\omega t}
+% \label{eq:ex4.6.34}
+% \end{equation}
+% 尽管由爆炸反射面产生的波其实际性态应为
+% \begin{equation}
+% U(x,z,t)=U(x,0,t)e^{ik_xx}e^{+Rz/v}e^{-i\omega t}
+% \label{eq:ex4.6.35}
+% \end{equation}
+
+% 为检查复数量R的相位，令$v=1$，得
+% \begin{equation}
+% R=\sqrt{(-i\hat{\omega})^2+k_x^2}
+% \label{eq:ex4.6.36}
+% \end{equation}
+% 首先要注意，$(-i\hat{\omega})$因其Z变换表示式\ref{eq:ex4.6.29}之故而具有时间因果性。将该Z变换加以
+% 平方我们就会明白，$(-i\hat{\omega})^2$也是具有因果性的。在时间域内，$k_x^2$是位于时间原点处的一个
+% $\delta$函数，从而由式\ref{eq:ex4.6.36}给出的$R^2$应是具有因果性的。图\ref{fig:crft/kzplane}表明式\ref{eq:ex4.6.36}的相位
+% 如何由其各个组成部分构制出来，为阐明一在零至无限大范围内的性态，我使该图既包
+% 括一种按美术家概念绘制的美化图形，又包括函数本身按各种不同放大倍数绘制并重叠在一
+% 起的图像。函数$-i\hat{\omega}$随$\omega$而作某种周期性变化，因而其实部与虚部的变化可综合绘成一个封
+% 闭曲线形式。为表现出函数的变化率，我是以2°的间隔对$\omega$进行采样的。从很远距离看，该
+% 函数是个圆，紧靠近看则像是一条平行于虚轴的平行线。
+
+% $R^2$具有因果性，而且从图\ref{fig:crft/kzplane}我们看到它有一种“支点割线”（branch
+% cut)性质， 那就是说，丑的相位应具有正实性(positive real
+% property)。定理5迫使$R$应具有因果性
+% 与极小相位性质，这一点连同由图\ref{fig:crft/kzplane}所定义的相位性质，就证明了式\ref{eq:ex4.6.36}所示的
+% 况应该是一种阻抗函数。
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.65\textwidth]{crft/kzplane}
+% \caption[kzplane]{式\ref{eq:ex4.6.36}所示外推算子R各组成部分的复平面示意简图。
+% 中间一行表示美术家概念，右边一行表示以若干放大倍数同时显示的函数}
+% \label{fig:crft/kzplane}
+% \end{figure}
+
+% \subsection{分數积分与恒定Q值}
+% \label{sec:4.6.9}
+
+% 根据方程\ref{eq:ex4.6.29}与定理(3，积分与微分的分数乘幕也都是阻抗函数。Kjartansson
+% （1979）曾提倡采用分数乘幂作为岩石之应力应变定律，这方面的问题还可参阅Madden
+% (1976 )的论文。岩石力学方面的经典研究都是从下列应力应变定理开始着手
+% \begin{equation*}
+% \text{应力}=\text{刚度}\times\text{应变}+\text{粘滞性}\times\text{应变率}
+% \end{equation*}
+% 在Fourier变换后，则为
+% \begin{equation}
+% \text{应力}=[(-i\omega)^0\text{刚度}+(-i\omega)^1\times\text{粘滞性}]\times\text{应变}
+% \label{eq:ex4.6.37}
+% \end{equation}
+% 从实验结果看，粘滞弹性定律\ref{eq:ex4.6.37}是难以描述实际岩石的。我们现在试图采用另一种
+% 数学形式，它在高频与低粘滞性的极限性态方面是与式\ref{eq:ex4.6.37}相像的：
+% \begin{subequations}
+% \begin{equation}
+% \text{应力}=\text{常数}\times(-i\omega)^\epsilon\times\text{应变}
+% \label{eq:ex4.6.38a}
+% \end{equation}
+% \begin{equation}
+% =\text{常数}\times(-i\omega)^{\epsilon-1}\times\text{应变率}
+% \label{eq:ex4.6.38b}
+% \end{equation}
+% \label{eq:ex4.6.38}
+% \end{subequations}
+% 式中，$\epsilon$接近于零时表现为弹性性态，而$\epsilon$接近于1时表现出粘滞性态。$(-i\omega)^{\epsilon-1}$应为阻抗函
+% 数这一点恰与下列概念紧密配合一致：(1)应力能够根据应变历史确定，应变能够根据应
+% 力历史确定；(2)应力乘应瘦率等于耗散功率。Kjartansson(l979)指出，$(-i\omega)$表现
+% 出具有称作恒定Q值的数学性质，所以，作为能够拟合于岩石试验数据的应力应变定律，采
+% 用$(-i\omega)^\gamma$远胜于采用式\ref{eq:ex4.6.37}。为更清楚地看出恒定Q值性质，将$(-i\omega)^\gamma$表示为实部与虛部
+% \begin{subequations}
+% \begin{equation}
+% (-i\omega)^\gamma=\mid\omega\mid^\gamma[-isgn(\omega)]^\gamma
+% \label{eq:ex4.6.39a}
+% \end{equation}
+% \begin{equation}
+% =\mid\omega\mid^\gamma[e^{-i\pi sgn(\omega)/2}]^\gamma
+% \label{eq:ex4.6.39b}
+% \end{equation}
+% \begin{equation}
+% =\mid\omega\mid^\gamma\{\cos[\frac{\pi\gamma}{2}sgn(\omega)]-i\sin[\frac{\pi\gamma}{2}sgn(\omega)]\}
+% \label{eq:ex4.6.39c}
+% \end{equation}
+% \begin{equation}
+% =\mid\omega\mid^\gamma\{\cos(\frac{\pi\gamma}{2})-isgn(\omega)\sin(\frac{\pi\gamma}{2})\}
+% \label{eq:ex4.6.39d}
+% \end{equation}
+% \label{eq:ex4.6.39}
+% \end{subequations}
+
+% 由这个函数的实部与虚部之间有恒定比值一事，即可得出恒定Q值性质的结论。Q值本身系
+% 由下式定义
+% \begin{equation}
+% \frac{1}{Q}=\tan \pi \epsilon \approx\pi\epsilon
+% \label{eq:ex4.6.40}
+% \end{equation}
+% Q值大约为10的脉冲，如图\ref{fig:crft/Qq}所示。
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.65\textwidth]{crft/Qq}
+% \caption[Qq]{形式为$e^{-(-i\omega)^{0.97}t_0}$的恒定Q值
+% 脉冲。频率轴上所表示的是256个点上的离散Fourier变换，零时间与
+% 零频率分别位于各该坐标轴左端。}
+% \label{fig:crft/Qq}
+% \end{figure}
+
+% \subsection{习题}
+% \label{sec:4.6.10}
+
+% \begin{enumerate}
+% \item 取$\epsilon <0$并将积分算子展为Z的负幂项，试解释符号差异的意义。
+% \item 令$\alpha >0$为正实数丄例常数，C为反射率函数。不利用Muir的规则，试证明下式
+% 中的C'为反射率
+% \begin{equation*}
+% \frac{1-C'}{1+C'}=\alpha \frac{1-C}{1+C}
+% \end{equation*}
+% 注意，你已经证明了Muir的第一条规则，以类似方式也可证明Muir的第三条规则，但代数
+% 运算非常繁琐。
+
+% \item
+%   同构(isomorphism)这个词的意思不但指任何阻抗及$R_1$、$R_2$、$R'$可映象为反射率
+%   $C_1$、$C_2$、$C'$而且也指Muri的三条规则将映象为对反射率进行组合时所应遵循的三条规
+%   则。试问：
+%   a.这三条规则是什么？\\
+%   b.虽然$C'=C_1C_2$原来并不属于三条规则之一，但它显然是成立的。试证明它就是由三
+% 条规则引申出的结果，或者断定它就是一条涉及可反向映象至阻抗域的独立规则，可构成第
+% 四条规则。
+
+% \item 试证明离散因果性积分算子之对数
+% \begin{equation*}
+% log[(1+Z)/(1-Z)]
+% \end{equation*}
+% 是单边离散Hilbert变换，指出由速度相同而Q值稍有差别的两种介质之间的分界面所反射
+% 的脉冲是Hilbert变换的一侧。
+
+% \item 试考虑外推方程中的平方根作四阶Taylor展开
+% \begin{equation*}
+% \frac{dP}{dz}=i\omega[1-\frac{1}{2}(\frac{vk}{\omega})^2-\frac{1}{8}(\frac{vk}{\omega})^4]P
+% \end{equation*}
+% \begin{enumerate}
+% \item
+%   试问，对于复频率$-i\omega=-i\omega_0+\epsilon$，这个方程会稳定吗？为什么？
+% \item
+%   根据这种方程来考虑因果性与反因果性时间域计算过程，如果稳定的话，试问哪一种
+%   计算过程是稳定的？
+% \end{enumerate}
+% \item 试考虑可能与频率$\omega$有关、同样也与水平x坐标有关的介质速度，假设该速度恰好
+% 可表示为的分解因子形式。试述如何得出一种稳定的45°波场外推方
+% 程？提示：试验下述解
+% \begin{equation*}
+% s=-\frac{i\omega}{v_2}
+% \end{equation*}
+% $X^2=(v_1\frac{\partial}{\partial x}(v_1\frac{\partial}{\partial x})^T$的正值本征值
+
+% \item 试问：《迆球物理数据处理》一书中所述Levinson递归算法与本节所述的规则有
+% 关吗？如有关，试述为何有关？提示：参阅Jones与Thron(1980)的论文。
+
+% \item 试证明定理3的逆定理，即，如因果性函数之相位曲线不环绕原点，则其倒数具有
+% 因果性。
+
+
+% \end{enumerate}

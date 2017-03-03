@@ -676,11 +676,70 @@ property)。定理5迫使$R$应具有因果性
 \frac{1}{Q}=\tan \pi \epsilon \approx\pi\epsilon
 \label{eq:ex4.6.40}
 \end{equation}
-Q值大约为10的脉冲，如图
+Q值大约为10的脉冲，如图\ref{fig:crft/Qq}所示。
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{crft/Qq}
-% \caption[Qq]{形式为}
-% \label{fig:crft/Qq}
-% \end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{crft/Qq}
+\caption[Qq]{形式为$e^{-(-i\omega)^{0.97}t_0}$的恒定Q值
+脉冲。频率轴上所表示的是256个点上的离散Fourier变换，零时间与
+零频率分别位于各该坐标轴左端。}
+\label{fig:crft/Qq}
+\end{figure}
+
+\subsection{习题}
+\label{sec:4.6.10}
+
+\begin{enumerate}
+\item 取$\epsilon <0$并将积分算子展为Z的负幂项，试解释符号差异的意义。
+\item 令$\alpha >0$为正实数丄例常数，C为反射率函数。不利用Muir的规则，试证明下式
+中的C'为反射率
+\begin{equation*}
+\frac{1-C'}{1+C'}=\alpha \frac{1-C}{1+C}
+\end{equation*}
+注意，你已经证明了Muir的第一条规则，以类似方式也可证明Muir的第三条规则，但代数
+运算非常繁琐。
+
+\item
+  同构(isomorphism)这个词的意思不但指任何阻抗及$R_1$、$R_2$、$R'$可映象为反射率
+  $C_1$、$C_2$、$C'$而且也指Muri的三条规则将映象为对反射率进行组合时所应遵循的三条规
+  则。试问：
+  a.这三条规则是什么？\\
+  b.虽然$C'=C_1C_2$原来并不属于三条规则之一，但它显然是成立的。试证明它就是由三
+条规则引申出的结果，或者断定它就是一条涉及可反向映象至阻抗域的独立规则，可构成第
+四条规则。
+
+\item 试证明离散因果性积分算子之对数
+\begin{equation*}
+log[(1+Z)/(1-Z)]
+\end{equation*}
+是单边离散Hilbert变换，指出由速度相同而Q值稍有差别的两种介质之间的分界面所反射
+的脉冲是Hilbert变换的一侧。
+
+\item 试考虑外推方程中的平方根作四阶Taylor展开
+\begin{equation*}
+\frac{dP}{dz}=i\omega[1-\frac{1}{2}(\frac{vk}{\omega})^2-\frac{1}{8}(\frac{vk}{\omega})^4]P
+\end{equation*}
+\begin{enumerate}
+\item
+  试问，对于复频率$-i\omega=-i\omega_0+\epsilon$，这个方程会稳定吗？为什么？
+\item
+  根据这种方程来考虑因果性与反因果性时间域计算过程，如果稳定的话，试问哪一种
+  计算过程是稳定的？
+\end{enumerate}
+\item 试考虑可能与频率$\omega$有关、同样也与水平x坐标有关的介质速度，假设该速度恰好
+可表示为的分解因子形式。试述如何得出一种稳定的45°波场外推方
+程？提示：试验下述解
+\begin{equation*}
+s=-\frac{i\omega}{v_2}
+\end{equation*}
+$X^2=(v_1\frac{\partial}{\partial x}(v_1\frac{\partial}{\partial x})^T$的正值本征值
+
+\item 试问：《迆球物理数据处理》一书中所述Levinson递归算法与本节所述的规则有
+关吗？如有关，试述为何有关？提示：参阅Jones与Thron(1980)的论文。
+
+\item 试证明定理3的逆定理，即，如因果性函数之相位曲线不环绕原点，则其倒数具有
+因果性。
+
+
+\end{enumerate}
