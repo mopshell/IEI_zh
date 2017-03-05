@@ -191,3 +191,75 @@ Nyquist频率附近或者位于倏逝波截止带以上。由于我们很少可�
 \includegraphics[width=0.65\textwidth]{crft/code3}
 \label{fig:crft/code3}
 \end{figure}
+
+本书内有22个图件是由这个程序作出的，不同图件所采用的不同输入参量列表如下：
+\begin{table}[!ht]
+\centering
+\ttfamily
+\small
+\begin{tabularx}{\textwidth}{|Y|Y|}
+\hline
+节号与图号 & 缺省参量 \\
+\hline
+1.3-6a & tfilt=0 \\
+\hline
+1.3-6b & \\
+\hline
+2.0-1a & \\
+\hline
+2.0-1b & $\hat{\omega}$ \\
+\hline
+4.0-1a & $\hat{\omega},v=2.0, xf=.5, xfilt=0$ \\
+\hline
+4.0-1b & $\hat{\omega},v=2.0, xf=.5 $ \\
+\hline
+4.1-4a & 15°\\
+\hline
+4.1-4b & $15^{\circ},\epsilon=1$\\
+\hline
+4.1-5a & $45^{\circ},tf=.2$\\
+\hline
+4.1-5b & $45^\circ, tf=.2, \epsilon=1$ \\
+\hline
+4.2-4 & $45^\circ, tf=.2, \hat{\omega}$\\
+\hline
+4.3-4a & $v=2.0,90^\circ$\\
+\hline
+4.3-4b & $v=2.0,15^{\circ},\hat{\omega},\hat{k_x},\hat{k_z}$\\
+\hline
+4.3-6a & $\hat{k_x},\hat{\omega},b^{-1}=1000000.$\\
+\hline
+4.3-6b & $\hat{k_x},\hat{\omega},b^{-1}=12.$\\
+\hline
+4.3-6c & $\hat{k_x},\hat{\omega},b^{-1}=6.726$\\
+\hline
+4.3-6d & $\hat{k_x},\hat{\omega},b^{-1}=6.$\\
+\hline
+4.3-6e & $\hat{k_x},\hat{\omega},b^{-1}=5.$\\
+\hline
+4.6-2a & \\
+\hline
+4.6-2b & $\hat{\omega}$ \\
+\hline
+4.7-1a & $\Delta z=.004,45^{\circ},tf=.3,\hat{\omega},\hat{k_x},\hat{k_z}$\\
+\hline
+4.7-1b & $\Delta z=.012,45^{\circ},tf=.3,\hat{\omega},\hat{k_x},\hat{k_z}$\\
+\hline
+\end{tabularx}
+\end{table} 
+
+据说使z网格加密就能改善精度，如果x与t均属于连续统(continuum
+)这种结果是不
+可能发生的，不过由于可使x与t离散化，偶然能消掉误差的可能性倒是存在的。为检查一下
+这种传说是否成立，我试着把$\Delta z$増大3倍（实际上，就是将沿旅行时间深度的增量増大
+3倍），结果如图\ref{fig:dspr/bigdz}所示。你对这图有何想法？
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{dspr/bigdz}
+\caption[bigdz]{$(x,z,t)$空间中的45°点绕射，左图为$\Delta z=v\Delta t$，右图为$\Delta z=3v\Delta t$}
+\label{fig:dspr/bigdz}
+\end{figure}
+
+这种分析看来就得到此结束了，由于Fourier分析是假设速度横向为恒定不变，分析受
+到了限制。为处理这种问题，我们现在就转向下面一节有关处理技术这最后一讲。
