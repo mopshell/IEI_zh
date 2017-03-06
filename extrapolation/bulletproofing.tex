@@ -20,45 +20,83 @@ Z
 下进行迆震资料偏移编制出“保险稳定”程序的能力。以下将以熟悉的45°外推方程为例使其
 具有保险的形式。结合前面一节的内容，本节提出了$(t,x)$域内稳定偏移的普遍性理论。
 
-% \subsection{横向导数}
-% \label{sec:4.7.1}
+\subsection{微分方程的稳定性}
+\label{sec:4.8.1}
 
-% 首先，$k_x$将变化于$\pm\frac{\pi}{\Delta}$的范围内。如果打算沿$x$轴作有限差分处理，这时我们将需要
-% 有
-% \begin{equation}
-% (\frac{\hat{k}\Delta x}{2})^2=\frac{\sin^2\frac{k\Delta x}{2}}{1-b4\sin^2\frac{k\Delta x}{2}}
-% \label{eq:ex4.3.7b}
-% \end{equation}
-% 所以，如x轴准备按有限差分处理，则以后有关$k_x$的项都应当用$\hat{k_x}$代替。进行有限差分时，
-% 引入了自由参量b，类似地，你也可以用一个接近于1的可调参量来标定整个表达式。还有，
-% $\Delta x$没必要受数据采集的限制而固定死，你总是能够在处理之前对数据进行内插的，有足够
-% 的横向速度变动就得强制有限差分方法采用经过内插的数据。
+设表示$\mathbf{q}^{*}$的Hermit复共轭。要使方程\ref{eq:ex4.8.1}为稳定的，能量$\mathbf{qq}^*$必须为常数或者在 沿深度外推期间是衰减的，即
+\begin{equation*}
+\frac{d}{dz}(\mathbf{qq}^*)\leq 0
+\end{equation*}
+或
+\begin{equation}
+\mathbf{q}^{*}\frac{d\mathbf{q}}{dz}+\frac{d\mathbf{q}^*}{dz}\mathbf{q}\leq 0
+\label{eq:ex4.8.3}
+\end{equation}
+将式\ref{eq:ex4.8.1}代入式\ref{eq:ex4.8.3}，得
+\begin{equation*}
+\mathbf{q^*Rq}+\mathbf{q^*R^*q}\geq 0
+\end{equation*}
+或
+\begin{equation}
+\mathbf{q^*(R+R^*)q}\geq 0
+\label{eq:ex4.8.4}
+\end{equation}
+式\ref{eq:ex4.8.4}表明，欲使微分方程稳定，$\mathbf{R +
+R*}$必须为半正定的(positive semidefinite)。
 
-% \subsection{粘滞性与因果性}
-% \label{sec:4.7.2}
 
+\subsection{差分方程的稳定性}
+\label{sec:4.8.2}
 
-% 频率将变化于士疋/Af的范围内，如果打算沿f轴作有限碧分处理，这时我们将需要Z变换变量
-% \begin{equation}
-% Z=e^{i\omega \Delta t}
-% \label{eq:ex4.6.2}
-% \end{equation}
-% 以及服从因果律的导数
-% \begin{equation}
-% -i\hat{\omega}=\frac{2}{\Delta t}\frac{1-\rho Z}{1+\rho Z} \quad \quad -1\leq \rho <1
-% \label{eq:ex4.6.29}
-% \end{equation}
-% 在处理之前，数据可能是采样不足或过采样的，所以$\Delta t$应该是一个可補参量。因杲性参量$\rho$
-% 应是小于1的数，比方说，$\rho =1-\epsilon$，此处$\epsilon>0$是一可调参量。即使你在频率域内进行偏移，
-% 你也许还是需要引入$\rho$，因为它可减小时间域内出现的折叠现象一这是粘滞性的一种类
-% 型。$\epsilon$应大致等于数据长度的倒数$1/N_t$，此处$N_t$，是时间轴上的采样点数（因为我曾以平方根
-% 増益$\gamma= 1/2$作过许多合成双肋线的图形，时间域折叠现象都比实际的要严重一些，所以我已
-% 经使程序中$\epsilon$的缺省范围大了四倍）。你如喜欢调节自由参量，那你可分别调节分母和分子
-% 的$\rho$值。往后，我对$\omega$与$\hat{\omega}$将加以区别，但是你如不关心因果性的引入，你就可令$\hat{\omega}$为
-% $\omega$。
+差分方程之稳定性可按相同的、但特别麻烦一点的方式来证明。首先观察一下下述恒等
+式
+\begin{equation}
+(\mathbf{a^*a-b^*b})=\frac{1}{2}[\mathbf{(a+b)^*(a-b)+(a-b)^*(a+b)}]
+\label{eq:ex4.8.5}
+\end{equation}
+令$\mathbf{a=q_{n+1},b=q_n}$，式\ref{eq:ex4.8.5}
+变为
+\begin{equation}
+(\mathbf{q_{n+1}^*q_{n+1}-q_n^*q_n})=\frac{1}{2}[
+\mathbf{(q_{n+1}+q_n)^*(q_{n+1}-q_n)+(q_{n+1}-q_n)^*
+(q_{n+1}+q_n)}
+]
+\label{eq:ex4.8.6}
+\end{equation}
+现在用方程\ref{eq:ex4.8.2}代替$\mathbf{(q_{n+1}-q_n)}$项
+\begin{equation}
+(\mathbf{q_{n+1}^*q_{n+1}-q_n^*q_n})=-\frac{\Delta z}{4}
+[\mathbf{(q_{n+1}+q_n)^*R(q_{n+1}+q_n)+(q_{n+1}+q_n)^*R^*
+(q_{n+1}+q_n)}]=
+-\frac{\Delta z}{4}[
+\mathbf{(q_{n+1}+q_n)^*(R+R^*)(q_{n+1}+q_n)}
+]
+\label{eq:ex4.8.7}
+\end{equation}
+这个方程证实了下列结论：如矩阵$\mathbf{R+R*}$为正定，则$\mathbf{q_{n+1}^*q_{n+1}}$小于$\mathbf{q_n^*q_n}$。
 
-% \subsection{Muir延迟递归}
-% \label{sec:4.7.3}
+\subsection{应用于45度波场外推}
+\label{sec:4.8.3}
+
+下行波场外推涉及的标量波动方程为
+\begin{equation}
+\frac{d\mathbf{q}}{dz}=ik_z\mathbf{q}=-\mathbf{Rq}
+\label{eq:ex4.8.8}
+\end{equation}
+式中，算子$\mathbf{R}$取通常的形式
+\begin{equation}
+\mathbf{R}=-ik_z=\frac{-i\omega}{v}\sqrt{1-\frac{v^2k_x^2}{\omega^2}}
+\label{eq:ex4.8.9}
+\end{equation}
+
+我们的计划是以通常的连分式展开来近似平方根，然后用x轴导数算子$\partial_x$代表$ik_x$，以求
+获得一个空间域方程。我们必须作这种重要的努力是起因于我们拒绝作出速度$v(x,z)$与x
+坐标无关这类逋常假设。由于$\partial_xvq$不同于$v\partial_xq$，空间表示式看来确实不是唯一的，因而我们
+可能会奇怪变量g究竟如何能同压力与位移等这些物理波动变量联系起来。既然式\ref{eq:ex4.8.9}是纯虚量，那就可以把二次式$\mathbf{q^*q}$这种深度轴方向的不变量解释为通过深度z处基准面的下行
+能量通量，我们的主要努力方向就是要在速度$v(x,z)$不等于常数时力图保证确实仍
+保持为深度不变量。至于确定能量通量变量q与该物理变量之间的关系这项任务，将留给读者
+自己去考虑。
+
 
 % $k_z$的平方根可以用你计算机内的平方根函数或采用Muir展开的办法计算出来。为使
 % Fourier变换域的计算体现出因果性，你必须利用某种复值平方根函数，这样作也会自动地
