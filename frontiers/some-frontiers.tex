@@ -1,0 +1,151 @@
+已经公布、但迄今尚未得到常规生产应用的一些成像概念均集中于本书这最后一章。本
+章第一部分是建立线性时差的数学概念以及如何使它与速度分析联系起来。数据可以聚焦，
+使得层速度可以直接读出。本章的后面部分是关于多次反射的讨论，线性时差在此处也有助
+于明确问题。你将会孴到有能力处理多次反射及横向速度变化的基本数学工具。本章有许多
+关于数据处理的建议，它们可不是那些生产过程的描述！
+
+\section{地震资料解释}
+\label{sec:5.0.1}
+
+我最初把本章看作是适合于兴趣主要在于设计新型处理的专家。后来我认识到了在论述
+似乎并不像所期望那样起作用的事情时，我们实际上首先要努力向现实作斗争，而不是为理
+论预言而斗争。这一章对于熟练的解释人员来说将是有趣的。
+
+石油勘探的核心问题是反射地震资料的解释。什么是地震解释？作为一位“按惯例办
+事的解释员”，你必须通晓理论与实践普遍一致的任何事情；作为-一位好的解释员，你必须
+知晓具有相似影响的交错变化现象之“噪音水平”。地震资料中的异常可能来源于地层本身
+的复杂性、来源于地震波在地层内的传播（深层的、近地面的或射线平面以外的原因），或
+者来温于记录系统和成像技术的不完善性。想在如此广泛的一种领域内做出清醒现实的判
+断，你必须是这样一位地震学家：既是地质学家、又是工程师，同时还是数学家。本章不会
+教你成为好的解释员，但是它将给你提供一次机会去评述若干关于地震理论与地震数据之关
+系的批判性思路。
+
+\subsection{倾斜}
+\label{sec:5.0.2}
+
+% 设表示$\mathbf{q}^{*}$的Hermit复共轭。要使方程\ref{eq:ex4.8.1}为稳定的，能量$\mathbf{qq}^*$必须为常数或者在 沿深度外推期间是衰减的，即
+% \begin{equation*}
+% \frac{d}{dz}(\mathbf{qq}^*)\leq 0
+% \end{equation*}
+% 或
+% \begin{equation}
+% \mathbf{q}^{*}\frac{d\mathbf{q}}{dz}+\frac{d\mathbf{q}^*}{dz}\mathbf{q}\leq 0
+% \label{eq:ex4.8.3}
+% \end{equation}
+% 将式\ref{eq:ex4.8.1}代入式\ref{eq:ex4.8.3}，得
+% \begin{equation*}
+% \mathbf{q^*Rq}+\mathbf{q^*R^*q}\geq 0
+% \end{equation*}
+% 或
+% \begin{equation}
+% \mathbf{q^*(R+R^*)q}\geq 0
+% \label{eq:ex4.8.4}
+% \end{equation}
+% 式\ref{eq:ex4.8.4}表明，欲使微分方程稳定，$\mathbf{R +
+% R*}$必须为半正定的(positive semidefinite)。
+
+
+% \subsection{差分方程的稳定性}
+% \label{sec:4.8.2}
+
+% 差分方程之稳定性可按相同的、但特别麻烦一点的方式来证明。首先观察一下下述恒等
+% 式
+% \begin{equation}
+% (\mathbf{a^*a-b^*b})=\frac{1}{2}[\mathbf{(a+b)^*(a-b)+(a-b)^*(a+b)}]
+% \label{eq:ex4.8.5}
+% \end{equation}
+% 令$\mathbf{a=q_{n+1},b=q_n}$，式\ref{eq:ex4.8.5}
+% 变为
+% \begin{equation}
+% (\mathbf{q_{n+1}^*q_{n+1}-q_n^*q_n})=\frac{1}{2}[
+% \mathbf{(q_{n+1}+q_n)^*(q_{n+1}-q_n)+(q_{n+1}-q_n)^*
+% (q_{n+1}+q_n)}
+% ]
+% \label{eq:ex4.8.6}
+% \end{equation}
+% 现在用方程\ref{eq:ex4.8.2}代替$\mathbf{(q_{n+1}-q_n)}$项
+% \begin{equation}
+% (\mathbf{q_{n+1}^*q_{n+1}-q_n^*q_n})=-\frac{\Delta z}{4}
+% [\mathbf{(q_{n+1}+q_n)^*R(q_{n+1}+q_n)+(q_{n+1}+q_n)^*R^*
+% (q_{n+1}+q_n)}]=
+% -\frac{\Delta z}{4}[
+% \mathbf{(q_{n+1}+q_n)^*(R+R^*)(q_{n+1}+q_n)}
+% ]
+% \label{eq:ex4.8.7}
+% \end{equation}
+% 这个方程证实了下列结论：如矩阵$\mathbf{R+R*}$为正定，则$\mathbf{q_{n+1}^*q_{n+1}}$小于$\mathbf{q_n^*q_n}$。
+
+% \subsection{应用于45度波场外推}
+% \label{sec:4.8.3}
+
+% 下行波场外推涉及的标量波动方程为
+% \begin{equation}
+% \frac{d\mathbf{q}}{dz}=ik_z\mathbf{q}=-\mathbf{Rq}
+% \label{eq:ex4.8.8}
+% \end{equation}
+% 式中，算子$\mathbf{R}$取通常的形式
+% \begin{equation}
+% \mathbf{R}=-ik_z=\frac{-i\omega}{v}\sqrt{1-\frac{v^2k_x^2}{\omega^2}}
+% \label{eq:ex4.8.9}
+% \end{equation}
+
+% 我们的计划是以通常的连分式展开来近似平方根，然后用x轴导数算子$\partial_x$代表$ik_x$，以求
+% 获得一个空间域方程。我们必须作这种重要的努力是起因于我们拒绝作出速度$v(x,z)$与x
+% 坐标无关这类逋常假设。由于$\partial_xvq$不同于$v\partial_xq$，空间表示式看来确实不是唯一的，因而我们
+% 可能会奇怪变量g究竟如何能同压力与位移等这些物理波动变量联系起来。既然式\ref{eq:ex4.8.9}是纯虚量，那就可以把二次式$\mathbf{q^*q}$这种深度轴方向的不变量解释为通过深度z处基准面的下行
+% 能量通量，我们的主要努力方向就是要在速度$v(x,z)$不等于常数时力图保证确实仍
+% 保持为深度不变量。至于确定能量通量变量q与该物理变量之间的关系这项任务，将留给读者
+% 自己去考虑。
+
+% 首先必须在空间域内表示$v^2k_x^2$。把x轴方向的导数算子$\partial/\partial x=\partial_x$看作一个大型双对角线
+% 矩阵，沿对角线元素为$(1,-1)/\Delta x$，并且把速度$\mathbf{V}(x)$也看作对角线矩阵时，像$(\mathbf{V}\partial _x)^T(\mathbf{V}\partial _x)$或者$(\mathbf{V}\partial _x)(\mathbf{V}\partial _x)^T$这些表达式，对我们是颇有吸引力的，因为它们都是对称的半正定
+% 矩阵。这类数值表示式的最简单形式是三对角线矩阵，可将它缩写为
+% \begin{equation}
+% T=\{\begin{matrix}
+% (\mathbf{V}\partial _x)(\mathbf{V}\partial _x)^T \\
+% (\mathbf{V}\partial _x)^T(\mathbf{V}\partial _x)
+% \end{matrix} }
+% \label{eq:ex4.8.10}
+% \end{equation}
+% 到以后就可以知道，根据精确度或者某些其他考虑可以决定究竟应在式\ref{eq:ex4.8.10}中选取何
+% 者，甚至还可以采用其他一些表达式，只要它们是实数对称的和正定的。
+
+% 在前一节的恒定速度和作45°外推方程展开式的情形下，式\ref{eq:ex4.8.9}曾表示为
+% \begin{equation}
+% \mathbf{R}=\frac{1}{v}(\frac{v^2k_x^2}{-i2\omega+\frac{v^2k_x^2}{-i2\omega}})
+% \label{eq:ex4.8.11}
+% \end{equation}
+% $\mathbf{R}$这种标量恒具有正值实部，因为$-i\omega$恒被表示成阻抗形式，因而整个表达式满足阻抗函数组
+% 合时的Muir规则。进一步涉及到x域时要注意$(ik_x)^2=-\partial_{xx}$
+% 和$(\partial_x)^T=-\partial_x$，因此正值标量$v^2k_x^2$
+% 相应于式\ref{eq:ex4.8.10}的正本征值。
+
+% 保险的平方根算子$\mathbf{R}$在空间域的表达式现在将给出为
+% \begin{subequations}
+% \begin{equation}
+% \mathbf{M}=\frac{\mathbf{T}}{-i2\omega\mathbf{I}+\frac{\mathbf{T}}{-i2\omega}}
+% \label{eq:ex4.8.12a}
+% \end{equation}
+% \begin{equation}
+% \mathbf{R}=\mathbf{V^{-1/2}MV^{-1/2}}
+% \label{eq:ex4.8.12b}
+% \end{equation}
+% \label{eq:ex4.8.12}
+% \end{subequations}
+% 由于矩阵$\mathbf{T}$可与单位矩阵$\mathbf{I}$交换，在式\ref{eq:ex4.8.12}
+% 中采用除法符号可证明是正当的（这种工作
+% 有一个危险，就是$\mathbf{T}$与对角线矩阵$\mathbf{V}$不能交换）。根据一项基本矩阵定理，即实数对称矩阵
+% 之多项式的本征值等于本征值之多项式，可以证明矩阵M具有R所要求的性质，换句话说，
+% 用本征值之一代替式\ref{eq:ex4.8.12}中的$\mathbf{T}$，可产生其实部为正值的复矩阵$\mathbf{M}$，因此$
+% \mathbf{M^*+M}$如所要求为正值，所需要证明的是下列矩阵应为正定：
+% \begin{equation}
+% \mathbf{R+R^*}=\mathbf{V^{-1/2}(M+M^*)V^{-1/2}}
+% \label{eq:ex4.8.13}
+% \end{equation}
+% 如对任意m，标量$m*\mathbf{A}m$为正值，则矩阵$\mathbf{A}$必为正定：对角线矩阵$\mathbf{V^{-1/2}}$
+% 肯定可并入m，而且m
+% 仍然是任意的，因此上述证明得证。
+
+% 在进行程序编制时，将$\mathbf{V^{-1/2}}$置于矩阵$\mathbf{M}$每一侧是没必要的，事实上，你可将$\mathbf{V^{-1}}$置于
+% 任一侧。一般而言，如果$\mathbf{R^*U+UR}$是正定的，则某些其他二次式形式如$q*\mathbf{U}q$等就会衰减， 式中，$\mathbf{U}$是严格正定的。
+
