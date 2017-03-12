@@ -213,3 +213,93 @@ Clayton与MeMechan则是把一个信息平面提
 \subsection{倾斜叠加与Fourier变换}
 \label{sec:5.2.6}
 
+设$u(x,t)$为波场。在数学上，波场的倾斜叠加$\bar{u}(p,\tau)$被定义为：
+\begin{equation}
+\bar{u}(p,\tau)=\int u(x,\tau+px)dx
+\label{eq:ex5.2.6}
+\end{equation}
+式\ref{eq:ex5.2.6}中，按x进行的积分是在$\tau$值恒定时完成的，积分路程就是$(x,t)$平面内的某条
+倾斜直线。
+
+在Fourier空间内很容易表示倾斜叠加。波场$u(x,
+t)$的二维Fourier变换之定义为：
+\begin{equation}
+U(k,\omega)=\\int e^{i\omega t-ikx}u(x,t)dxdt
+\label{eq:ex5.2.7}
+\end{equation}
+回想一下Fourier空间内的Snell参量定义$p=k/\omega$，利用它从式\ref{eq:ex5.2.7}
+的二维Fourier变换中消去k
+\begin{equation}
+U(\omega p,\omega)=\\int e^{i\omega(t-px)}u(x,t)dxdt
+\label{eq:ex5.2.8}
+\end{equation}
+将积分变量由t改变为$\tau=t-px$
+\begin{equation}
+U(\omega p,\omega)=\int e^{i\omega\tau[\int u(x,\tau+px)dx]}d\tau
+\label{eq:ex5.2.9}
+\end{equation}
+把式\ref{eq:ex5.2.6}定义代入式\ref{eq:ex5.2.9}，得
+\begin{equation}
+U(\omega p,\omega)=\int e^{i\omega\tau} \bar{u}(p,\tau) d\tau
+\label{eq:ex5.2.10}
+\end{equation}
+把$U(\omega p,\omega)$看作是$\omega$的一维函数，该$\omega$是从$(k,\omega)$平面沿直线$k=\omega p$
+提取的。
+
+式\ref{eq:ex5.2.10}的Fourier逆变换为
+\begin{equation}
+\bar{u}(p,\tau)=\int e^{-i\omega \tau}U(\omega p,\omega)d\omega
+\label{eq:ex5.2.11}
+\end{equation}
+
+式\ref{eq:ex5.2.11}的结果阐明可以用Fourier域运算来形成倾斜叠加。首先，你把$u(x,t)$变换为
+$U(k,\omega)$;然后，从$U(k,\omega)$提取出$U(\omega p,\omega)$;最后，从$\omega$域反变换至$\tau$域并
+对所有感兴趣的p值重复上述过程。
+
+从$U(k,\omega)$得出$U(\omega p,\omega)$看似很容易，但这其实是很难作的部分。直线$k=\omega p$以不
+会恰好通过所有的网格点（除非$p=\Delta t/\Delta x$），所以必须作某种内插。正如我们由Stolt偏移
+的计算假象所已经知道的，不应该按因果性条佇要求来作频率域内插。有关内插的意见可参
+阅\ref{sec:4.5}节。
+
+实际应用时，既可采用式\ref{eq:ex5.2.6}也可采用式\ref{eq:ex5.2.11}。应用式\ref{eq:ex5.2.6}时，你能
+对截断效应和假频现象进行较好的控制；在处理大型数据组资料的情形下，则采用式\ref{eq:ex5.2.11}就能使计算非常快速。
+
+\subsection{逆倾斜叠加}
+\label{sec:5.2.7}
+
+医学成像中的Tomography
+（层析成像分析）建立在与逆倾斜叠加是相同的数学基础
+上。筒单地陈述，二维Tomography或逆倾斜叠加就是在已知某个函数的线积分的条件下重
+建该函数。遵照二维Fourier积分的定义就能得出逆倾斜叠加的公式为
+\begin{equation}
+u(x,t)=\int e^{-i\omega t[\int e^{ikx}U(k,\omega)dk]d\omega}
+\label{eq:ex5.2.12}
+\end{equation}
+将$k=\omega p$和$dk=\omega dp$代入式\ref{eq:ex5.2.12}。注意，当$\omega$为负时，对dp的积分要从正积到负而不
+是相反。为保持从负积至正之常规习惯意义上的积分方法，现在引入绝对值$\mid\omega\mid$。（更一般
+性地说，改变体积分的变量要引入变换的Jacobi行列式）。因而
+\begin{equation}
+u(x,t)=\int e^{-i\omega t}[\int e^{i\omega px}U(\omega p,\omega)\mid\omega\mid dp]d\omega
+\label{eq:ex5.2.13}
+\end{equation}
+\begin{equation}
+u(x,t)=\int\{\int e^{-i\omega t}[U(\omega p,\omega) e^{i\omega px}\mid\omega\mid ]d\omega\}dp
+\label{eq:ex5.2.14}
+\end{equation}
+注意到在式\ref{eq:ex5.2.14}的花括号$\{\}$内包含着的是三个频率函数之乘积的Fourier逆变换，频
+率$\omega$域内三个函数之乘积在时间域内就是某种褶积。这三个函数中，第一个是$U(\omega p,\omega)$，
+按式\ref{eq:ex5.2.11}的定义，它就是倾斜叠加的Fourier变换；第二个是延迟算子那就是
+位于时刻的脉冲时间函数；第三个是一种$\mid \omega \mid$滤波器，该$\mid \omega \mid$滤波称作rho滤波，由于
+rho滤波与p值无关，所以我们能把它从对p的积分中分离出来。设以符号*表示褶积，引入
+延迟px作为自变量移位，我们最终就得到一直为我们所追求的逆倾斜叠加方程：
+\begin{equation}
+u(x,t)=rho(t)*\int \bar{u}(p,t-px)dp
+\label{eq:ex5.2.15}
+\end{equation}
+稀奇的是，倾斜叠加运算\ref{eq:ex5.2.6}的逆过程竟基本上是改变符号进行另一种倾斜叠加的运算\ref{eq:ex5.2.15}。
+
+\subsection{平面波叠合}
+\label{sec:5.2.8}
+
+式\ref{eq:ex5.2.15}可以简单解释为平面波叠合。为将这点说清楚，我们首先依靠下列一种定
+义来处置rho滤波
