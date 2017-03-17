@@ -266,154 +266,88 @@ $(x-x_0)/z=-\tan\theta$，不同的$x_0$值代表不同的射线。
 从数学上说，具有三个未知数的一个方程定义了一个平面，所以，令式\ref{eq:ex5.3.4}中任
 何一个方程的左端为常数，就得出在空间内定义了一个平面的方程。为进行实际检验，
 不妨考虑一下两个平面相交的情形。使波阵面停留不动得要求$dt'=0$，利用方程\ref{eq:ex5.3.4c}，得出
+\begin{equation}
+dt'=0=\frac{\cos\theta}{v}dz-\frac{\sin\theta}{v}dx+dt
+\label{eq:ex5.3.5}
+\end{equation}
+将该恒定波阵面方程$dt'=0$同恒定深度方程$dz'=dz=0$结合起来，得出了熟悉的关系式
+\begin{equation}
+\frac{dt}{dx}=p
+\label{eq:ex5.3.6}
+\end{equation}
 
-% 在Fourier空间内很容易表示倾斜叠加。波场$u(x,
-% t)$的二维Fourier变换之定义为：
-% \begin{equation}
-% U(k,\omega)=\\int e^{i\omega t-ikx}u(x,t)dxdt
-% \label{eq:ex5.2.7}
-% \end{equation}
-% 回想一下Fourier空间内的Snell参量定义$p=k/\omega$，利用它从式\ref{eq:ex5.2.7}
-% 的二维Fourier变换中消去k
-% \begin{equation}
-% U(\omega p,\omega)=\\int e^{i\omega(t-px)}u(x,t)dxdt
-% \label{eq:ex5.2.8}
-% \end{equation}
-% 将积分变量由t改变为$\tau=t-px$
-% \begin{equation}
-% U(\omega p,\omega)=\int e^{i\omega\tau[\int u(x,\tau+px)dx]}d\tau
-% \label{eq:ex5.2.9}
-% \end{equation}
-% 把式\ref{eq:ex5.2.6}定义代入式\ref{eq:ex5.2.9}，得
-% \begin{equation}
-% U(\omega p,\omega)=\int e^{i\omega\tau} \bar{u}(p,\tau) d\tau
-% \label{eq:ex5.2.10}
-% \end{equation}
-% 把$U(\omega p,\omega)$看作是$\omega$的一维函数，该$\omega$是从$(k,\omega)$平面沿直线$k=\omega p$
-% 提取的。
+在坐标平面是非正交平面时，就说该坐标系统是仿射坐标系统(affine coordinate
+system)。利用像\ref{eq:ex5.3.4}那样的仿射坐标，我们无疑易于控制计算，但是我们往往确实也得
+遇上给我们自己造成混乱的问题，例如，当我们显示海上野外资料的活动画面时，我们看到
+的是一系列共炮点道集$(h,t)$平面；相继的平面就是相继的炮点，所以当我们打算在正交
+坐标$(y,h)$或$(s,g)$中考虑问题时\footnote{
+y为中心点坐标，h为半炮检鉅，g为检波点坐标，s为炮点坐标。 ---译者
+}，数据是显示在$(s,h)$平面中的。采用仿射坐
+标时，我发现最容易忘掉坐标轴而考虑用垂直的平面来代替。炮点坐标轴s可以被当作是一
+个共检波点平面来考虑，比如说，当作是$cg$。所以，我把海上勘探数据活动电影当作是存在于
+$(cs,ch,ct)$空间中。在这个活动电影中，另一个平面，实际上是一个平面族、即共中心
+点平面cy，随同数据的“分层结构”（见\ref{sec:3.0}节）而一起扫描通过屏幕。
 
-% 式\ref{eq:ex5.2.10}的Fourier逆变换为
-% \begin{equation}
-% \bar{u}(p,\tau)=\int e^{-i\omega \tau}U(\omega p,\omega)d\omega
-% \label{eq:ex5.2.11}
-% \end{equation}
+要在速度随深度而变化时定义Snell坐标，仅需要仔细地解释方程\ref{eq:ex5.3.4}。首先，所有
+的角度必须利用Snell置换$Sin\theta=pv(z)$通过p来表示，然后z必须赴处用对z的积分来代替。
 
-% 式\ref{eq:ex5.2.11}的结果阐明可以用Fourier域运算来形成倾斜叠加。首先，你把$u(x,t)$变换为
-% $U(k,\omega)$;然后，从$U(k,\omega)$提取出$U(\omega p,\omega)$;最后，从$\omega$域反变换至$\tau$域并
-% 对所有感兴趣的p值重复上述过程。
 
-% 从$U(k,\omega)$得出$U(\omega p,\omega)$看似很容易，但这其实是很难作的部分。直线$k=\omega p$以不
-% 会恰好通过所有的网格点（除非$p=\Delta t/\Delta x$），所以必须作某种内插。正如我们由Stolt偏移
-% 的计算假象所已经知道的，不应该按因果性条佇要求来作频率域内插。有关内插的意见可参
-% 阅\ref{sec:4.5}节。
+\subsection{Fourier空间中的Snell波}
+\label{sec:5.3.7}
 
-% 实际应用时，既可采用式\ref{eq:ex5.2.6}也可采用式\ref{eq:ex5.2.11}。应用式\ref{eq:ex5.2.6}时，你能
-% 对截断效应和假频现象进行较好的控制；在处理大型数据组资料的情形下，则采用式\ref{eq:ex5.2.11}就能使计算非常快速。
+根据偏微分方程连锁法(chain rule)，应有
+\begin{equation}
+\begin{pmatrix}
+\partial_t \\
+\partial_x \\
+\partial_z 
+\end{pmatrix}
+=\begin{pmatrix}
+t_t' & x_t' & z_t'\\
+t_x' & x_x' & z_x'\\
+t_z' & x_z' & z_z'
+\end{pmatrix}
+=
+\begin{pmatrix}
+\partial_{t'} \\
+\partial_{x'} \\
+\partial_{z'} 
+\end{pmatrix}
+\label{eq:ex5.3.7}
+\end{equation}
 
-% \subsection{逆倾斜叠加}
-% \label{sec:5.2.7}
+在Fourier空间内，上述方程中涉及时间t与水平坐标x的部分可解释为
+\begin{subequations}
+\begin{equation}
+-i\omega=-i\omega'
+\label{eq:ex5.3.8a}
+\end{equation}
+\begin{equation}
+ik_x=+p\omega'+ik_x'
+\label{eq:ex5.3.8b}
+\end{equation}
+\label{eq:ex5.3.8}
+\end{subequations}
+在线性时差校正(对x'保持恒定)之后变得平缓的同相轴能量具有特殊意义，对于这类能量应
+有$\partial/\partial x'=ik_x'=0$，于是将式\ref{eq:ex5.3.8a}与
+\ref{eq:ex5.3.8b}结合起来可得出熟悉的关系方程
+\begin{equation}
+p=\frac{k}{\omega}
+\label{eq:ex5.3.9}
+\end{equation}
 
-% 医学成像中的Tomography
-% （层析成像分析）建立在与逆倾斜叠加是相同的数学基础
-% 上。筒单地陈述，二维Tomography或逆倾斜叠加就是在已知某个函数的线积分的条件下重
-% 建该函数。遵照二维Fourier积分的定义就能得出逆倾斜叠加的公式为
-% \begin{equation}
-% u(x,t)=\int e^{-i\omega t[\int e^{ikx}U(k,\omega)dk]d\omega}
-% \label{eq:ex5.2.12}
-% \end{equation}
-% 将$k=\omega p$和$dk=\omega dp$代入式\ref{eq:ex5.2.12}。注意，当$\omega$为负时，对dp的积分要从正积到负而不
-% 是相反。为保持从负积至正之常规习惯意义上的积分方法，现在引入绝对值$\mid\omega\mid$。（更一般
-% 性地说，改变体积分的变量要引入变换的Jacobi行列式）。因而
-% \begin{equation}
-% u(x,t)=\int e^{-i\omega t}[\int e^{i\omega px}U(\omega p,\omega)\mid\omega\mid dp]d\omega
-% \label{eq:ex5.2.13}
-% \end{equation}
-% \begin{equation}
-% u(x,t)=\int\{\int e^{-i\omega t}[U(\omega p,\omega) e^{i\omega px}\mid\omega\mid ]d\omega\}dp
-% \label{eq:ex5.2.14}
-% \end{equation}
-% 注意到在式\ref{eq:ex5.2.14}的花括号$\{\}$内包含着的是三个频率函数之乘积的Fourier逆变换，频
-% 率$\omega$域内三个函数之乘积在时间域内就是某种褶积。这三个函数中，第一个是$U(\omega p,\omega)$，
-% 按式\ref{eq:ex5.2.11}的定义，它就是倾斜叠加的Fourier变换；第二个是延迟算子那就是
-% 位于时刻的脉冲时间函数；第三个是一种$\mid \omega \mid$滤波器，该$\mid \omega \mid$滤波称作rho滤波，由于
-% rho滤波与p值无关，所以我们能把它从对p的积分中分离出来。设以符号*表示褶积，引入
-% 延迟px作为自变量移位，我们最终就得到一直为我们所追求的逆倾斜叠加方程：
-% \begin{equation}
-% u(x,t)=rho(t)*\int \bar{u}(p,t-px)dp
-% \label{eq:ex5.2.15}
-% \end{equation}
-% 稀奇的是，倾斜叠加运算\ref{eq:ex5.2.6}的逆过程竟基本上是改变符号进行另一种倾斜叠加的运算\ref{eq:ex5.2.15}。
+\subsection{习题}
+\label{sec:5.3.8}
+\begin{enumerate}
+\item 试解释图\ref{fig:slnt/cspss}中的s坐标轴应如何选取符号。
+\item 方程\ref{eq:ex5.3.4}属于上行Snell波的情形，试问：适用于下行Sneir波的将是何种坐
+标系统。
+\item 试在坐标系统\ref{eq:ex5.3.4}内表示标量波动方程。忽略其一阶导数项。
+\item 试按照Fourier变量$(\omega ',k_z',k_x')$来表7K标量波动方程的波散关系。
+\end{enumerate}
 
-% \subsection{平面波叠合}
-% \label{sec:5.2.8}
 
-% 式\ref{eq:ex5.2.15}可以简单解释为平面波叠合。为将这点说清楚，我们首先依靠下列一种定
-% 义来处置rho滤波
-% \begin{equation}
-% \tilde{u}(p,\tau)=rho(\tau)*\bar{u}(p,\tau)
-% \label{eq:ex5.2.16}
-% \end{equation}
-% 将会看出式\ref{eq:ex5.2.16}不仅仅只是一种定义式，我们还认识到可以把$\tilde{u}(p,\tau)$
-% 解释为是平面波谱。把定义式\ref{eq:ex5.2.16}代入式\ref{eq:ex5.2.15}与式\ref{eq:ex5.2.6}二者中去，得出另一对变换：
-% \begin{equation}
-% u(x,t)=\int \tilde{u}(p,t-px)dp
-% \label{eq:ex5.2.17}
-% \end{equation}
-% \begin{equation}
-% \tilde{u}(p,\tau)=rho(\tau)*\int u(x,\tau+px)dx
-% \label{eq:ex5.2.18}
-% \end{equation}
 
-% 为证实$\tilde{u}(p,\tau)$能够被解释为平面波谱，我们令$\tilde{u}(p,\tau)$为脉冲函数$\delta(p-p_0)
-% \delta(\tau-\tau_0$并代入式\ref{eq:ex5.2.17}，正如所料，所得结果$u(x,t)=\delta(t-p_0x-\tau_0)$正是一
-% 个脉冲平面波。
-
-% \subsection{反射系数---球面波与平面皮情形的对比}
-% \label{sec:5.2.9}
-
-% 你在野外剖面上看到的反射波振幅是受许多事情影响的。假设对波的球面发散、通过各
-% 层时的透过系数、层内多次反射等等的影晌均可作校正，留下来的就剩球面波反射系数了。
-% 球面波反射强度同《地球物理数据处理基础》一书中所计算出的或用Zeoppritz(
-% 1919)方
-% 程计算出的平面波反射系数并不是相同的一回事。反射系数强度的理论分析总是以Fourier
-% 分析为基础。方程\ref{eq:ex5.2.17}与\ref{eq:ex5.2.18}提供了平面波反射系数与柱面波反射系数之间
-% 的联系，至于如何再由柱面波情形通向球面波情形，请看\ref{sec:3.5}节中关于切除与加权那一小节
-% 的讨论\footnote{
-% 这一节的中心意思是说：采用Fourier分析方法进行反射系数分析，只适用于一维平面波情形；利用式\ref{eq:ex5.2.17}
-% 与式\ref{eq:ex5.2.18}这一对正、反倾斜叠加变换处理，就可以进行二维柱面波情形下的反射系数分析；在此基础之上，采用
-% \ref{sec:3.5}节所述按炮检距进行加权的办法，则可进一步作三维球面狡情形下的反射系数分析。---译者
-% }。
-
-% \subsection{rho滤波}
-% \label{sec:5.2.10}
-
-% 在实际工作中，往往忽略rho滤波，因为可以把它合并到总的数据记录与处理过程中其余
-% 的滤波效果中去。然而。rho滤波不是微不足道的，倾斜叠加中的积分运算会增强低频成分，
-% 而rho滤波则把它们座制到使之保持适当水平。现在让我们对这种滤波作一番检查。滤
-% 波的谱同时间导数的谱是相同的，但是它们的时间函数却非常不同。时间导数的有限差分
-% 表现形式很短，时间延续长度仅为$\Delta t$;因为绝对值函数有尖锐变化，rho滤波却具有很长的
-% 时间延续。Hilbert积分核$-1/t$的Fourier变换是$isgn(\omega)$，要注意，$\mid
-% \omega\mid = (-i\omega)\times i sgn(\omega)$，在时间域内这个关系式意味着应有
-% $\frac{d}{dt}(-\frac{1}{t})=\frac{1}{t^2}$，因此$rho(t)=\frac{1}{t^2}$。
-
-% 还有一种不同的观点是：应将$rho$滤波划分为两部分，一半参与正向倾斜叠加，另一半
-% 则参与反向倾斜叠加，这时进行倾斜叠加将不会使数据的功率谱引起变化。一种有趣的划分
-% $\mid \omega\mid$的方式是令$\mid\omega\mid=\sqrt{-i\omega}\sqrt{i\omega}$，在
-% \ref{sec:4.6}节中已指出过$\sqrt{-i\omega}$是相应于因果性时间函
-% 数，而是相应于反因果性时间函数。在Phinney等人的论文(Phinney et
-% al.,1981)中可找到关于倾斜叠加的更多细节。
-
-% 实际上，倾斜叠加并不像二维Fourier变换那样地完全可逆，所以往往要采用各种的递
-% 归和最优化技术。
-
-% \subsection{习 题}
-% \label{sec:5.2.11}
-
-% \begin{enumerate}
-% \item 设$v(z)$=常数，试证明Fresnel带的宽度之增大与$\sqrt{t}$成正比。
-
-% \item 已知$v(z)$，试导出作为t之函数的Fresnel带的宽度。
-% \end{enumerate}
 
 
 
