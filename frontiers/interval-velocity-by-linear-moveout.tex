@@ -206,281 +206,246 @@ t'=t-p(g-s)+\tau
 t'(t,g,s,z)=t-p(g-s)+2z\frac{\cos\theta}{v}
 \label{eq:5.4.17}
 \end{equation}
+图\ref{fig:slnt/cmplmo}就是这些概念的几何表示。
 
-% 海水层底部散射往往很强，使得很难采用常规处理方法压制它。在\ref{sec:3.2}节中，我们已了
-% 解其原因在于点溫散射意味着有双曲线型波至，它具有陡倾角，其到达时间一般比水层底部
-% 反射时间要晚，因而会误认为它们具有沉积地层的叠加速度而不是水层速度。这时所需要的
-% 是作两种倾角滤波，一种是抑制以非垂直角度离开各炮点的波，另一种则是抑制以非垂直角
-% 度到达各检波点的波。现今的野外组合其滤波作用系以空间频率$k_x$为基础，如记录设备采用倾
-% 角$(k/\omega)$的滤波而不是采用空间频率的滤波，资料中将会留有更多高频能量。\ref{sec:2.5}节中所
-% 述具有时间因果性的递归倾角滤波在这里可能会起很好的作用。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{slnt/cmplmo}
+\caption[cmplmo]{共中心点道集与LMO时间坐标框架几何形态，对于描迷类似于一种参考Snell
+的各种波场，这是一种很自然的坐标系统
+}
+\label{fig:slnt/cmplmo}
+\end{figure}
 
+由图\ref{fig:slnt/cmplmo}所示几何关系将得出结论：观测某个特定值$(h',t')$时的反射，直接就可确定
+速度。反射面深度之方程可写出为
+\begin{equation}
+\text{反射面深度}=\frac{h'}{\tan\theta}=v(\frac{t'}{2}+ph')\cos\theta
+\label{eq:ex5.4.18}
+\end{equation}
 
-% \subsection{Snell波的合成}
-% \label{sec:5.3.3}
+利用Snell定律消去其中的角度，然后解出速度，得
+\begin{equation}
+v^2=\frac{1}{p}\frac{1}{p+\frac{t'}{2h'}}
+\label{eq:ex5.4.19}
+\end{equation}
+此式同式\ref{eq:ex5.4.12}完全一致。
 
-% 设我们用野外数据人工合成了一个下行的Snell波，然后设想一下上行波将会显得如何，
-% 以及它将如何把有关地下界面的信息带给我们。
-
-% 进行倾斜叠加要取测线上的数据$P(s,g,t)$，它是炮点位置s、检波器位置g和旅行时
-% 间t的一个函数。然后，要在炮点遍及的范围内求和，从而合成作出犹如应当是由下行Snell波
-% 发生了反射才能被记录到的上行波$U(g,t)$。即使可能存在有速度横向变化和多次反射，
-% 情形仍应如此，不受影响。
-
-% 因为涉及到三种不同类型的时间，求和过程有点混乱：
-% t=点震源野外记录内的时间。\\
-% $t'=t-p(g-s)$=解释时间。仅在$t'=0$之后才看得见最浅的反射面。\\
-% $t_{pseudo}$=具有移动震源之Snell假想排列记录内的时间。\\
-
-% 在水平成层地层情形下，假想排列记录内的时间$t_{pseudo}$具有特定的特征：你将检波点坐标
-% 移出越远，回声反射就会到达越晚。根据下列关系可从野外排列记录的时间t直接变换为解释时间t'：
-% \begin{equation}
-% t'=t_{pseudo}-px=t-p(g-s)
-% \label{eq:ex5.3.1}
-% \end{equation}
-% 图\ref{fig:slnt/snellwave}示意绘出了下行Snell波的情形。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{slnt/snellwave}
-% \caption[snellwave]{Snell波的波阵面由两个地层反射，携带信息
-% 上行返回至检波器$g_1$
-% }
-% \label{fig:slnt/snellwave}
-% \end{figure}
-
-% 图\ref{fig:slnt/cspss}所示是一种假设的共检
-% 波点道集，将该道集求和可模拟出图
-% \ref{fig:slnt/snellwave}中所见到的位于$g_1$上之Snell波。在图\ref{fig:slnt/snellwave}
-% 中的由C点至B点的横向偏离距离与图\ref{fig:slnt/cspss}中相应的距离（图\ref{fig:slnt/cspss}中的两
-% 个位置上）是完全相等的。对所有的检波点
-% 重复进行上述沿炮点坐标的求和过程，即可由下行Snell波作出合成上行波。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{slnt/cspss}
-% \caption[cspss]{左图是两个平反射界面情形下的位于
-% 检波点$g_1$上的共检波点道集。中图表示，为准备用遍及炮点
-% 坐标s进行求和而产生合成Snell波，数据已根据线性时差校正作
-% 了时移。右图所示是检波点$g_1$上所记录到的Snell波记录道。
-% Snell波的地震剖面由许多像$g_1$的记录道并列组成。
-% }
-% \label{fig:slnt/cspss}
-% \end{figure}
-
-% 因为仅在$t'=0$之后才看见找层反射面，而且水平地层的回声反射不同于
-% 假想的Snell波，其到达并不具有水平方向
-% 时差，所以可将变量$t'$称作是解释坐标。在水平地层情形下，对横向位置进行检测
-% 得依靠反射系数的横向变化。在图\ref{fig:slnt/snellwave}
-% 中，关于B点的反射强度之信息是在右侧
-% 的$g_1$点上记录到的，不是像常规叠加那样在B点的正上方之处才能见到它。为了得到完美解
-% 释结果，因而得额外要求把所接收数据移动到一个适当的横向位置上去。
-
-% 图\ref{fig:slnt/interpcoord}所示是与图\ref{fig:slnt/snellwave}和\ref{fig:slnt/cspss}相同之两个平界面，但在A、B和C各点上还有异常的反射系数，A点位于B点正上方，
-% 由B点所反射的波其路程直接通
-% 过C点，再从C点到达检波点$g_1$。 
-% 相继各个画面所示均为与这三个
-% 点有关的绕射双曲线。注意，从
-% 两个平界面发生反射的假想
-% Snell波其时差变化率均为办由 
-% 散射点B与C形成的双曲线
-% 与各该Snell波分别在a、b与c各 
-% 点上相切；注意b与c位于仍点正
-% 下方的情形，是因为它们全都沿 
-% Snell参量为p的一个射线路程排
-% 列成行而形成的。由于不论入射 
-% 波场情形如何，最早到达的波至
-% 必然应位于散射点之正上方，所 
-% 以右上图中的A、B和C各点均应
-% 位于各该双曲线的顶部。转换为 
-% 左下图中的解释坐标t'时，能得
-% 到的主要好处是来自水平地层的 
-% 波至都变成水平的了。但是要注
-% 意，各该双曲面业已变得偏斜。
-% 当把我们的注意力局限于具有微
-% 小时差的那一部分波至时，我们
-% 可以发现关于异常反射系数的信
-% 息全部都位于a、b和c各点邻域
-% 内，而这些点原来都是处于双曲线的侧翼上的。不把相应数据向左侧横向移动，比方说，
-% 移至$g'=g-f(t')$，这些点是不会占有正确几何位置的，亦即不会占据原有的A、B和C点的
-% 位置；作过横向移动后，a点将位于b点之上。正确的移动量大小$f(t')$是一个涉及到速度分析
-% 的问题，从属这种问题的速度分析将在下节讨论。
-
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.65\textwidth]{slnt/interpcoord}
-% \caption[interpcoord]{左上图为两个反射面上的三个点散射体义A，B，C。右上图
-% 为所期望之Snell波。左下图为经过线性时差校正之后的Snell波。
-% 右下图为转换至完整的解释坐标之后的情形，在最后的这个结果
-% 中a，b与c各点均已位于幵始时的A、B与C各点位置上了
-% }
-% \label{fig:slnt/interpcoord}
-% \end{figure}
-
-% \subsection{Snell波出了啥毛病？}
-% \label{sec:5.3.4}
-
-% 在建立平方根方程以前，我曾经认为进行地震数据分析的唯一正确途径就是把它分解成
-% Snell波。既然一个Fresnel带看来不过就大约10°左右，要不了多少Snell波也就行了。只需
-% 少量剖面曾经是很重要的。因为七十年代的计算机能力很有限。当时我知道藉助于一个平方
-% 根方程每个Snell波都是可分析的，而且知道即使是多次反射也可以采用《地球物理数据处
-% 理基础》一书中和本书\ref{sec:5.6}节中所述方法来加以处理。从理论上说，这种办法可算得上是对完
-% 全难以分析的CDP叠加所作过的一项重大改进了
-% 。然而，对于下行Snell波来说，存在有一个
-% 实际问题，这就是：当它们离开地表面之后不久就遇到横向速度不均匀性，它们也许早就
-% 变得很复杂了。虽然我对它们将会有什么最终作用还不能肯定，我是不再相信Snell波是一
-% 种包治百病的灵丹妙药了。但是，许多波都表现出它们有一点儿像是Snell波，这一点触动
-% 了我要去建立发展一种对Snell波来说是理想的坐标系统，而对有一点像是Snell波的那些波
-% 来说则是有效的坐标系统。
-
-% \subsection{横向不变性}
-% \label{sec:5.3.5}
-
-% 垂直入射力$p=0$平面波震源在水平层状介质内产生的反射波场具有横向不变性，换言
-% 之，有关波场的观测与理论在这种情形下所具有的形式均属$P(t)\times const(x)$。在任何特定的
-% 非零值情形下的Snell波也都是横向不变的，就是说，利用新坐标
-% \begin{subequations}
-% \begin{equation}
-% t'=t-px
-% \label{eq:ex5.3.2a}
-% \end{equation}
-% \begin{equation}
-% x'=x
-% \label{eq:ex5.3.2b}
-% \end{equation}
-% \label{eq:ex5.3.2}
-% \end{subequations}
-% 则横向不变性可由下述陈述给出
-% \begin{equation}
-% P(x,t)=P'(t')\times const(x')
-% \label{eq:ex5.3.3}
-% \end{equation}
-% 显然，当一个貌似二维的问题可以简化成一维问题时，会产生重大概念上的好处，更不用说
-% 采样和计算上的好处了。在继续进行讨论之前，要研究一下方程\ref{eq:ex5.3.3}直到你确实理解
-% 了当如条件\ref{eq:ex5.3.2b}所述$x'=x$时，为什么波场可以随x而变化但却是x'的一种常值函数。
+将上述各项定义集中为一组方程，并以遍及z的积分来代替z以便允许速度随
+深度而变化，我们得出：
+\begin{subequations}
+\begin{equation}
+t'(t,g,s,z)=t-(g-s)+2\int_0^z\frac{\cos\theta}{v}dz
+\label{eq:ex5.4.20a}
+\end{equation}
+\begin{equation}
+y(t,g,s,z)=\frac{g+s}{2}
+\label{eq:ex5.4.20b}
+\end{equation}
+\begin{equation}
+h'(t,g,s,z)=\frac{g-s}{2}+\int_0^z\tan\theta dz
+\label{eq:ex5.4.20c}
+\end{equation}
+\begin{equation}
+\tau(t,g,s,z)=2\int_0^z\frac{\cos\theta}{v}dz
+\label{eq:ex5.4.20d}
+\end{equation}
+\label{eq:ex5.4.20}
+\end{subequations}
 
 
-% 坐标系统\ref{eq:ex5.3.2}是延迟坐标系统，不是一种运动坐标系统。在固体地球物理学中，
-% 采用运动坐标系统进行计算是很糟糕的，地层内的速度函数从来不是时变的(time-variable)，可是在运动坐标系统内它却成为时变的了，这会增加计算的复杂性。我们的目标是采用
-% 某一模型速度由数据形成影像，该速度是所有空间维次的一项函数。但是所利用的坐标系统
-% 将具有这么一种参考速度，它仅仅是深度之函数。
+在使用这些方程以前，必须按照层状介质情形下的Snell定律$\sin\theta(z)=pv(z)$把所有三
+角函数从式中消去，Snell参量p在整个分析过程中均为一常数值。
 
-% \subsection{Snell波的坐标系统}
-% \label{sec:5.3.6}
+把由\ref{eq:ex5.4.20a}得出的$dt'/dz$和由\ref{eq:ex5.4.20c}得出的
+$dh'/dz$结合起来时，得
+\begin{equation}
+\frac{dt'}{dh'}=\frac{2\cos\theta}{v\tan\theta}
+\label{eq:ex5.4.21}
+\end{equation}
+根据关系式$pv=\sin\theta$消去式中的三角函数，就可使我们解出层速度为
+\begin{equation}
+v^2=\frac{1}{p}\frac{1}{p+\frac{1}{2}\frac{dt'}{dh'}}
+\label{eq:ex5.4.22}
+\end{equation}
+这又一次得出了测定层速度的方程\ref{eq:ex5.4.12}。
 
-% Snell波有三个固有平面，受此启发，可用它们构成一坐标系统，第一个平面是恒定深
-% 度z处的地层平面，其中包括地表面。第二个是射线平面。第三个是运动着的波阵面平面，
-% 当速度随深度而变化时，该平面变成曲面。
+位于地表面$z=0$时，仅需对p作出数值选择然后进行线性时差校正，即可将地震勘探资
+料以坐标框架\ref{eq:ex5.2.20}表示。迄今尚无须要求有关速度$v(z)$的知识。接着我们来查找某
+些歪斜双曲线顶部的数据，找出一些后，我们就利用方程\ref{eq:ex5.4.12}、\ref{eq:ex5.4.19}或者\ref{eq:ex5.4.22} 求出某种速度，采用这种速度开始作向下延拓处理。
 
-% 下列方程定义了Snell波坐标系统
-% \begin{subequations}
-% \begin{equation}
-% z'(z,x,t)=z\frac{\cos\theta}{v}
-% \label{eq:ex5.3.4a}
-% \end{equation}
-% \begin{equation}
-% x'(z,x,t)=z\tan\theta+x
-% \label{eq:ex5.3.4b}
-% \end{equation}
-% \begin{equation}
-% t'(z,x,t)=z\frac{\cos\theta}{v}-x\frac{\sin\theta}{v}+t
-% \label{eq:ex5.3.4c}
-% \end{equation}
-% \label{eq:ex5.3.4}
-% \end{subequations}
+波场可以在物理坐标系统$(t,g,s,z)$或新定义的坐标系统$(t',y,h',\tau)$内描述，在
+物理坐标系统内，成像在
+\begin{equation}
+t=0 \quad \text{及}\quad g=s
+\label{eq:ex5.4.23}
+\end{equation}
+时出现。为在Snell坐标内表达这些条件，将式\ref{eq:ex5.4.23}代进\ref{eq:ex5.4.20a}与
+\ref{eq:ex5.4.20d}
+内，所得结果就是程序人员所谓的停机条件
+\begin{equation}
+t'=\tau
+\label{eq:ex5.4.24}
+\end{equation}
+这是速度信息应当被最佳聚焦于$(h',t')$平面时的深度。下面我们将讨论某些向下延拓方程。
 
-% 方程\ref{eq:ex5.3.4a}利用钻孔中见到的垂直相速度直接定义了旅行时间深度，地层内部的分
-% 界面都正好是恒定z'值处的平面。
+\subsection{微分方程与Fourier变换}
+\label{sec:5.4.3}
 
-% 令方程\ref{eq:ex5.3.4b}所定义的x'等于常数，比如说，等于$x_0$，则得出射线方程，即
-% $(x-x_0)/z=-\tan\theta$，不同的$x_0$值代表不同的射线。
+由偏微分方程的连锁法得出
+\begin{equation}
+\begin{pmatrix}
+\partial_t\\
+\partial_g\\
+\partial_s\\
+\partial_z
+\end{pmatrix}=
+\begin{pmatrix}
+t_t' & y_t & h_t' & \tau_t \\
+t_g' & y_g & h_g' & \tau_g \\
+t_s' & y_s & h_s' & \tau_s \\
+t_z' & y_z & h_z' & \tau_z
+\end{pmatrix}
+\begin{pmatrix}
+\partial_t'\\
+\partial_y\\
+\partial_h\\
+\partial_\tau
+\end{pmatrix}
+\label{eq:ex5.4.25}
+\end{equation}
+按我们通常的符号，时间导数$\partial_t$的Fourier表象是$-i\omega$，与此类似，$\partial_t'$及空间导数$
+\partial_h',\partial_\tau,\partial_g,\partial_g,\partial_z)$
+的相应表象分别为$-i\omega '$及$i(k_y,k_h',k_\tau,k_g,k_s,k_z)$。在矩阵关系\ref{eq:ex5.4.25}
+的两个列向量中采用这些Fourier变量并对方程\ref{eq:ex5.4.20}微分，求出矩阵\ref{eq:ex5.4.25}中的 各元素，得到下述矩阵关系
+\begin{equation}
+\begin{pmatrix}
+-\omega\\
+\k_g\\
+\k_s\\
+\k_z
+\end{pmatrix}=
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+-p & \frac{1}{2} & \frac{1}{2} & 0 \\
+p & \frac{1}{2} & -\frac{1}{2} & 0 \\
+\frac{2\cos\theta}{v} & 0 & \tan\theta & \frac{2\cos\theta}{v}
+\end{pmatrix}
+\begin{pmatrix}
+-\omega '\\
+k_y\\
+k_h'\\
+k_\tau
+\end{pmatrix}
+\label{eq:ex5.4.26}
+\end{equation}
+设S为震源处的入射角之正弦，G为检波点处的出射角之正弦。如速度v已知，则由共检
+波点道集和共炮点道集上的时差可分别直接测定出这些角度。与此类似，在共炮检距剖面上
+或倾斜叠加剖面上所观测到的时差应与视倾角Y有关，在经过线性时差校正的共中心点道集
+上由时差所测量出的是视时差H'。其精确定义分别为
+\begin{subequations}
+\begin{equation}
+S=\frac{vk_s}{\omega}, G=\frac{vk_g}{\omega}
+\label{eq:ex5.4.27a}
+\end{equation}
+\begin{equation}
+Y=\frac{vk_y}{2\omega}, H'=\frac{vk_h'}{2\omega}
+\label{eq:ex5.4.27b}
+\end{equation}
+\label{eq:ex5.4.27}
+\end{subequations}
+利用矩阵\ref{eq:ex5.4.26}中的相应一些定义可得出下述关系
+\begin{subequations}
+\begin{equation}
+G=pv+Y+H'=Y+(H'+pv)
+\label{eq:ex5.4.28a}
+\end{equation}
+\begin{equation}
+S=-pv+Y-H'=Y-(H'+pv)
+\label{eq:ex5.4.28b}
+\end{equation}
+\label{eq:ex5.4.28}
+\end{subequations}
+利角关系式$H'=H-pv$就可将人们熟悉的炮检距时差角H同LMO剩余时差角H'联系起来。
+令H'等于零意味着是令$k_h'$等于零，从而暗示遍及$h'$进行了积分，这最终也就是暗示以倾斜
+角p对数据进行倾斜叠加。$H'/v$值或$k_h'/\omega$值很小就是指时差接近于p。
 
-% 令方程\ref{eq:ex5.3.4c}所定义的t'等于常数，则给出运动着的波阵面之方程。要看出这点
-% 令$t'=t_0$并注意在恒定x值时，你看到的是钻井中的速度，而在恒定z值时，你看到的是飞机
-% 的速度。
 
-% 从数学上说，具有三个未知数的一个方程定义了一个平面，所以，令式\ref{eq:ex5.3.4}中任
-% 何一个方程的左端为常数，就得出在空间内定义了一个平面的方程。为进行实际检验，
-% 不妨考虑一下两个平面相交的情形。使波阵面停留不动得要求$dt'=0$，利用方程\ref{eq:ex5.3.4c}，得出
-% \begin{equation}
-% dt'=0=\frac{\cos\theta}{v}dz-\frac{\sin\theta}{v}dx+dt
-% \label{eq:ex5.3.5}
-% \end{equation}
-% 将该恒定波阵面方程$dt'=0$同恒定深度方程$dz'=dz=0$结合起来，得出了熟悉的关系式
-% \begin{equation}
-% \frac{dt}{dx}=p
-% \label{eq:ex5.3.6}
-% \end{equation}
+\subsection{处理的可能性}
+\label{sec:5.4.4}
 
-% 在坐标平面是非正交平面时，就说该坐标系统是仿射坐标系统(affine coordinate
-% system)。利用像\ref{eq:ex5.3.4}那样的仿射坐标，我们无疑易于控制计算，但是我们往往确实也得
-% 遇上给我们自己造成混乱的问题，例如，当我们显示海上野外资料的活动画面时，我们看到
-% 的是一系列共炮点道集$(h,t)$平面；相继的平面就是相继的炮点，所以当我们打算在正交
-% 坐标$(y,h)$或$(s,g)$中考虑问题时\footnote{
-% y为中心点坐标，h为半炮检鉅，g为检波点坐标，s为炮点坐标。 ---译者
-% }，数据是显示在$(s,h)$平面中的。采用仿射坐
-% 标时，我发现最容易忘掉坐标轴而考虑用垂直的平面来代替。炮点坐标轴s可以被当作是一
-% 个共检波点平面来考虑，比如说，当作是$cg$。所以，我把海上勘探数据活动电影当作是存在于
-% $(cs,ch,ct)$空间中。在这个活动电影中，另一个平面，实际上是一个平面族、即共中心
-% 点平面cy，随同数据的“分层结构”（见\ref{sec:3.0}节）而一起扫描通过屏幕。
+双平方根方程（DSR）为
+\begin{equation}
+\frac{k_x}{\omega}=-\frac{1}{v}(\sqrt{1-S^2}+\sqrt{1-G^2})
+\label{eq:ex5.4.29}
+\end{equation}
+代入\ref{eq:ex5.4.26}及\ref{eq:ex5.4.27a}，该双平方根方程变为
+\begin{equation}
+\frac{k_\tau}{\omega}=1-\frac{pv}{1-p^2v^2}H'-\frac{1}{2}\{
+[1-\frac{2pv(H'-Y)+(H'-Y)^2}{1-p^2v^2}]^\frac{1}{2}+
+[1-\frac{2pv(H'+Y)+(H'+Y)^2}{1-p^2v^2}]^\frac{1}{2}\}
+\label{eq:ex5.4.30}
+\end{equation}
 
-% 要在速度随深度而变化时定义Snell坐标，仅需要仔细地解释方程\ref{eq:ex5.3.4}。首先，所有
-% 的角度必须利用Snell置换$Sin\theta=pv(z)$通过p来表示，然后z必须赴处用对z的积分来代替。
+方程\ref{eq:ex5.4.30}就是以所谓延迟Snell中心点坐标形式表示的双平方根方程
+之准确表达式。
+
+坐标系统\ref{eq:ex5.4.20}可以描述任何介质内的任何波场，不过，在射线大体平行于具有所
+选Snell参量p的任何射线的情形下，只有在速度接近于$v(z)$的层状介质内，方程\ref{eq:ex5.4.20}
+才有特别好处。除非坐标系统“配得上”正在研究的波，不然没多少理由婆采用这些坐榇，
+所谓配得上的波就是参量接近于所选p值的那些波，这意味着不可过大。对式\ref{eq:ex5.4.30}
+有可能作种种简化展开，在三种构成因素和r中间的量值不等关系有许多种不同排
+列方法，你要按照具体条侔选取展开方法。然而关
+于如何展开才适当以及生产上应作何考虑
+等问题迄今尚说不出一个完整的轮廓梗概，不过，让我们考虑一下两种可能性。
+
+首先，任何数据集可以按时差分解成许多数据集，每种数据集在时差空间一例如在共
+中心点道集倾斜叠加中---内都具有狹频带，对这些数据集中的任何一个来说，都完全
+可忽略不计，这时方程\ref{eq:ex5.4.30}将筒化为
+\begin{subequations}
+\begin{equation}
+\frac{k_\tau}{\omega}=1-\frac{1}{2}\{
+[1-\frac{-2pvY + Y^2}{1-p^2v^2}]^\frac{1}{2}+
+[1-\frac{+2pvY + Y^2}{1-p^2v^2}]^\frac{1}{2}\}
+\label{eq:ex5.4.31a}
+\end{equation}
+或者
+\begin{equation}
+\frac{k_\tau}{\omega}=1-\frac{1}{2\sqrt{1-p^2v^2}}
+[\sqrt{1-(Y-pv)^2}+\sqrt{1-(Y+pv)^2}]
+\label{eq:ex5.4.31b}
+\end{equation}
+\label{eq:ex5.4.31}
+\end{subequations}
+上述处理方法类似于Richard Ottolini在其学位论文中所使用过的一种方法。
+
+其次，让我们给式\ref{eq:ex5.4.30}补充一种近似关系，使其中的Y与H'可单独分离出来。我们
+将采用\ref{sec:3.4}节介绍过的分离法。式\ref{eq:ex5.4.30}是这个近似关系的第一部分，这时取$Y=0$并保
+持$H'$的直至二次项之所有的项，得
+\begin{equation}
+\frac{k_\tau}{\omega}=\frac{H'^2}{2(1-p^2v^2)^2}
+\label{eq:ex5.4.32}
+\end{equation}
+
+式\ref{eq:ex5.4.30}的分离近似就是式\ref{eq:ex5.4.31b}加上式\ref{eq:ex5.4.32}。式\ref{eq:ex5.4.32}中不存
+在的线性项并不令人感到意外，坐标系统已经设计成使得在所选模型$Y=0$与$H=pv$附近
+的能量在向下延拓进行的时候不应当在$(h',t')$平面内有漂移。
+
+方程\ref{eq:ex5.4.32}所代表的速度谱概念就是利用H'项使数据在$(h',t')$平面上聚焦，在
+聚焦之后，应有可能按照使道集上的同相轴衔接起来的斜率而直接读出层速度。这种办法在
+Alfonso Gonzalez(1982)的学位论文中曾经使用过。
+
+\subsection{习题}
+\label{sec:5.4.5}
 
 
-% \subsection{Fourier空间中的Snell波}
-% \label{sec:5.3.7}
+ \begin{enumerate}
+\item 设零炮检距剖面上已识别岀某个双曲线，顶部模糊不清，但你尚可在两个位置上
+测定$(p,x,t)$，试求地层速度。已知在野外剖面上有相同测定结果（s为恒定），试求地层
+速度。
 
-% 根据偏微分方程连锁法(chain rule)，应有
-% \begin{equation}
-% \begin{pmatrix}
-% \partial_t \\
-% \partial_x \\
-% \partial_z 
-% \end{pmatrix}
-% =\begin{pmatrix}
-% t_t' & x_t' & z_t'\\
-% t_x' & x_x' & z_x'\\
-% t_z' & x_z' & z_z'
-% \end{pmatrix}
-% =
-% \begin{pmatrix}
-% \partial_{t'} \\
-% \partial_{x'} \\
-% \partial_{z'} 
-% \end{pmatrix}
-% \label{eq:ex5.3.7}
-% \end{equation}
+\end{enumerate}
 
-% 在Fourier空间内，上述方程中涉及时间t与水平坐标x的部分可解释为
-% \begin{subequations}
-% \begin{equation}
-% -i\omega=-i\omega'
-% \label{eq:ex5.3.8a}
-% \end{equation}
-% \begin{equation}
-% ik_x=+p\omega'+ik_x'
-% \label{eq:ex5.3.8b}
-% \end{equation}
-% \label{eq:ex5.3.8}
-% \end{subequations}
-% 在线性时差校正(对x'保持恒定)之后变得平缓的同相轴能量具有特殊意义，对于这类能量应
-% 有$\partial/\partial x'=ik_x'=0$，于是将式\ref{eq:ex5.3.8a}与
-% \ref{eq:ex5.3.8b}结合起来可得出熟悉的关系方程
-% \begin{equation}
-% p=\frac{k}{\omega}
-% \label{eq:ex5.3.9}
-% \end{equation}
-
-% \subsection{习题}
-% \label{sec:5.3.8}
-% \begin{enumerate}
-% \item 试解释图\ref{fig:slnt/cspss}中的s坐标轴应如何选取符号。
-% \item 方程\ref{eq:ex5.3.4}属于上行Snell波的情形，试问：适用于下行Sneir波的将是何种坐
-% 标系统。
-% \item 试在坐标系统\ref{eq:ex5.3.4}内表示标量波动方程。忽略其一阶导数项。
-% \item 试按照Fourier变量$(\omega ',k_z',k_x')$来表7K标量波动方程的波散关系。
-% \end{enumerate}
 
 
 
